@@ -19,12 +19,6 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>line-android-unreal-wrapper</groupId>
-      <artifactId>linesdk-android-unreal</artifactId>
-      <version>unspecified</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
       <groupId>com.linecorp.linesdk</groupId>
       <artifactId>linesdk</artifactId>
       <version>5.10.1</version>

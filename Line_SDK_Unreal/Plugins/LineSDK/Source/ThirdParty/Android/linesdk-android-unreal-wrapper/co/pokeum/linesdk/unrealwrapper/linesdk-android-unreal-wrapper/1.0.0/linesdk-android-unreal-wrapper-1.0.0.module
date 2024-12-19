@@ -51,13 +51,6 @@
       },
       "dependencies": [
         {
-          "group": "line-android-unreal-wrapper",
-          "module": "linesdk-android-unreal",
-          "version": {
-            "requires": "unspecified"
-          }
-        },
-        {
           "group": "com.linecorp.linesdk",
           "module": "linesdk",
           "version": {
