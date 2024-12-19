@@ -1,22 +1,54 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #include "LineSDK.h"
 
-#define LOCTEXT_NAMESPACE "FLineSDKModule"
-
-void FLineSDKModule::StartupModule()
+ULineSDK::ULineSDK(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+	, ChannelID("")
+	, UniversalLinkURL("")
 {
-	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+}
+
+
+void FLineSDK::SetupSDK(const FString& ChannelId, const FString& UniversalLinkURL)
+{
 	
 }
 
-void FLineSDKModule::ShutdownModule()
+void FLineSDK::Login(const FString& Scope, bool OnlyWebLogin, const FString& BotPrompt, const FString& TokenNonce, const FString& Identifier)
 {
-	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
-	// we call this function before unloading the module.
 	
 }
 
-#undef LOCTEXT_NAMESPACE
+void FLineSDK::Logout(const FString& Identifier)
+{
 	
-IMPLEMENT_MODULE(FLineSDKModule, LineSDK)
+}
+
+void FLineSDK::RefreshAccessToken(const FString& Identifier)
+{
+	
+}
+
+void FLineSDK::RevokeAccessToken(const FString& Identifier)
+{
+	
+}
+
+void FLineSDK::VerifyAccessToken(const FString& Identifier)
+{
+	
+}
+
+void FLineSDK::GetProfile(const FString&  Identifier)
+{
+	
+}
+
+void FLineSDK::GetBotFriendshipStatus(const FString& Identifier)
+{
+	
+}
+
+FString FLineSDK::GetCurrentAccessToken()
+{
+	return TEXT("");
+}
