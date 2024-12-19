@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AirbridgeUnrealSDK"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="co.pokeum.linesdk.ChannelId"
+            android:value="@string/channel_id" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

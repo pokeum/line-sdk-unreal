@@ -3,6 +3,7 @@ package co.pokeum.linesdk;
 import static co.pokeum.linesdk.InputsDialogConstant.*;
 
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 
 import co.pokeum.inputs.dialog.InputsDialogFragment;
@@ -35,21 +37,32 @@ public class MainActivity extends AppCompatActivity implements InputsDialogInter
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        gameActivityOnCreateAdditions();
+
         initUI();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    //===================================== gameActivityClassAdditions =====================================//
+
+    private void gameActivityOnCreateAdditions() {
+        try {
+            Bundle bundle = getPackageManager().getApplicationInfo(
+                    getApplicationContext().getPackageName(),
+                    PackageManager.GET_META_DATA
+            ).metaData;
+            String channelId = bundle.getString("co.pokeum.linesdk.ChannelId");
+            LineSdkWrapper.setupSdk(
+                    getApplicationContext(),
+                    Objects.requireNonNull(channelId)
+            );
+        } catch (Throwable throwable) {
+            android.util.Log.e(LINE_SDK_TAG, "Failed to setup Line SDK", throwable);
+        }
     }
 
-    //================================================================================================================//
+    //===================================== gameActivityClassAdditions =====================================//
 
     private static final String LINE_SDK_TAG = "LineSDK";
-
-    public void lineSdk_setupSdk(@NotNull String channelId) {
-        LineSdkWrapper.setupSdk(getApplicationContext(), channelId);
-    }
 
     public void lineSdk_login(
             @NotNull String identifier,
@@ -90,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements InputsDialogInter
     private void initUI() {
 
         binding.btnSetupSdk.setOnClickListener(view -> {
-            lineSdk_setupSdk(binding.tvChannelId.getText().toString());
+
         });
 
         binding.btnLogin.setOnClickListener(view -> {
