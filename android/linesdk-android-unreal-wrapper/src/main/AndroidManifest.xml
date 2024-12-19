@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="co.pokeum.linesdk.unrealwrapper">
+
+    <application>
+        <activity
+            android:name=".activity.LineSdkWrapperActivity"
+            android:configChanges="orientation|keyboard|screenSize|smallestScreenSize|screenLayout"
+            android:theme="@style/TransparentStyle" />
+    </application>
+</manifest>

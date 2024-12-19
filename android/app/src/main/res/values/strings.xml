@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Line SDK</string>
+    <string name="channel_id">1606667895</string>
+    <string name="setup_sdk">Setup SDK</string>
+    <string name="login">Login</string>
+    <string name="get_profile">Get Profile</string>
+    <string name="get_current_access_token">Get Current Access Token</string>
+    <string name="logout">Logout</string>
+    <string name="get_bot_friendship_status">Get Bot Friendship Status</string>
+    <string name="refresh_access_token">Refresh Access Token</string>
+    <string name="verify_access_token">Verify Access Token</string>
+</resources>
