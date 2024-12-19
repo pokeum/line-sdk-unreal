@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-publish")
 }
 
 android {
@@ -27,6 +28,31 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+/* -------------------------------------------------------------------------------------------------
+    JAVA_HOME=$JAVA_17_HOME &&\
+    ./gradlew clean &&\
+    ./gradlew :linesdk-android-unreal-wrapper:publishReleasePublicationToLocalRepository
+ ------------------------------------------------------------------------------------------------- */
+publishing {
+    repositories {
+        maven {
+            name = "Local"
+            url = uri("file://${buildDir}/repository")
+        }
+    }
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "co.pokeum.linesdk.unrealwrapper"
+            artifactId = "linesdk-android-unreal-wrapper"
+            version = "1.0.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
     }
 }
 

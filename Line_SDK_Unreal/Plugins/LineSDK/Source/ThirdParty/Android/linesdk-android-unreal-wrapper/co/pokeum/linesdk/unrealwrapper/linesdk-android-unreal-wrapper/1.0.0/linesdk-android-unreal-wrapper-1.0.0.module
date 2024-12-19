@@ -1,0 +1,117 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "co.pokeum.linesdk.unrealwrapper",
+    "module": "linesdk-android-unreal-wrapper",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.9.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "linesdk-android-unreal-wrapper-1.0.0.aar",
+          "url": "linesdk-android-unreal-wrapper-1.0.0.aar",
+          "size": 29770,
+          "sha512": "8ab865effe25859954516d64e651860bd391af3c7717592ec22fa9d801d431a05bf1979e1b891b73005de33d697497f5885724b0d9fc8725e9fc58e7548e785d",
+          "sha256": "b8518903418dce78bbb07d75cc3caebe1fb70857a27d4388878727b30ac4f23f",
+          "sha1": "82ad8d08736b2747122f05edcb9411fe355291ef",
+          "md5": "9ae5dd228869d40ee869f992bf0a4f5a"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "line-android-unreal-wrapper",
+          "module": "linesdk-android-unreal",
+          "version": {
+            "requires": "unspecified"
+          }
+        },
+        {
+          "group": "com.linecorp.linesdk",
+          "module": "linesdk",
+          "version": {
+            "requires": "5.10.1"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.9.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "linesdk-android-unreal-wrapper-1.0.0.aar",
+          "url": "linesdk-android-unreal-wrapper-1.0.0.aar",
+          "size": 29770,
+          "sha512": "8ab865effe25859954516d64e651860bd391af3c7717592ec22fa9d801d431a05bf1979e1b891b73005de33d697497f5885724b0d9fc8725e9fc58e7548e785d",
+          "sha256": "b8518903418dce78bbb07d75cc3caebe1fb70857a27d4388878727b30ac4f23f",
+          "sha1": "82ad8d08736b2747122f05edcb9411fe355291ef",
+          "md5": "9ae5dd228869d40ee869f992bf0a4f5a"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "linesdk-android-unreal-wrapper-1.0.0-sources.jar",
+          "url": "linesdk-android-unreal-wrapper-1.0.0-sources.jar",
+          "size": 13457,
+          "sha512": "8aaa6bc9a24b393cc7945d1102ac2d36a3345d773b9601558994114aa53deac199ed37835c6c03a69e6dad064dd44b2056644e3e43638b9db098b6c105fce681",
+          "sha256": "290dc2575b9bf76c256d981108fba8bd81db64d4e0811c9c7678a309052324c1",
+          "sha1": "2dae65e2ecb5f4268b62b569d421e8428b388957",
+          "md5": "3dfe9cf49f4bf7e40780b31a04a9cf0e"
+        }
+      ]
+    }
+  ]
+}
