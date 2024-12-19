@@ -57,7 +57,7 @@ publishing {
 }
 
 dependencies {
-    implementation(project(":linesdk-android-unreal"))
+    compileOnly(project(":linesdk-android-unreal"))
 
     val lineSdkVersion = "5.10.1"
     implementation("com.linecorp.linesdk:linesdk:$lineSdkVersion")

@@ -2,13 +2,15 @@
 
 #include "LineSDK.generated.h"
 
+#pragma region Line SDK Settings
+
 UCLASS(config = Engine)
-class ULineSDK : public UObject
+class ULineSDKSettings : public UObject
 {
 	GENERATED_BODY()
 
 public:
-	ULineSDK(const FObjectInitializer& ObjectInitializer);
+	ULineSDKSettings(const FObjectInitializer& ObjectInitializer);
 
 	/// <summary>
 	/// The channel ID for your app.
@@ -19,6 +21,8 @@ public:
 	UPROPERTY(Config, EditAnywhere, Category = "Line SDK", meta = (DisplayName = "Universal Link URL"))
 	FString UniversalLinkURL;
 };
+
+#pragma endregion
 
 
 class LINESDK_API FLineSDK

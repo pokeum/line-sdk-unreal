@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:android="http://schemas.android.com/apk/res/ios">
+
+    <!-- init section is always evaluated once per architecture -->
+    <init>
+        <log text="[LineSDK] initialization"/>
+        <setStringFromProperty result="ChannelID" ini="Engine" section="/Script/LineSDK.LineSDKSettings" property="ChannelID" default=""/>
+        <setStringFromProperty result="UniversalLinkURL" ini="Engine" section="/Script/LineSDK.LineSDKSettings" property="UniversalLinkURL" default=""/>
+    </init>
+</root>

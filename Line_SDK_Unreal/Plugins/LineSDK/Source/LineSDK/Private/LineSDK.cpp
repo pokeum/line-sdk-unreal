@@ -1,6 +1,6 @@
 #include "LineSDK.h"
 
-ULineSDK::ULineSDK(const FObjectInitializer& ObjectInitializer)
+ULineSDKSettings::ULineSDKSettings(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 	, ChannelID("")
 	, UniversalLinkURL("")

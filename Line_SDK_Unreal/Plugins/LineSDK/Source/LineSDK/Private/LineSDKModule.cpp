@@ -23,7 +23,7 @@ void FLineSDKModule::StartupModule()
 			"Project", "Plugins", "LineSDKSettings",
 			LOCTEXT("RuntimeSettingsName", "Line SDK"),
 			LOCTEXT("RuntimeSettingsDescription", "Line SDK Settings"),
-			GetMutableDefault<ULineSDK>()
+			GetMutableDefault<ULineSDKSettings>()
 		);
 	}
 
