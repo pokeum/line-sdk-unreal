@@ -17,18 +17,34 @@ This repo contains the _**UNOFFICIAL** LINE SDK_ for Unreal Engine. It allows yo
 
 The LINE SDK for Unreal Engine provides the following features.
 
+### User authentication
+
+This feature allows users to log in to your service with their LINE accounts. With the help of the LINE SDK for Unreal Engine, it has never been easier to integrate LINE Login into your app. Your users will automatically log in to your app without entering their LINE credentials if they are already logged in to LINE on their <del>iOS</del>_(not yet supported)_/Android devices. This offers a great way for users to get started with your app without having to go through a registration process.
+
+### Utilizing user data with OpenID support
+
+Once the user authorizes, you can get the user’s LINE profile. You can utilize the user's information registered in LINE without building your user system.
+
+The LINE SDK supports the OpenID Connect 1.0 specification. You can get ID tokens that contain the user’s LINE profile when you retrieve the access token.
+
+## Using the SDK
+
+### Prerequisites
+
+* Android `minSdkVersion` set to 24 or higher (Android 7.0 or later).
+
+> [!NOTE]
+> Setting Up Android Minimum SDK Version for Unreal
+> | <img src="document/image/readme_minSdkVersion_24.png"  width="650"> |
+> | --- |
+
+* Unreal Engine 4.23 or later.
+
 ## Troubleshooting
 
 ### Android
 
-#### 1. `uses-sdk:minSdkVersion` build error
-
-> [!NOTE]
-> Set minSdkVersion to `26` or above.
-> | <img src="document/image/readme_minSdkVersion_26.png"  width="850"> |
-> | --- |
-
-#### 2. Using `AndroidX`
+#### 1. Using `AndroidX`
 
 >  [![AndroidX](https://img.shields.io/badge/Android_Developers-AndroidX_overview-a4c639?logo=android&logoColor=white&style=for-the-badge)](https://developer.android.com/jetpack/androidx)
 > 
