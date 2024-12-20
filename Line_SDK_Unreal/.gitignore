@@ -80,3 +80,5 @@ DerivedDataCache/*
 
 # CLion
 CMakeLists.txt
+
+**/*.DotSettings.user

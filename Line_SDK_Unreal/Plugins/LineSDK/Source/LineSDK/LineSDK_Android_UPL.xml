@@ -8,7 +8,11 @@
         
         <log text="[LineSDK] initialization: ChannelID={$S(ChannelID)}"/>
     </init>
-
+    
+    <prebuildCopies>
+        <copyDir src="$S(PluginDir)/../ThirdParty/Android/linesdk-android-unreal" dst="$S(BuildDir)/src" />
+    </prebuildCopies>
+    
     <AARImports>
         <insertValue value="repository $S(PluginDir)/../ThirdParty/Android/linesdk-android-unreal-wrapper"/>
         <insertNewline/>

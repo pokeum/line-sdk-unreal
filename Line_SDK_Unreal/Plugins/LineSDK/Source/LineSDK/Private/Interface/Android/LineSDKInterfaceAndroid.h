@@ -14,7 +14,11 @@ public:
 	virtual void RefreshAccessToken(const FString& Identifier) override;
 	virtual void RevokeAccessToken(const FString& Identifier) override;
 	virtual void VerifyAccessToken(const FString& Identifier) override;
-	virtual void GetProfile(const FString&  Identifier) override;
+	virtual void GetProfile(const FString& Identifier) override;
 	virtual void GetBotFriendshipStatus(const FString& Identifier) override;
 	virtual FString GetCurrentAccessToken() override;
+
+public:
+	void OnApiOk(const FString& Result);
+	void OnApiError(const FString& Result);
 };

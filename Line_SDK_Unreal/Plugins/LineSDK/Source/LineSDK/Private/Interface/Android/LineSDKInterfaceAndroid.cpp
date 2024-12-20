@@ -1,5 +1,7 @@
 #include "LineSDKInterfaceAndroid.h"
 
+#include "Model/CallbackPayload.h"
+
 LineSDKInterfaceAndroid::LineSDKInterfaceAndroid()
 {
 	
@@ -53,4 +55,14 @@ void LineSDKInterfaceAndroid::GetBotFriendshipStatus(const FString& Identifier)
 FString LineSDKInterfaceAndroid::GetCurrentAccessToken()
 {
 	return FString();
+}
+
+void LineSDKInterfaceAndroid::OnApiOk(const FString& Result)
+{
+	UCallbackPayload* Payload = UCallbackPayload::FromJson(Result);
+}
+
+void LineSDKInterfaceAndroid::OnApiError(const FString& Result)
+{
+	UCallbackPayload* Payload = UCallbackPayload::FromJson(Result);
 }

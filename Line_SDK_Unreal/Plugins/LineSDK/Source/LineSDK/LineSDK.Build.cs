@@ -8,7 +8,7 @@ public class LineSDK : ModuleRules
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Engine", "Core", "CoreUObject", });
-		PrivateDependencyModuleNames.AddRange(new string[] { "Settings", });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Settings", "Json" });
 
 		string pluginPath = Utils.MakePathRelativeTo(ModuleDirectory, Target.RelativeEnginePath);
 
