@@ -15,8 +15,20 @@
         <insertValue value="co.pokeum.linesdk.unrealwrapper,linesdk-android-unreal-wrapper,1.0.0" />
         <insertNewline/>
     </AARImports>
+
+    <buildGradleAdditions>
+        <insert>
+            android {
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+            }
+        </insert>
+    </buildGradleAdditions>
     
     <androidManifestUpdates>
+        <addPermission android:name="android.permission.INTERNET" />
         <addElements tag="application">
             <!-- Meta data for Line SDK -->
             <meta-data android:name="co.pokeum.linesdk.ChannelId" android:value="$S(ChannelID)" />
