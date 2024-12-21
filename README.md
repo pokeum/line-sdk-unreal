@@ -1,17 +1,17 @@
 <img src="document/image/UNOFFICIAL_Line_SDK_icon.png"  width="254">   
 
-# [UNOFFICIAL] LINE SDK for Unreal
+# [⚠️ UNOFFICIAL] LINE SDK for Unreal
 
 [![line/line-sdk-android](https://img.shields.io/badge/GitHub-line/line--sdk--android-51A687?logo=github&logoColor=white)](https://github.com/line/line-sdk-android)
 [![line/line-sdk-unity](https://img.shields.io/badge/GitHub-line/line--sdk--unity-51A687?logo=github&logoColor=white)](https://github.com/line/line-sdk-unity)
 
 Implemented SDK versions:
 
-- [LINE SDK v5 for Android (Ver 5.10.1)](https://github.com/line/line-sdk-android/releases/tag/v5.10.1)
+- [`com.linecorp.linesdk:linesdk:5.10.1`](https://mvnrepository.com/artifact/com.linecorp.linesdk/linesdk/5.10.1)
 
 ## Overview
 
-This repo contains the _**UNOFFICIAL** LINE SDK_ for Unreal Engine. It allows you to use LINE Login and LINE API in your Unity games easier.
+This repo contains the _**⚠️ UNOFFICIAL** LINE SDK_ for Unreal Engine. It allows you to use LINE Login and LINE API in your Unity games easier.
 
 ## Features
 
