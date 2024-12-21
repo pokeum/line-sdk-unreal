@@ -28,11 +28,11 @@ void FLineSDKModule::StartupModule()
 	}
 
 #if PLATFORM_ANDROID
-	Pointer = MakeShareable(new LineSDKInterfaceAndroid());
+	NativeInterfacePointer = MakeShareable(new FLineSDKInterfaceAndroid());
 #elif PLATFORM_IOS
-	Pointer = MakeShareable(new LineSDKInterfaceIOS());
+	NativeInterfacePointer = MakeShareable(new FLineSDKInterfaceIOS());
 #else
-	Pointer = MakeShareable(new LineSDKInterfacePlaceholder());
+	NativeInterfacePointer = MakeShareable(new FLineSDKInterfacePlaceholder());
 #endif
 }
 

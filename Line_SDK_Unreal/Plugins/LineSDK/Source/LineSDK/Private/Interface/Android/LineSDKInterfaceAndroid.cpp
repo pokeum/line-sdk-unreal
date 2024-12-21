@@ -1,68 +1,58 @@
 #include "LineSDKInterfaceAndroid.h"
 
-#include "Model/CallbackPayload.h"
-
-LineSDKInterfaceAndroid::LineSDKInterfaceAndroid()
+FLineSDKInterfaceAndroid::FLineSDKInterfaceAndroid()
 {
 	
 }
 
-LineSDKInterfaceAndroid::~LineSDKInterfaceAndroid()
-{
-	
-}
-	
-void LineSDKInterfaceAndroid::SetupSDK(const FString& ChannelId, const FString& UniversalLinkURL)
+FLineSDKInterfaceAndroid::~FLineSDKInterfaceAndroid()
 {
 	
 }
 
-void LineSDKInterfaceAndroid::Login(const FString& Scope, bool OnlyWebLogin, const FString& BotPrompt, const FString& TokenNonce, const FString& Identifier)
+void FLineSDKInterfaceAndroid::Login(
+	const FString& Scope,
+	bool OnlyWebLogin,
+	const FNullableString& BotPrompt,
+	const FNullableString& TokenNonce,
+	const FString& Identifier
+)
 {
+	// TODO("Not yet implemented")
+}
 	
+void FLineSDKInterfaceAndroid::Logout(const FString& Identifier)
+{
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceAndroid::Logout(const FString& Identifier)
+void FLineSDKInterfaceAndroid::RefreshAccessToken(const FString& Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceAndroid::RefreshAccessToken(const FString& Identifier)
+void FLineSDKInterfaceAndroid::RevokeAccessToken(const FString& Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceAndroid::RevokeAccessToken(const FString& Identifier)
+void FLineSDKInterfaceAndroid::VerifyAccessToken(const FString& Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceAndroid::VerifyAccessToken(const FString& Identifier)
+void FLineSDKInterfaceAndroid::GetProfile(const FString&  Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceAndroid::GetProfile(const FString&  Identifier)
+void FLineSDKInterfaceAndroid::GetBotFriendshipStatus(const FString& Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceAndroid::GetBotFriendshipStatus(const FString& Identifier)
+FString FLineSDKInterfaceAndroid::GetCurrentAccessToken()
 {
-	
-}
-
-FString LineSDKInterfaceAndroid::GetCurrentAccessToken()
-{
+	// TODO("Not yet implemented")
 	return FString();
-}
-
-void LineSDKInterfaceAndroid::OnApiOk(const FString& Result)
-{
-	UCallbackPayload* Payload = UCallbackPayload::FromJson(Result);
-}
-
-void LineSDKInterfaceAndroid::OnApiError(const FString& Result)
-{
-	UCallbackPayload* Payload = UCallbackPayload::FromJson(Result);
 }

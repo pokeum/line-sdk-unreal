@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Model/LoginOption.h"
+#include "Utils/Result/Result_AccessToken.h"
+#include "Utils/Result/Result_LoginResult.h"
 #include "LineSDK.generated.h"
 
 #pragma region Line SDK Settings
@@ -28,13 +31,21 @@ public:
 class LINESDK_API FLineSDK
 {
 public:
-	static void SetupSDK(const FString& ChannelId, const FString& UniversalLinkURL);
-	static void Login(const FString& Scope, bool OnlyWebLogin, const FString& BotPrompt, const FString& TokenNonce, const FString& Identifier);
-	static void Logout(const FString& Identifier);
-	static void RefreshAccessToken(const FString& Identifier);
-	static void RevokeAccessToken(const FString& Identifier);
-	static void VerifyAccessToken(const FString& Identifier);
-	static void GetProfile(const FString&  Identifier);
-	static void GetBotFriendshipStatus(const FString& Identifier);
+	static void Login(const TArray<FString>& Scopes, const TFunction<void(const UResult_LoginResult*)>& Function);
+	
+	static void Login(const TArray<FString>& Scopes, const ULoginOption& Option, const TFunction<void(const UResult_LoginResult*)>& Function);
+	
+	static void Logout();
+
+	static void RefreshAccessToken(const TFunction<void(const UResult_AccessToken*)>& Function);
+
+	static void RevokeAccessToken();
+
+	static void VerifyAccessToken();
+
+	static void GetProfile();
+
+	static void GetBotFriendshipStatus();
+
 	static FString GetCurrentAccessToken();
 };

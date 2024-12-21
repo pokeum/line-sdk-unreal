@@ -1,6 +1,6 @@
 #include "Model/CallbackPayload.h"
 
-#include "Utils/LineSDKJsonKey.h"
+#include "Utils/JSONUtils.h"
 
 UCallbackPayload* UCallbackPayload::FromJson(const FString& Json)
 {
@@ -8,13 +8,17 @@ UCallbackPayload* UCallbackPayload::FromJson(const FString& Json)
 	TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Json);
 	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
 	{
-		// Identifier
-		if (!JsonObject->HasField(LineSDKJsonKey::CallbackPayload::Identifier)) return nullptr;
-		FString	Identifier = JsonObject->GetStringField(LineSDKJsonKey::CallbackPayload::Identifier);
-
-		// Value
-		if (!JsonObject->HasField(LineSDKJsonKey::CallbackPayload::Value)) return nullptr;
-		FString	Value = JsonObject->GetStringField(LineSDKJsonKey::CallbackPayload::Value);
+		FString Identifier;	// Required
+		if (!JSONUtils::GetStringField(JsonObject, JSONKeys::CallbackPayload::Identifier, Identifier))
+		{
+			return nullptr;
+		}
+	
+		FString Value;	// Required
+		if (!JSONUtils::GetStringField(JsonObject, JSONKeys::CallbackPayload::Value, Value))
+		{
+			return nullptr;
+		}
 
 		UCallbackPayload* Payload = NewObject<UCallbackPayload>(GetTransientPackage(), StaticClass());
 		Payload->Identifier = Identifier;
@@ -24,22 +28,29 @@ UCallbackPayload* UCallbackPayload::FromJson(const FString& Json)
 	return nullptr;
 }
 
-UCallbackPayload::UCallbackPayload(const FString& Identifier, const FString& Value)
+FString UCallbackPayload::WrapValue(const FString& Identifier, const FString& Value)
 {
-	this->Identifier = Identifier;
-	this->Value = Value;
+	UCallbackPayload* Payload = NewObject<UCallbackPayload>(GetTransientPackage(), StaticClass());
+	Payload->Identifier = Identifier;
+	Payload->Value = Value;
+	return Payload->ToJson();
 }
-	
+
 FString UCallbackPayload::ToJson() const
 {
+	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
+	JsonObject->SetStringField(JSONKeys::CallbackPayload::Identifier, Identifier);
+	JsonObject->SetStringField(JSONKeys::CallbackPayload::Value, Value);
+	
+	FString JsonString;
+	const TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonString);
+	if (FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer))
+	{
+		return JsonString;
+	}
 	return TEXT("");
 }
 
-FString UCallbackPayload::WrapValue(const FString& Identifier, const FString& Value)
-{
-	UCallbackPayload Payload(Identifier, Value);
-	return Payload.ToJson();
-}
-
 FString UCallbackPayload::GetIdentifier() const { return Identifier; }
+
 FString UCallbackPayload::GetValue() const { return Value; }

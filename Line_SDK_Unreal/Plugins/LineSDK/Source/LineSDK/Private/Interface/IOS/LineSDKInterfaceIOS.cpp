@@ -1,56 +1,58 @@
 #include "LineSDKInterfaceIOS.h"
 
-LineSDKInterfaceIOS::LineSDKInterfaceIOS()
+FLineSDKInterfaceIOS::FLineSDKInterfaceIOS()
 {
 	
 }
 
-LineSDKInterfaceIOS::~LineSDKInterfaceIOS()
-{
-	
-}
-	
-void LineSDKInterfaceIOS::SetupSDK(const FString& ChannelId, const FString& UniversalLinkURL)
+FLineSDKInterfaceIOS::~FLineSDKInterfaceIOS()
 {
 	
 }
 
-void LineSDKInterfaceIOS::Login(const FString& Scope, bool OnlyWebLogin, const FString& BotPrompt, const FString& TokenNonce, const FString& Identifier)
+void FLineSDKInterfaceIOS::Login(
+	const FString& Scope,
+	bool OnlyWebLogin,
+	const FNullableString& BotPrompt,
+	const FNullableString& TokenNonce,
+	const FString& Identifier
+)
 {
+	// TODO("Not yet implemented")
+}
 	
+void FLineSDKInterfaceIOS::Logout(const FString& Identifier)
+{
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceIOS::Logout(const FString& Identifier)
+void FLineSDKInterfaceIOS::RefreshAccessToken(const FString& Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceIOS::RefreshAccessToken(const FString& Identifier)
+void FLineSDKInterfaceIOS::RevokeAccessToken(const FString& Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceIOS::RevokeAccessToken(const FString& Identifier)
+void FLineSDKInterfaceIOS::VerifyAccessToken(const FString& Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceIOS::VerifyAccessToken(const FString& Identifier)
+void FLineSDKInterfaceIOS::GetProfile(const FString&  Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceIOS::GetProfile(const FString&  Identifier)
+void FLineSDKInterfaceIOS::GetBotFriendshipStatus(const FString& Identifier)
 {
-	
+	// TODO("Not yet implemented")
 }
 
-void LineSDKInterfaceIOS::GetBotFriendshipStatus(const FString& Identifier)
+FString FLineSDKInterfaceIOS::GetCurrentAccessToken()
 {
-	
-}
-
-FString LineSDKInterfaceIOS::GetCurrentAccessToken()
-{
+	// TODO("Not yet implemented")
 	return FString();
 }

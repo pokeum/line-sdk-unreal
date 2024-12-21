@@ -1,0 +1,19 @@
+{
+  "accessToken": {
+    "access_token": "abc123",
+    "expires_in": 12345,
+    "id_token": "abcdefg",
+    "refresh_token": "abc321",
+    "scope": "profile openid",
+    "token_type": "Bearer"
+  },
+  "scope": "profile openid",
+  "userProfile": {
+    "displayName": "testuser",
+    "userId": "user_id",
+    "pictureUrl": "https://example.com/abcd",
+    "statusMessage": "Hi"
+  },
+  "friendshipStatusChanged": true,
+  "IDTokenNonce": "ABCD"
+}

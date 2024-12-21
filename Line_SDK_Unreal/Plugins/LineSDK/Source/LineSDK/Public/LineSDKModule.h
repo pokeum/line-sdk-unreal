@@ -2,9 +2,9 @@
 
 #include "Interface/LineSDKInterface.h"
 
-typedef TSharedPtr<LineSDKInterface, ESPMode::ThreadSafe> LineSDKInterfacePointer;
+typedef TSharedPtr<FLineSDKInterface, ESPMode::ThreadSafe> FLineSDKInterfacePointer;
 
-class FLineSDKModule : public IModuleInterface
+class FLineSDKModule final : public IModuleInterface
 {
 public:
 	static FLineSDKModule* Get()
@@ -16,11 +16,11 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
-	LineSDKInterfacePointer GetLineSDK() const
+	FLineSDKInterfacePointer NativeInterface() const
 	{
-		return Pointer;
+		return NativeInterfacePointer;
 	}
 
 protected:
-	LineSDKInterfacePointer Pointer;
+	FLineSDKInterfacePointer NativeInterfacePointer;
 };

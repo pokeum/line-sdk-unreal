@@ -4,9 +4,6 @@
 #include "UObject/NoExportTypes.h"
 #include "CallbackPayload.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class LINESDK_API UCallbackPayload : public UObject
 {
@@ -14,15 +11,12 @@ class LINESDK_API UCallbackPayload : public UObject
 
 public:
 	static UCallbackPayload* FromJson(const FString& Json);
-
-	UCallbackPayload() = default;
-	UCallbackPayload(const FString& Identifier, const FString& Value);
 	
-	FString ToJson() const;
-
 	static FString WrapValue(const FString& Identifier, const FString& Value);
 
 private:
+	FString ToJson() const;
+	
 	UPROPERTY()
 	FString Identifier;
 
