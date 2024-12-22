@@ -20,6 +20,13 @@ namespace JSONKeys
 		static const FString TokenType			(TEXT("token_type"));
 	}
 
+	namespace AccessTokenVerifyResult
+	{
+		static const FString ClientId			(TEXT("client_id"));
+		static const FString Scope				(TEXT("scope"));
+		static const FString ExpiresIn			(TEXT("expires_in"));
+	}
+	
 	namespace UserProfile
 	{
 		static const FString UserId				(TEXT("userId"));
@@ -35,6 +42,11 @@ namespace JSONKeys
 		static const FString UserProfile				(TEXT("userProfile"));
 		static const FString FriendshipStatusChanged	(TEXT("friendshipStatusChanged"));
 		static const FString IDTokenNonce				(TEXT("IDTokenNonce"));
+	}
+	
+	namespace BotFriendshipStatus
+	{
+		static const FString FriendFlag		(TEXT("friendFlag"));
 	}
 	
 	namespace Error

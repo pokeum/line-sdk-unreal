@@ -21,6 +21,22 @@ UFlattenAction* UFlattenAction::JsonFlatten(TSubclassOf<UObject> ClassType, cons
 			{
 				Function(UResult::Ok_Return_UResult_AccessToken(UAccessToken::FromJson(JsonString)));
 			}
+			else if (ClassType->IsChildOf(UAccessTokenVerifyResult::StaticClass()))
+			{
+				Function(UResult::Ok_Return_UResult_AccessTokenVerifyResult(UAccessTokenVerifyResult::FromJson(JsonString)));
+			}
+			else if (ClassType->IsChildOf(UUserProfile::StaticClass()))
+			{
+				Function(UResult::Ok_Return_UResult_UserProfile(UUserProfile::FromJson(JsonString)));
+			}
+			else if (ClassType->IsChildOf(UBotFriendshipStatus::StaticClass()))
+			{
+				Function(UResult::Ok_Return_UResult_BotFriendshipStatus(UBotFriendshipStatus::FromJson(JsonString)));
+			}
+			else if (ClassType->IsChildOf(UUnit::StaticClass()))
+			{
+				Function(UResult::Ok_Return_UResult_Unit(UUnit::Construct()));
+			}
 		},
 		/** On Failure */
 		[ClassType, Function](const FString& JsonString)
@@ -35,6 +51,22 @@ UFlattenAction* UFlattenAction::JsonFlatten(TSubclassOf<UObject> ClassType, cons
 			else if (ClassType->IsChildOf(UAccessToken::StaticClass()))
 			{
 				Function(UResult::Error_Return_UResult_AccessToken(UError::FromJson(JsonString)));
+			}
+			else if (ClassType->IsChildOf(UAccessTokenVerifyResult::StaticClass()))
+			{
+				Function(UResult::Error_Return_UResult_AccessTokenVerifyResult(UError::FromJson(JsonString)));
+			}
+			else if (ClassType->IsChildOf(UUserProfile::StaticClass()))
+			{
+				Function(UResult::Error_Return_UResult_UserProfile(UError::FromJson(JsonString)));
+			}
+			else if (ClassType->IsChildOf(UBotFriendshipStatus::StaticClass()))
+			{
+				Function(UResult::Error_Return_UResult_BotFriendshipStatus(UError::FromJson(JsonString)));
+			}
+			else if (ClassType->IsChildOf(UUnit::StaticClass()))
+			{
+				Function(UResult::Error_Return_UResult_Unit(UError::FromJson(JsonString)));
 			}
 		}
 	);

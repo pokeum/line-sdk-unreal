@@ -1,0 +1,33 @@
+#include "Model/AccessTokenVerifyResult.h"
+
+#include "Utils/JSONUtils.h"
+
+UAccessTokenVerifyResult* UAccessTokenVerifyResult::FromJson(const FString& Json)
+{
+	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
+	TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Json);
+	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+	{
+		FString ClientId;
+		JSONUtils::GetStringField(JsonObject, JSONKeys::AccessTokenVerifyResult::ClientId, ClientId);
+
+		FString Scope;
+		JSONUtils::GetStringField(JsonObject, JSONKeys::AccessTokenVerifyResult::Scope, Scope);
+
+		int64 ExpiresIn;
+		JSONUtils::GetInt64Field(JsonObject, JSONKeys::AccessTokenVerifyResult::ExpiresIn, ExpiresIn);
+
+		UAccessTokenVerifyResult* ToReturn = NewObject<UAccessTokenVerifyResult>(GetTransientPackage(), StaticClass());
+		ToReturn->ClientId = ClientId;
+		ToReturn->Scope = Scope;
+		ToReturn->ExpiresIn = ExpiresIn;
+		return ToReturn;
+	}
+	return nullptr;
+}
+
+FString UAccessTokenVerifyResult::GetClientId() const { return ClientId; }
+
+FString UAccessTokenVerifyResult::GetScope() const { return Scope; }
+
+int64 UAccessTokenVerifyResult::GetExpiresIn() const { return ExpiresIn; }

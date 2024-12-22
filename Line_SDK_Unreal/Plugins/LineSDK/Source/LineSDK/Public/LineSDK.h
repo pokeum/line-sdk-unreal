@@ -2,7 +2,11 @@
 
 #include "Model/LoginOption.h"
 #include "Utils/Result/Result_AccessToken.h"
+#include "Utils/Result/Result_AccessTokenVerifyResult.h"
+#include "Utils/Result/Result_BotFriendshipStatus.h"
 #include "Utils/Result/Result_LoginResult.h"
+#include "Utils/Result/Result_Unit.h"
+#include "Utils/Result/Result_UserProfile.h"
 #include "LineSDK.generated.h"
 
 #pragma region Line SDK Settings
@@ -37,17 +41,17 @@ public:
 	
 	static void Login(const TArray<FString>& Scopes, const ULoginOption* Option, const TFunction<void(const UResult_LoginResult*)>& Function);
 	
-	static void Logout();
+	static void Logout(const TFunction<void(const UResult_Unit*)>& Function);
 
 	static void RefreshAccessToken(const TFunction<void(const UResult_AccessToken*)>& Function);
 
-	static void RevokeAccessToken();
+	static void RevokeAccessToken(const TFunction<void(const UResult_Unit*)>& Function);
 
-	static void VerifyAccessToken();
+	static void VerifyAccessToken(const TFunction<void(const UResult_AccessTokenVerifyResult*)>& Function);
 
-	static void GetProfile();
+	static void GetProfile(const TFunction<void(const UResult_UserProfile*)>& Function);
 
-	static void GetBotFriendshipStatus();
+	static void GetBotFriendshipStatus(const TFunction<void(const UResult_BotFriendshipStatus*)>& Function);
 
 	static FString GetCurrentAccessToken();
 };
