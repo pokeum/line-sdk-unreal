@@ -22,24 +22,24 @@ extern "C" {
 	(JNIEnv *Env, jclass Class, jint Type, jstring Message)
 	{
 		CallbackPayload PayloadType = static_cast<CallbackPayload>(Type);
-
+		
 		// Copies the new key into its final C string buffer
-		const char* cMessageString = Env->GetStringUTFChars(Message, nullptr);
-		if (cMessageString == nullptr) {
+		const char* UTFString = Env->GetStringUTFChars(Message, nullptr);
+		if (UTFString == nullptr) {
 			return;  /* OutOfMemoryError already thrown */
 		}
-		FString MessageString = FString(cMessageString);
+		FString Result(UTF8_TO_TCHAR(UTFString));
 		
 		// release heap memory
-		Env->ReleaseStringUTFChars(Message, cMessageString);
+		Env->ReleaseStringUTFChars(Message, UTFString);
 		Env->DeleteLocalRef(Message);
 
 		switch (PayloadType) {
 		case CallbackPayload::API_OK:
-				FLineAPI::OnApiOk(MessageString);
+				FLineAPI::OnApiOk(Result);
 				break;
 			case CallbackPayload::API_ERROR:
-				FLineAPI::OnApiError(MessageString);
+				FLineAPI::OnApiError(Result);
 				break;
 		}
 	}
