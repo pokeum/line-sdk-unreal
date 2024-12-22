@@ -126,6 +126,12 @@ object LineSdkWrapper {
     }
 
     @JvmStatic
+    fun revokeAccessToken(identifier: String) {
+        Log.d(TAG, "revokeAccessToken")
+        Helpers.isInvalidRuntime(identifier)
+    }
+
+    @JvmStatic
     fun verifyAccessToken(identifier: String) {
         Log.d(TAG, "verifyAccessToken")
         val lineApiResponse = lineApiClient.verifyToken()

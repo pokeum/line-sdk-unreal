@@ -2,6 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+
+#if PLATFORM_ANDROID
+#include "Android/AndroidJNI.h"
+#endif
+
 #include "NullableString.generated.h"
 
 USTRUCT()
@@ -35,6 +40,25 @@ struct LINESDK_API FNullableString
 	bool IsNull() const { return bIsNull; }
 	
 	const FString& GetValue() const { return Value; }
+
+#if PLATFORM_ANDROID
+	/** Convert FNullableString to JNI jstring */
+	jstring GetJavaString(JNIEnv* Env) const
+	{
+		return bIsNull
+			? nullptr
+			: Env->NewStringUTF(TCHAR_TO_UTF8(*Value));
+	}
+#endif
+#ifdef __OBJC__
+	/** Convert FNullableString to Objective-C NSString */
+	NSString* GetNSString() const
+	{
+		return bIsNull
+			? nil
+			: Value.GetNSString();
+	}
+#endif
 
 private:
 	bool		bIsNull;

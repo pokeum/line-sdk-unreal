@@ -13,6 +13,12 @@
         android:padding="24dp">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Channel Id"
+            tools:ignore="HardcodedText" />
+
+        <TextView
             android:id="@+id/tvChannelId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,12 +30,6 @@
             android:text="@string/channel_id"
             android:textSize="20dp"
             tools:ignore="SpUsage" />
-
-        <Button
-            android:id="@+id/btnSetupSdk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/setup_sdk" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -66,6 +66,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/refresh_access_token" />
+
+        <Button
+            android:id="@+id/btnRevokeAccessToken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/grey"
+            android:text="@string/revoke_access_token" />
 
         <Button
             android:id="@+id/btnVerifyAccessToken"

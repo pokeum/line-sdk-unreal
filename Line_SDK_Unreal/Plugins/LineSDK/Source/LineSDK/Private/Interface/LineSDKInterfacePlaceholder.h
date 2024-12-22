@@ -6,11 +6,11 @@ class FLineSDKInterfacePlaceholder final : public FLineSDKInterface
 {
 public:
 	virtual void Login(
+		const FString& Identifier,
 		const FString& Scope,
 		bool OnlyWebLogin,
 		const FNullableString& BotPrompt,
-		const FNullableString& TokenNonce,
-		const FString& Identifier
+		const FNullableString& TokenNonce
 	) override
 	{
 		

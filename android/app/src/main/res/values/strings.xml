@@ -8,5 +8,6 @@
     <string name="logout">Logout</string>
     <string name="get_bot_friendship_status">Get Bot Friendship Status</string>
     <string name="refresh_access_token">Refresh Access Token</string>
+    <string name="revoke_access_token">Revoke Access Token</string>
     <string name="verify_access_token">Verify Access Token</string>
 </resources>

@@ -33,16 +33,28 @@
     
     <androidManifestUpdates>
         <addPermission android:name="android.permission.INTERNET" />
-        <addElements tag="application">
-            <!-- Meta data for Line SDK -->
-            <meta-data android:name="co.pokeum.linesdk.ChannelId" android:value="$S(ChannelID)" />
-        </addElements>
-    </androidManifestUpdates>
 
+        <!-- Meta data for Line SDK -->
+        <addElements tag="application">
+            <meta-data android:name="co.pokeum.linesdk.ChannelId" />
+        </addElements>
+        <loopElements tag="meta-data">
+            <setStringFromAttribute result="MetaDataName" tag="$" name="android:name"/>
+            <setBoolIsEqual result="IsChannelIdMetaData" arg1="$S(MetaDataName)" arg2="co.pokeum.linesdk.ChannelId"/>
+            <if condition="IsChannelIdMetaData">
+                <true>
+                    <addAttribute tag="$" name="android:value" value="$S(ChannelID)"/>
+                </true>
+            </if>
+        </loopElements>
+    </androidManifestUpdates>
+    
     <gameActivityImportAdditions>
         <insert>
             import android.content.pm.PackageManager;
             import android.os.Bundle;
+            import org.jetbrains.annotations.NotNull;
+            import org.jetbrains.annotations.Nullable;
             import java.util.Objects;
             import co.pokeum.linesdk.unrealwrapper.LineSdkWrapper;
         </insert>
@@ -51,7 +63,44 @@
     <gameActivityClassAdditions>
         <insert>
             private static final String LINE_SDK_TAG = "LineSDK";
+
+            public void lineSdk_login(
+                @NotNull String identifier,
+                @NotNull String scope,
+                boolean onlyWebLogin,
+                @Nullable String botPrompt,
+                @Nullable String tokenNonce
+            ) {
+                LineSdkWrapper.login(this, identifier, scope, onlyWebLogin, botPrompt, tokenNonce);
+            }
             
+            public void lineSdk_getProfile(@NotNull String identifier) {
+                LineSdkWrapper.getProfile(identifier);
+            }
+
+            public String lineSdk_getCurrentAccessToken() {
+                return LineSdkWrapper.getCurrentAccessToken();
+            }
+
+            public void lineSdk_logout(@NotNull String identifier) {
+                LineSdkWrapper.logout(identifier);
+            }
+
+            public void lineSdk_getBotFriendshipStatus(@NotNull String identifier) {
+                LineSdkWrapper.getBotFriendshipStatus(identifier);
+            }
+
+            public void lineSdk_refreshAccessToken(@NotNull String identifier) {
+                LineSdkWrapper.refreshAccessToken(identifier);
+            }
+
+            public void lineSdk_revokeAccessToken(@NotNull String identifier) {
+                LineSdkWrapper.revokeAccessToken(identifier);
+            }
+
+            public void lineSdk_verifyAccessToken(@NotNull String identifier) {
+                LineSdkWrapper.refreshAccessToken(identifier);
+            }
         </insert>
     </gameActivityClassAdditions>
     
@@ -62,10 +111,10 @@
                     getApplicationContext().getPackageName(),
                     PackageManager.GET_META_DATA
                 ).metaData;
-                String channelId = bundle.getString("co.pokeum.linesdk.ChannelId");
+                Object channelId = bundle.get("co.pokeum.linesdk.ChannelId");
                 LineSdkWrapper.setupSdk(
                     getApplicationContext(),
-                    Objects.requireNonNull(channelId)
+                    Objects.requireNonNull(channelId).toString()
                 );
             } catch (Throwable throwable) {
                 android.util.Log.e(LINE_SDK_TAG, "Failed to setup Line SDK", throwable);

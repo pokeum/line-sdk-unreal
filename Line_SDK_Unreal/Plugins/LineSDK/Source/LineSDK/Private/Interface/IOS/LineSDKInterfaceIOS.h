@@ -8,13 +8,13 @@ public:
 	FLineSDKInterfaceIOS();
 	
 	virtual ~FLineSDKInterfaceIOS() override;
-	
+
 	virtual void Login(
+		const FString& Identifier,
 		const FString& Scope,
 		bool OnlyWebLogin,
 		const FNullableString& BotPrompt,
-		const FNullableString& TokenNonce,
-		const FString& Identifier
+		const FNullableString& TokenNonce
 	) override;
 	
 	virtual void Logout(const FString& Identifier) override;

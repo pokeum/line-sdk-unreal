@@ -13,10 +13,10 @@ ULineSDKSettings::ULineSDKSettings(const FObjectInitializer& ObjectInitializer)
 
 void FLineSDK::Login(const TArray<FString>& Scopes, const TFunction<void(const UResult_LoginResult*)>& Function)
 {
-	Login(Scopes, ULoginOption(), Function);
+	Login(Scopes, ULoginOption::Construct(), Function);
 }
 
-void FLineSDK::Login(const TArray<FString>& Scopes, const ULoginOption& Option, const TFunction<void(const UResult_LoginResult*)>& Function)
+void FLineSDK::Login(const TArray<FString>& Scopes, const ULoginOption* Option, const TFunction<void(const UResult_LoginResult*)>& Function)
 {
 	const FString Identifier = FLineAPI::AddAction(
 		UFlattenAction::JsonFlatten(ULoginResult::StaticClass(), [Function](const UResult* Result)
@@ -29,13 +29,13 @@ void FLineSDK::Login(const TArray<FString>& Scopes, const ULoginOption& Option, 
 	);
 	
 	const TArray<FString> FinalScopes = (Scopes.Num() > 0)? Scopes : TArray<FString>{ TEXT("profile") };
-	
+
 	FLineSDKModule::Get()->NativeInterface()->Login(
+		Identifier,
 		FString::Join(FinalScopes, TEXT(" ")),
-		Option.OnlyWebLogin,
-		Option.BotPrompt,
-		Option.IDTokenNonce,
-		Identifier
+		Option->GetOnlyWebLogin(),
+		Option->GetBotPrompt(),
+		Option->GetIDTokenNonce()
 	);
 }
 

@@ -8,11 +8,11 @@ public:
 	virtual ~FLineSDKInterface() = default;
 	
 	virtual void Login(
+		const FString& Identifier,
 		const FString& Scope,
 		bool OnlyWebLogin,
 		const FNullableString& BotPrompt,
-		const FNullableString& TokenNonce,
-		const FString& Identifier
+		const FNullableString& TokenNonce
 	) = 0;
 	
 	virtual void Logout(const FString& Identifier) = 0;

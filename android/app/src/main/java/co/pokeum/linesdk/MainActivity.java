@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements InputsDialogInter
                     getApplicationContext().getPackageName(),
                     PackageManager.GET_META_DATA
             ).metaData;
-            String channelId = bundle.getString("co.pokeum.linesdk.ChannelId");
+            Object channelId = bundle.get("co.pokeum.linesdk.ChannelId");
             LineSdkWrapper.setupSdk(
                     getApplicationContext(),
-                    Objects.requireNonNull(channelId)
+                    Objects.requireNonNull(channelId).toString()
             );
         } catch (Throwable throwable) {
             android.util.Log.e(LINE_SDK_TAG, "Failed to setup Line SDK", throwable);
@@ -94,6 +94,10 @@ public class MainActivity extends AppCompatActivity implements InputsDialogInter
         LineSdkWrapper.refreshAccessToken(identifier);
     }
 
+    public void lineSdk_revokeAccessToken(@NotNull String identifier) {
+        LineSdkWrapper.revokeAccessToken(identifier);
+    }
+
     public void lineSdk_verifyAccessToken(@NotNull String identifier) {
         LineSdkWrapper.refreshAccessToken(identifier);
     }
@@ -101,10 +105,6 @@ public class MainActivity extends AppCompatActivity implements InputsDialogInter
     //================================================================================================================//
 
     private void initUI() {
-
-        binding.btnSetupSdk.setOnClickListener(view -> {
-
-        });
 
         binding.btnLogin.setOnClickListener(view -> {
             new InputsDialogFragment.Builder()
@@ -163,6 +163,12 @@ public class MainActivity extends AppCompatActivity implements InputsDialogInter
             String identifier = newGuid();
             Log.d(LINE_SDK_TAG, "'Refresh Access Token' button clicked with identifier={" + identifier + "}");
             lineSdk_refreshAccessToken(identifier);
+        });
+
+        binding.btnRevokeAccessToken.setOnClickListener(view -> {
+            String identifier = newGuid();
+            Log.d(LINE_SDK_TAG, "'Revoke Access Token' button clicked with identifier={" + identifier + "}");
+            lineSdk_revokeAccessToken(identifier);
         });
 
         binding.btnVerifyAccessToken.setOnClickListener(view -> {

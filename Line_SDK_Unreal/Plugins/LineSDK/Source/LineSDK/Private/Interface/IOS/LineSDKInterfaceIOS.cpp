@@ -11,11 +11,11 @@ FLineSDKInterfaceIOS::~FLineSDKInterfaceIOS()
 }
 
 void FLineSDKInterfaceIOS::Login(
+	const FString& Identifier,
 	const FString& Scope,
 	bool OnlyWebLogin,
 	const FNullableString& BotPrompt,
-	const FNullableString& TokenNonce,
-	const FString& Identifier
+	const FNullableString& TokenNonce
 )
 {
 	// TODO("Not yet implemented")
