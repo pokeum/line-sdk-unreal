@@ -11,6 +11,10 @@ class LINESDK_API UError : public UObject
 
 public:
 	static UError* FromJson(const FString& Json);
+
+	TSharedPtr<FJsonObject> ToJsonObject() const;
+
+	FString ToJson() const;
 	
 private:
 	UPROPERTY()

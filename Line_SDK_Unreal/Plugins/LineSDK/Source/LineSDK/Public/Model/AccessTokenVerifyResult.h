@@ -12,6 +12,10 @@ class LINESDK_API UAccessTokenVerifyResult : public UObject
 public:
 	static UAccessTokenVerifyResult* FromJson(const FString& Json);
 
+	TSharedPtr<FJsonObject> ToJsonObject() const;
+
+	FString ToJson() const;
+
 private:
 	UPROPERTY()
 	FString ClientId;

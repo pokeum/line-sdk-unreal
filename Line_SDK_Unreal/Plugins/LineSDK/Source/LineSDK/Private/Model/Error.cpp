@@ -22,6 +22,19 @@ UError* UError::FromJson(const FString& Json)
 	return nullptr;
 }
 
+TSharedPtr<FJsonObject> UError::ToJsonObject() const
+{
+	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
+	JsonObject->SetNumberField(JSONKeys::Error::Code, Code);
+	JsonObject->SetStringField(JSONKeys::Error::Message, Message);
+	return JsonObject;
+}
+
+FString UError::ToJson() const
+{
+	return JSONUtils::ToJson(ToJsonObject());
+}
+
 int32 UError::GetCode() const { return Code; }
 
 FString UError::GetMessage() const { return Message; }

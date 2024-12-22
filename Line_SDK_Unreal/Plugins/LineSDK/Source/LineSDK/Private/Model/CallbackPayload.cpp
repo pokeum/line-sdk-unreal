@@ -41,14 +41,8 @@ FString UCallbackPayload::ToJson() const
 	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
 	JsonObject->SetStringField(JSONKeys::CallbackPayload::Identifier, Identifier);
 	JsonObject->SetStringField(JSONKeys::CallbackPayload::Value, Value);
-	
-	FString JsonString;
-	const TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonString);
-	if (FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer))
-	{
-		return JsonString;
-	}
-	return TEXT("");
+
+	return JSONUtils::ToJson(JsonObject);
 }
 
 FString UCallbackPayload::GetIdentifier() const { return Identifier; }

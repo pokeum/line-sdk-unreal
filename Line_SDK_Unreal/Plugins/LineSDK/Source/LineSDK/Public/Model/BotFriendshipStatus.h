@@ -12,6 +12,10 @@ class LINESDK_API UBotFriendshipStatus : public UObject
 public:
 	static UBotFriendshipStatus* FromJson(const FString& Json);
 
+	TSharedPtr<FJsonObject> ToJsonObject() const;
+
+	FString ToJson() const;
+
 private:
 	UPROPERTY()
 	bool FriendFlag;

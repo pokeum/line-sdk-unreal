@@ -18,4 +18,16 @@ UBotFriendshipStatus* UBotFriendshipStatus::FromJson(const FString& Json)
 	return nullptr;
 }
 
+TSharedPtr<FJsonObject> UBotFriendshipStatus::ToJsonObject() const
+{
+	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
+	JsonObject->SetBoolField(JSONKeys::BotFriendshipStatus::FriendFlag, FriendFlag);
+	return JsonObject;
+}
+
+FString UBotFriendshipStatus::ToJson() const
+{
+	return JSONUtils::ToJson(ToJsonObject());
+}
+
 bool UBotFriendshipStatus::GetFriendFlag() const { return FriendFlag; }

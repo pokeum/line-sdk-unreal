@@ -11,6 +11,10 @@ class LINESDK_API UUserProfile : public UObject
 public:
 	static UUserProfile* FromJson(const FString& Json);
 
+	TSharedPtr<FJsonObject> ToJsonObject() const;
+
+	FString ToJson() const;
+
 private:
 	UPROPERTY()
 	FString UserId;

@@ -26,6 +26,20 @@ UAccessTokenVerifyResult* UAccessTokenVerifyResult::FromJson(const FString& Json
 	return nullptr;
 }
 
+TSharedPtr<FJsonObject> UAccessTokenVerifyResult::ToJsonObject() const
+{
+	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
+	JsonObject->SetStringField(JSONKeys::AccessTokenVerifyResult::ClientId, ClientId);
+	JsonObject->SetStringField(JSONKeys::AccessTokenVerifyResult::Scope, Scope);
+	JsonObject->SetNumberField(JSONKeys::AccessTokenVerifyResult::ExpiresIn, ExpiresIn);
+	return JsonObject;
+}
+
+FString UAccessTokenVerifyResult::ToJson() const
+{
+	return JSONUtils::ToJson(ToJsonObject());
+}
+
 FString UAccessTokenVerifyResult::GetClientId() const { return ClientId; }
 
 FString UAccessTokenVerifyResult::GetScope() const { return Scope; }

@@ -67,4 +67,6 @@ namespace JSONUtils
 	bool GetBoolField(const TSharedPtr<FJsonObject>& JsonObject, const FString& FieldName, bool& Field, const bool& Default = false);
 
 	bool GetObjectField(const TSharedPtr<FJsonObject>& JsonObject, const FString& FieldName, FString& Field, const FString& Default = "{}");
+
+	FString ToJson(const TSharedPtr<FJsonObject>& JsonObject);
 }

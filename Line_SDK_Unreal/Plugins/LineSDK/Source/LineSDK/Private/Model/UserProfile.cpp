@@ -30,6 +30,21 @@ UUserProfile* UUserProfile::FromJson(const FString& Json)
 	return nullptr;
 }
 
+TSharedPtr<FJsonObject> UUserProfile::ToJsonObject() const
+{
+	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
+	JsonObject->SetStringField(JSONKeys::UserProfile::UserId, UserId);
+	JsonObject->SetStringField(JSONKeys::UserProfile::DisplayName, DisplayName);
+	JsonObject->SetStringField(JSONKeys::UserProfile::PictureUrl, PictureUrl);
+	JsonObject->SetStringField(JSONKeys::UserProfile::StatusMessage, StatusMessage);
+	return JsonObject;
+}
+
+FString UUserProfile::ToJson() const
+{
+	return JSONUtils::ToJson(ToJsonObject());
+}
+
 FString UUserProfile::GetUserId() const { return UserId; }
 
 FString UUserProfile::GetDisplayName() const { return DisplayName; }

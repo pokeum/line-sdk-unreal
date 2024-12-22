@@ -13,6 +13,10 @@ class LINESDK_API ULoginResult : public UObject
 public:
 	static ULoginResult* FromJson(const FString& Json);
 
+	TSharedPtr<FJsonObject> ToJsonObject() const;
+
+	FString ToJson() const;
+	
 private:
 	UPROPERTY()
 	UAccessToken* AccessToken;

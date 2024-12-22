@@ -11,7 +11,11 @@ class LINESDK_API UAccessToken : public UObject
 
 public:
 	static UAccessToken* FromJson(const FString& Json);
+	
+	TSharedPtr<FJsonObject> ToJsonObject() const;
 
+	FString ToJson() const;
+	
 private:
 	UPROPERTY()
 	FString AccessToken;

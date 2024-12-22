@@ -35,6 +35,22 @@ ULoginResult* ULoginResult::FromJson(const FString& Json)
 	return nullptr;
 }
 
+TSharedPtr<FJsonObject> ULoginResult::ToJsonObject() const
+{
+	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
+	JsonObject->SetObjectField(JSONKeys::LoginResult::AccessToken, AccessToken->ToJsonObject());
+	JsonObject->SetStringField(JSONKeys::LoginResult::Scope, Scope);
+	JsonObject->SetObjectField(JSONKeys::LoginResult::UserProfile, UserProfile->ToJsonObject());
+	JsonObject->SetBoolField(JSONKeys::LoginResult::FriendshipStatusChanged, FriendshipStatusChanged);
+	JsonObject->SetStringField(JSONKeys::LoginResult::IDTokenNonce, IDTokenNonce);
+	return JsonObject;
+}
+
+FString ULoginResult::ToJson() const
+{
+	return JSONUtils::ToJson(ToJsonObject());
+}
+
 UAccessToken* ULoginResult::GetAccessToken() const { return AccessToken; }
 
 FString ULoginResult::GetScope() const { return Scope; }

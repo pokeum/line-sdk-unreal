@@ -66,4 +66,16 @@ namespace JSONUtils
 		Field = Default;
 		return false;
 	}
+
+	/** JsonObject to Json String */
+	FString ToJson(const TSharedPtr<FJsonObject>& JsonObject)
+	{
+		FString JsonString;
+		const TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonString);
+		if (FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer))
+		{
+			return JsonString;
+		}
+		return TEXT("");
+	}
 }

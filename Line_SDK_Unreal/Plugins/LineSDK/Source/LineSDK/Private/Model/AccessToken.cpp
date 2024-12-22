@@ -38,6 +38,23 @@ UAccessToken* UAccessToken::FromJson(const FString& Json)
 	return nullptr;
 }
 
+TSharedPtr<FJsonObject> UAccessToken::ToJsonObject() const
+{
+	TSharedPtr<FJsonObject> JsonObject = MakeShared<FJsonObject>();
+	JsonObject->SetStringField(JSONKeys::AccessToken::AccessToken, AccessToken);
+	JsonObject->SetNumberField(JSONKeys::AccessToken::ExpiresIn, ExpiresIn);
+	JsonObject->SetStringField(JSONKeys::AccessToken::IdToken, IdToken);
+	JsonObject->SetStringField(JSONKeys::AccessToken::RefreshToken, RefreshToken);
+	JsonObject->SetStringField(JSONKeys::AccessToken::Scope, Scope);
+	JsonObject->SetStringField(JSONKeys::AccessToken::TokenType, TokenType);
+	return JsonObject;
+}
+
+FString UAccessToken::ToJson() const
+{
+	return JSONUtils::ToJson(ToJsonObject());
+}
+
 FString UAccessToken::GetAccessToken() const { return AccessToken; }
 
 int64 UAccessToken::GetExpiresIn() const { return ExpiresIn; }
