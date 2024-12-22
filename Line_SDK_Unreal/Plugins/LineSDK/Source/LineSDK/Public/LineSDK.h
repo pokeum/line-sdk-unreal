@@ -31,6 +31,8 @@ public:
 class LINESDK_API FLineSDK
 {
 public:
+	static void Logger(const FString& Message);
+	
 	static void Login(const TArray<FString>& Scopes, const TFunction<void(const UResult_LoginResult*)>& Function);
 	
 	static void Login(const TArray<FString>& Scopes, const ULoginOption* Option, const TFunction<void(const UResult_LoginResult*)>& Function);

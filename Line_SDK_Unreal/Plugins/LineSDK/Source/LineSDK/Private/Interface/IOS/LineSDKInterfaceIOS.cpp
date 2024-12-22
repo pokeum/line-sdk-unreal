@@ -10,6 +10,11 @@ FLineSDKInterfaceIOS::~FLineSDKInterfaceIOS()
 	
 }
 
+void FLineSDKInterfaceIOS::Logger(const FString& Message)
+{
+	UE_LOG(LogTemp, Display, TEXT("[LineSDK] %s"), *Message);
+}
+
 void FLineSDKInterfaceIOS::Login(
 	const FString& Identifier,
 	const FString& Scope,

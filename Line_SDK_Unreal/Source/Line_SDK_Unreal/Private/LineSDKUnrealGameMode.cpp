@@ -4,8 +4,6 @@
 
 ALineSDKUnrealGameMode::ALineSDKUnrealGameMode()
 {
-	LINE_SDK_UNREAL_LOG(Warning, TEXT("LineSDKUnrealGameMode::ALineSDKUnrealGameMode"));
-
 	FLineSDK::Login(
 		TArray<FString>(),
 		[](const UResult_LoginResult* Result)
@@ -13,9 +11,15 @@ ALineSDKUnrealGameMode::ALineSDKUnrealGameMode()
 			Result->Match(
 				[](const ULoginResult* LoginResult)
 				{
+					FLineSDK::Logger(FString::Printf(
+						TEXT("LoginResult: AccessToken={%s}"),
+						*LoginResult->GetAccessToken()->GetAccessToken()));
 				},
 				[](const UError* Error)
 				{
+					FLineSDK::Logger(FString::Printf(
+						TEXT("Error: Code={%d}, Message={%s}"),
+						Error->GetCode(), *Error->GetMessage()));
 				}
 			);
 		}

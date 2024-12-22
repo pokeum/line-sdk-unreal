@@ -10,6 +10,11 @@ FLineSDKInterfaceAndroid::~FLineSDKInterfaceAndroid()
 	
 }
 
+void FLineSDKInterfaceAndroid::Logger(const FString& Message)
+{
+	GameActivityCallMethod_OneParam_String("lineSdk_logger", Message);
+}
+
 void FLineSDKInterfaceAndroid::Login(
 	const FString& Identifier,
 	const FString& Scope,

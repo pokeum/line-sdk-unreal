@@ -7,10 +7,11 @@ UFlattenAction* UFlattenAction::JsonFlatten(TSubclassOf<UObject> ClassType, cons
 {
 	UFlattenAction* Action = NewObject<UFlattenAction>(GetTransientPackage(), StaticClass());
 	Action->Set(
+		/** On Success */
 		[ClassType, Function](const FString& JsonString)
 		{
 			if (Function == nullptr) return;
-		
+			
 			// ClassType에 따라 분기 처리
 			if (ClassType->IsChildOf(ULoginResult::StaticClass()))
 			{
@@ -21,11 +22,20 @@ UFlattenAction* UFlattenAction::JsonFlatten(TSubclassOf<UObject> ClassType, cons
 				Function(UResult::Ok_Return_UResult_AccessToken(UAccessToken::FromJson(JsonString)));
 			}
 		},
-		[Function](const FString& JsonString)
+		/** On Failure */
+		[ClassType, Function](const FString& JsonString)
 		{
 			if (Function == nullptr) return;
 			
-			Function(UResult::Error_Return_UResult(UError::FromJson(JsonString)));
+			// ClassType에 따라 분기 처리
+			if (ClassType->IsChildOf(ULoginResult::StaticClass()))
+			{
+				Function(UResult::Error_Return_UResult_LoginResult(UError::FromJson(JsonString)));
+			}
+			else if (ClassType->IsChildOf(UAccessToken::StaticClass()))
+			{
+				Function(UResult::Error_Return_UResult_AccessToken(UError::FromJson(JsonString)));
+			}
 		}
 	);
 	return Action;
@@ -33,12 +43,18 @@ UFlattenAction* UFlattenAction::JsonFlatten(TSubclassOf<UObject> ClassType, cons
 
 void UFlattenAction::CallOk(const FString& String) const
 {
-	SuccessAction(String);
+	if (SuccessAction)
+	{
+		SuccessAction(String);
+	}
 }
 
 void UFlattenAction::CallError(const FString& String) const
 {
-	FailureAction(String);
+	if (FailureAction)
+	{
+		FailureAction(String);	
+	}
 }
 
 void UFlattenAction::Set(const TFunction<void(const FString&)>& OnSuccess, const TFunction<void(const FString&)>& OnFailure)

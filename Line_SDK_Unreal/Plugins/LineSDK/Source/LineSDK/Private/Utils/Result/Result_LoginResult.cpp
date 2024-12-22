@@ -1,10 +1,18 @@
 #include "Utils/Result/Result_LoginResult.h"
 
+#include "LineSDK.h"
+
 void UResult_LoginResult::MatchOk(const TFunction<void(const ULoginResult*)>& OnMatched) const
 {
+	if (IsFailure()) return;
+	
 	if (OnMatched)
 	{
 		OnMatched(Cast<ULoginResult>(Value));
+	}
+	else
+	{
+		FLineSDK::Logger(TEXT("Match callback is null!"));
 	}
 }
 

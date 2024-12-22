@@ -11,6 +11,12 @@ ULineSDKSettings::ULineSDKSettings(const FObjectInitializer& ObjectInitializer)
 }
 
 
+void FLineSDK::Logger(const FString& Message)
+{
+	FLineSDKModule::Get()->NativeInterface()->Logger(Message);
+}
+
+
 void FLineSDK::Login(const TArray<FString>& Scopes, const TFunction<void(const UResult_LoginResult*)>& Function)
 {
 	Login(Scopes, ULoginOption::Construct(), Function);

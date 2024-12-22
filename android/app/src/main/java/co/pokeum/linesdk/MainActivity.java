@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements InputsDialogInter
 
     private static final String LINE_SDK_TAG = "LineSDK";
 
+    public void lineSdk_logger(String message) { android.util.Log.d(LINE_SDK_TAG, message); }
+
     public void lineSdk_login(
             @NotNull String identifier,
             @NotNull String scope,

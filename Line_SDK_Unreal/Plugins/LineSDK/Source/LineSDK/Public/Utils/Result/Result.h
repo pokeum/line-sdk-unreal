@@ -12,11 +12,12 @@ class LINESDK_API UResult : public UObject
 
 public:
 	static UResult* Ok_Return_UResult_LoginResult(ULoginResult* Value);
+
+	static UResult* Error_Return_UResult_LoginResult(UError* Error);
 	
 	static UResult* Ok_Return_UResult_AccessToken(UAccessToken* Value);
 
-	
-	static UResult* Error_Return_UResult(UError* Error);
+	static UResult* Error_Return_UResult_AccessToken(UError* Error);
 
 	void MatchError(const TFunction<void(const UError*)>& OnMatched) const;
 
@@ -26,6 +27,11 @@ protected:
 	
 	UPROPERTY()
 	UError* Error;
+
+	bool IsSuccess() const;
 	
-	bool Success;
+	bool IsFailure() const;
+
+private:
+	bool bSuccess;
 };
