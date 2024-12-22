@@ -34,11 +34,11 @@
         {
           "name": "linesdk-android-unreal-wrapper-1.0.0.aar",
           "url": "linesdk-android-unreal-wrapper-1.0.0.aar",
-          "size": 29770,
-          "sha512": "8ab865effe25859954516d64e651860bd391af3c7717592ec22fa9d801d431a05bf1979e1b891b73005de33d697497f5885724b0d9fc8725e9fc58e7548e785d",
-          "sha256": "b8518903418dce78bbb07d75cc3caebe1fb70857a27d4388878727b30ac4f23f",
-          "sha1": "82ad8d08736b2747122f05edcb9411fe355291ef",
-          "md5": "9ae5dd228869d40ee869f992bf0a4f5a"
+          "size": 30848,
+          "sha512": "5e418873b929623a72c6d253318f81243b7ecfd6fa4c31f558461ed70ff6e0b4c7a8d0c4c63ce0efc3d2cd4fd940740bd47f6fdef353b687261adb7340497f22",
+          "sha256": "e71fe7304da829ee82fd46c9ef844742f33be6d6db0fb9ef001c80fe4e48415a",
+          "sha1": "512ff8b917bd7e8866b88fd838ce9b1af6f911b4",
+          "md5": "d00a8b7c899a71a84090612b8367aa6f"
         }
       ]
     },
@@ -76,11 +76,11 @@
         {
           "name": "linesdk-android-unreal-wrapper-1.0.0.aar",
           "url": "linesdk-android-unreal-wrapper-1.0.0.aar",
-          "size": 29770,
-          "sha512": "8ab865effe25859954516d64e651860bd391af3c7717592ec22fa9d801d431a05bf1979e1b891b73005de33d697497f5885724b0d9fc8725e9fc58e7548e785d",
-          "sha256": "b8518903418dce78bbb07d75cc3caebe1fb70857a27d4388878727b30ac4f23f",
-          "sha1": "82ad8d08736b2747122f05edcb9411fe355291ef",
-          "md5": "9ae5dd228869d40ee869f992bf0a4f5a"
+          "size": 30848,
+          "sha512": "5e418873b929623a72c6d253318f81243b7ecfd6fa4c31f558461ed70ff6e0b4c7a8d0c4c63ce0efc3d2cd4fd940740bd47f6fdef353b687261adb7340497f22",
+          "sha256": "e71fe7304da829ee82fd46c9ef844742f33be6d6db0fb9ef001c80fe4e48415a",
+          "sha1": "512ff8b917bd7e8866b88fd838ce9b1af6f911b4",
+          "md5": "d00a8b7c899a71a84090612b8367aa6f"
         }
       ]
     },
@@ -98,11 +98,11 @@
         {
           "name": "linesdk-android-unreal-wrapper-1.0.0-sources.jar",
           "url": "linesdk-android-unreal-wrapper-1.0.0-sources.jar",
-          "size": 13457,
-          "sha512": "8aaa6bc9a24b393cc7945d1102ac2d36a3345d773b9601558994114aa53deac199ed37835c6c03a69e6dad064dd44b2056644e3e43638b9db098b6c105fce681",
-          "sha256": "290dc2575b9bf76c256d981108fba8bd81db64d4e0811c9c7678a309052324c1",
-          "sha1": "2dae65e2ecb5f4268b62b569d421e8428b388957",
-          "md5": "3dfe9cf49f4bf7e40780b31a04a9cf0e"
+          "size": 14355,
+          "sha512": "31ce0285c0e01967a38c0323fe68429b6218adac7ffa7499ceea74e80be3685f5451ad5b3f8f7e045e6272e643a3cd8465f5a9fe3d301ff0ecfdac8b58aeef47",
+          "sha256": "79ee4747a7301fde675334df46ef13d95abb71745069cb392c62c0e9fbf3453e",
+          "sha1": "1cf16d5a496cb5bc0fcded6b00e4ad0321dc75ab",
+          "md5": "8e9c880a719de7aa70ef085ac5193e60"
         }
       ]
     }
