@@ -1,10 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Utils/Response.h"
 #include "UserProfile.generated.h"
 
 UCLASS()
-class LINESDK_API UUserProfile : public UObject
+class LINESDK_API UUserProfile : public UResponse
 {
 	GENERATED_BODY()
 

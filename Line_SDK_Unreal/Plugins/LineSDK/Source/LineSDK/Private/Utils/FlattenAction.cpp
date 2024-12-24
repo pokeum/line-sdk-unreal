@@ -1,73 +1,51 @@
 #include "FlattenAction.h"
 
 #include "Model/AccessToken.h"
+#include "Model/AccessTokenVerifyResult.h"
+#include "Model/BotFriendshipStatus.h"
 #include "Model/LoginResult.h"
 
-UFlattenAction* UFlattenAction::JsonFlatten(TSubclassOf<UObject> ClassType, const TFunction<void(const UResult*)>& Function)
+UFlattenAction* UFlattenAction::JsonFlatten(const TSubclassOf<UResponse>& ResponseType, const TFunction<void(const UResult*)>& Function)
 {
 	UFlattenAction* Action = NewObject<UFlattenAction>(GetTransientPackage(), StaticClass());
 	Action->Set(
 		/** On Success */
-		[ClassType, Function](const FString& JsonString)
+		[ResponseType, Function](const FString& JsonString)
 		{
 			if (Function == nullptr) return;
+
+			UResponse* Response;
 			
-			// ClassType에 따라 분기 처리
-			if (ClassType->IsChildOf(ULoginResult::StaticClass()))
+			// ResponseType에 따라 분기 처리
+			if (ResponseType->IsChildOf(ULoginResult::StaticClass()))
 			{
-				Function(UResult::Ok_Return_UResult_LoginResult(ULoginResult::FromJson(JsonString)));
+				Response = ULoginResult::FromJson(JsonString);
 			}
-			else if (ClassType->IsChildOf(UAccessToken::StaticClass()))
+			else if (ResponseType->IsChildOf(UAccessToken::StaticClass()))
 			{
-				Function(UResult::Ok_Return_UResult_AccessToken(UAccessToken::FromJson(JsonString)));
+				Response = UAccessToken::FromJson(JsonString);
 			}
-			else if (ClassType->IsChildOf(UAccessTokenVerifyResult::StaticClass()))
+			else if (ResponseType->IsChildOf(UAccessTokenVerifyResult::StaticClass()))
 			{
-				Function(UResult::Ok_Return_UResult_AccessTokenVerifyResult(UAccessTokenVerifyResult::FromJson(JsonString)));
+				Response = UAccessTokenVerifyResult::FromJson(JsonString);
 			}
-			else if (ClassType->IsChildOf(UUserProfile::StaticClass()))
+			else if (ResponseType->IsChildOf(UUserProfile::StaticClass()))
 			{
-				Function(UResult::Ok_Return_UResult_UserProfile(UUserProfile::FromJson(JsonString)));
+				Response = UUserProfile::FromJson(JsonString);
 			}
-			else if (ClassType->IsChildOf(UBotFriendshipStatus::StaticClass()))
+			else if (ResponseType->IsChildOf(UBotFriendshipStatus::StaticClass()))
 			{
-				Function(UResult::Ok_Return_UResult_BotFriendshipStatus(UBotFriendshipStatus::FromJson(JsonString)));
+				Response = UBotFriendshipStatus::FromJson(JsonString);
 			}
-			else if (ClassType->IsChildOf(UUnit::StaticClass()))
-			{
-				Function(UResult::Ok_Return_UResult_Unit(UUnit::Construct()));
-			}
+			else { Response = UResponse::Unit(); }
+			
+			Function(UResult::HandleOk(Response));
 		},
 		/** On Failure */
-		[ClassType, Function](const FString& JsonString)
+		[Function](const FString& JsonString)
 		{
 			if (Function == nullptr) return;
-			
-			// ClassType에 따라 분기 처리
-			if (ClassType->IsChildOf(ULoginResult::StaticClass()))
-			{
-				Function(UResult::Error_Return_UResult_LoginResult(UError::FromJson(JsonString)));
-			}
-			else if (ClassType->IsChildOf(UAccessToken::StaticClass()))
-			{
-				Function(UResult::Error_Return_UResult_AccessToken(UError::FromJson(JsonString)));
-			}
-			else if (ClassType->IsChildOf(UAccessTokenVerifyResult::StaticClass()))
-			{
-				Function(UResult::Error_Return_UResult_AccessTokenVerifyResult(UError::FromJson(JsonString)));
-			}
-			else if (ClassType->IsChildOf(UUserProfile::StaticClass()))
-			{
-				Function(UResult::Error_Return_UResult_UserProfile(UError::FromJson(JsonString)));
-			}
-			else if (ClassType->IsChildOf(UBotFriendshipStatus::StaticClass()))
-			{
-				Function(UResult::Error_Return_UResult_BotFriendshipStatus(UError::FromJson(JsonString)));
-			}
-			else if (ClassType->IsChildOf(UUnit::StaticClass()))
-			{
-				Function(UResult::Error_Return_UResult_Unit(UError::FromJson(JsonString)));
-			}
+			Function(UResult::HandleError(UError::FromJson(JsonString)));
 		}
 	);
 	return Action;

@@ -18,12 +18,16 @@ void UMainWidget::OnClickButtonLogin()
 {
 	FLineSDK::Login(
 		TArray<FString>(),
-		[](const UResult_LoginResult* Result)
+		[](const UResult* Result)
 		{
 			Result->Match(
-				[](const ULoginResult* LoginResult)
+				[](const UResponse* Response)
 				{
-					FLineSDK::Logger(FString::Printf(TEXT("[Login][Ok] %s"), *LoginResult->ToJson()));
+					const ULoginResult* LoginResult = Cast<ULoginResult>(Response);
+					if (LoginResult)
+					{
+						FLineSDK::Logger(FString::Printf(TEXT("[Login][Ok] %s"), *LoginResult->ToJson()));	
+					}
 				},
 				[](const UError* Error)
 				{
@@ -36,12 +40,16 @@ void UMainWidget::OnClickButtonLogin()
 
 void UMainWidget::OnClickButtonGetProfile()
 {
-	FLineSDK::GetProfile([](const UResult_UserProfile* Result)
+	FLineSDK::GetProfile([](const UResult* Result)
 	{
 		Result->Match(
-			[](const UUserProfile* Profile)
+			[](const UResponse* Response)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Get Profile][Ok] %s"), *Profile->ToJson()));
+				const UUserProfile* UserProfile = Cast<UUserProfile>(Response);
+				if (UserProfile)
+				{
+					FLineSDK::Logger(FString::Printf(TEXT("[Get Profile][Ok] %s"), *UserProfile->ToJson()));
+				}
 			},
 			[](const UError* Error)
 			{
@@ -59,10 +67,10 @@ void UMainWidget::OnClickButtonGetCurrentAccessToken()
 
 void UMainWidget::OnClickButtonLogout()
 {
-	FLineSDK::Logout([](const UResult_Unit* Result)
+	FLineSDK::Logout([](const UResult* Result)
 	{
 		Result->Match(
-			[](const UUnit* _)
+			[](const UResponse* _)
 			{
 				FLineSDK::Logger(TEXT("[Logout][Ok]"));
 			},
@@ -76,12 +84,16 @@ void UMainWidget::OnClickButtonLogout()
 
 void UMainWidget::OnClickButtonGetBotFriendshipStatus()
 {
-	FLineSDK::GetBotFriendshipStatus([](const UResult_BotFriendshipStatus* Result)
+	FLineSDK::GetBotFriendshipStatus([](const UResult* Result)
 	{
 		Result->Match(
-			[](const UBotFriendshipStatus* BotFriendshipStatus)
+			[](const UResponse* Response)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Get Bot Friendship Status][Ok] %s"), *BotFriendshipStatus->ToJson()));
+				const UBotFriendshipStatus* BotFriendshipStatus = Cast<UBotFriendshipStatus>(Response);
+				if (BotFriendshipStatus)
+				{
+					FLineSDK::Logger(FString::Printf(TEXT("[Get Bot Friendship Status][Ok] %s"), *BotFriendshipStatus->ToJson()));	
+				}
 			},
 			[](const UError* Error)
 			{
@@ -93,12 +105,16 @@ void UMainWidget::OnClickButtonGetBotFriendshipStatus()
 
 void UMainWidget::OnClickButtonRefreshAccessToken()
 {
-	FLineSDK::RefreshAccessToken([](const UResult_AccessToken* Result)
+	FLineSDK::RefreshAccessToken([](const UResult* Result)
 	{
 		Result->Match(
-			[](const UAccessToken* AccessToken)
+			[](const UResponse* Response)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Refresh Access Token][Ok] %s"), *AccessToken->ToJson()));
+				const UAccessToken* AccessToken = Cast<UAccessToken>(Response);
+				if (AccessToken)
+				{
+					FLineSDK::Logger(FString::Printf(TEXT("[Refresh Access Token][Ok] %s"), *AccessToken->ToJson()));	
+				}
 			},
 			[](const UError* Error)
 			{
@@ -110,10 +126,10 @@ void UMainWidget::OnClickButtonRefreshAccessToken()
 
 void UMainWidget::OnClickButtonRevokeAccessToken()
 {
-	FLineSDK::RevokeAccessToken([](const UResult_Unit* Result)
+	FLineSDK::RevokeAccessToken([](const UResult* Result)
 	{
 		Result->Match(
-			[](const UUnit* _)
+			[](const UResponse* _)
 			{
 				FLineSDK::Logger(TEXT("[Revoke Access Token][Ok]"));
 			},
@@ -127,12 +143,16 @@ void UMainWidget::OnClickButtonRevokeAccessToken()
 
 void UMainWidget::OnClickButtonVerifyAccessToken()
 {
-	FLineSDK::VerifyAccessToken([](const UResult_AccessTokenVerifyResult* Result)
+	FLineSDK::VerifyAccessToken([](const UResult* Result)
 	{
 		Result->Match(
-			[](const UAccessTokenVerifyResult* AccessTokenVerifyResult)
+			[](const UResponse* Response)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Verify Access Token][Error] %s"), *AccessTokenVerifyResult->ToJson()));
+				const UAccessTokenVerifyResult* AccessTokenVerifyResult = Cast<UAccessTokenVerifyResult>(Response);
+				if (AccessTokenVerifyResult)
+				{
+					FLineSDK::Logger(FString::Printf(TEXT("[Verify Access Token][Error] %s"), *AccessTokenVerifyResult->ToJson()));	
+				}
 			},
 			[](const UError* Error)
 			{

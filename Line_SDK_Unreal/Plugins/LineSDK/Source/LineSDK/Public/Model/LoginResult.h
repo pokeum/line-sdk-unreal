@@ -3,10 +3,11 @@
 #include "CoreMinimal.h"
 #include "AccessToken.h"
 #include "UserProfile.h"
+#include "Utils/Response.h"
 #include "LoginResult.generated.h"
 
 UCLASS()
-class LINESDK_API ULoginResult : public UObject
+class LINESDK_API ULoginResult : public UResponse
 {
 	GENERATED_BODY()
 

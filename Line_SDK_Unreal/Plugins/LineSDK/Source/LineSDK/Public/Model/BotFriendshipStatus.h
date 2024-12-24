@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Utils/Response.h"
 #include "BotFriendshipStatus.generated.h"
 
 UCLASS()
-class LINESDK_API UBotFriendshipStatus : public UObject
+class LINESDK_API UBotFriendshipStatus : public UResponse
 {
 	GENERATED_BODY()
 

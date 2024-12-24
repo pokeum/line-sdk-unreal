@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utils/Result/Result.h"
+#include "Utils/Result.h"
 #include "FlattenAction.generated.h"
 
 UCLASS()
@@ -9,7 +9,10 @@ class LINESDK_API UFlattenAction : public UObject
 	GENERATED_BODY()
 
 public:
-	static UFlattenAction* JsonFlatten(TSubclassOf<UObject> ClassType, const TFunction<void(const UResult*)>& Function);
+	static UFlattenAction* JsonFlatten(
+		const TSubclassOf<UResponse>& ResponseType,
+		const TFunction<void(const UResult*)>& Function
+	);
 
 	void CallOk(const FString& String) const;
 	void CallError(const FString& String) const;

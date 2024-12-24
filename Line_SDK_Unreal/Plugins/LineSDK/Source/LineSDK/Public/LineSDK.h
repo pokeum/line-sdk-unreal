@@ -1,12 +1,16 @@
 #pragma once
 
+#pragma region Model Headers
+#include "Model/AccessToken.h"
+#include "Model/AccessTokenVerifyResult.h"
+#include "Model/BotFriendshipStatus.h"
+#include "Model/Error.h"
 #include "Model/LoginOption.h"
-#include "Utils/Result/Result_AccessToken.h"
-#include "Utils/Result/Result_AccessTokenVerifyResult.h"
-#include "Utils/Result/Result_BotFriendshipStatus.h"
-#include "Utils/Result/Result_LoginResult.h"
-#include "Utils/Result/Result_Unit.h"
-#include "Utils/Result/Result_UserProfile.h"
+#include "Model/LoginResult.h"
+#include "Model/UserProfile.h"
+#pragma endregion
+
+#include "Utils/Result.h"
 #include "LineSDK.generated.h"
 
 #pragma region Line SDK Settings
@@ -37,21 +41,21 @@ class LINESDK_API FLineSDK
 public:
 	static void Logger(const FString& Message);
 	
-	static void Login(const TArray<FString>& Scopes, const TFunction<void(const UResult_LoginResult*)>& Function);
+	static void Login(const TArray<FString>& Scopes, const TFunction<void(const UResult*)>& Function);
 	
-	static void Login(const TArray<FString>& Scopes, const ULoginOption* Option, const TFunction<void(const UResult_LoginResult*)>& Function);
+	static void Login(const TArray<FString>& Scopes, const ULoginOption* Option, const TFunction<void(const UResult*)>& Function);
 	
-	static void Logout(const TFunction<void(const UResult_Unit*)>& Function);
+	static void Logout(const TFunction<void(const UResult*)>& Function);
 
-	static void RefreshAccessToken(const TFunction<void(const UResult_AccessToken*)>& Function);
+	static void RefreshAccessToken(const TFunction<void(const UResult*)>& Function);
 
-	static void RevokeAccessToken(const TFunction<void(const UResult_Unit*)>& Function);
+	static void RevokeAccessToken(const TFunction<void(const UResult*)>& Function);
 
-	static void VerifyAccessToken(const TFunction<void(const UResult_AccessTokenVerifyResult*)>& Function);
+	static void VerifyAccessToken(const TFunction<void(const UResult*)>& Function);
 
-	static void GetProfile(const TFunction<void(const UResult_UserProfile*)>& Function);
+	static void GetProfile(const TFunction<void(const UResult*)>& Function);
 
-	static void GetBotFriendshipStatus(const TFunction<void(const UResult_BotFriendshipStatus*)>& Function);
+	static void GetBotFriendshipStatus(const TFunction<void(const UResult*)>& Function);
 
 	static FString GetCurrentAccessToken();
 };

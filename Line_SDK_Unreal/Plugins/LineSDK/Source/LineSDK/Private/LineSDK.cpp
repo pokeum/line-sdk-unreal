@@ -17,23 +17,15 @@ void FLineSDK::Logger(const FString& Message)
 }
 
 
-void FLineSDK::Login(const TArray<FString>& Scopes, const TFunction<void(const UResult_LoginResult*)>& Function)
+void FLineSDK::Login(const TArray<FString>& Scopes, const TFunction<void(const UResult*)>& Function)
 {
 	Login(Scopes, ULoginOption::Construct(), Function);
 }
 
-void FLineSDK::Login(const TArray<FString>& Scopes, const ULoginOption* Option, const TFunction<void(const UResult_LoginResult*)>& Function)
+void FLineSDK::Login(const TArray<FString>& Scopes, const ULoginOption* Option, const TFunction<void(const UResult*)>& Function)
 {
-	const FString Identifier = FLineAPI::AddAction(
-		UFlattenAction::JsonFlatten(ULoginResult::StaticClass(), [Function](const UResult* Result)
-		{
-			if (Function)
-			{
-				Function(Cast<UResult_LoginResult>(Result));
-			}
-		})
-	);
-	
+	const FString Identifier = FLineAPI::AddAction(UFlattenAction::JsonFlatten(ULoginResult::StaticClass(), Function));
+
 	const TArray<FString> FinalScopes = (Scopes.Num() > 0)? Scopes : TArray<FString>{ TEXT("profile") };
 
 	FLineSDKModule::Get()->NativeInterface()->Login(
@@ -45,87 +37,39 @@ void FLineSDK::Login(const TArray<FString>& Scopes, const ULoginOption* Option, 
 	);
 }
 
-void FLineSDK::Logout(const TFunction<void(const UResult_Unit*)>& Function)
+void FLineSDK::Logout(const TFunction<void(const UResult*)>& Function)
 {
-	const FString Identifier = FLineAPI::AddAction(
-		UFlattenAction::JsonFlatten(UUnit::StaticClass(), [Function](const UResult* Result)
-		{
-			if (Function)
-			{
-				Function(Cast<UResult_Unit>(Result));
-			}
-		})
-	);
+	const FString Identifier = FLineAPI::AddAction(UFlattenAction::JsonFlatten(UUnit::StaticClass(), Function));
 	FLineSDKModule::Get()->NativeInterface()->Logout(Identifier);
 }
 
-void FLineSDK::RefreshAccessToken(const TFunction<void(const UResult_AccessToken*)>& Function)
+void FLineSDK::RefreshAccessToken(const TFunction<void(const UResult*)>& Function)
 {
-	const FString Identifier = FLineAPI::AddAction(
-		UFlattenAction::JsonFlatten(UAccessToken::StaticClass(), [Function](const UResult* Result)
-		{
-			if (Function)
-			{
-				Function(Cast<UResult_AccessToken>(Result));
-			}
-		})
-	);
+	const FString Identifier = FLineAPI::AddAction(UFlattenAction::JsonFlatten(UAccessToken::StaticClass(), Function));
 	FLineSDKModule::Get()->NativeInterface()->RefreshAccessToken(Identifier);
 }
 
-void FLineSDK::RevokeAccessToken(const TFunction<void(const UResult_Unit*)>& Function)
+void FLineSDK::RevokeAccessToken(const TFunction<void(const UResult*)>& Function)
 {
-	const FString Identifier = FLineAPI::AddAction(
-		UFlattenAction::JsonFlatten(UUnit::StaticClass(), [Function](const UResult* Result)
-		{
-			if (Function)
-			{
-				Function(Cast<UResult_Unit>(Result));
-			}
-		})
-	);
+	const FString Identifier = FLineAPI::AddAction(UFlattenAction::JsonFlatten(UUnit::StaticClass(), Function));
 	FLineSDKModule::Get()->NativeInterface()->RevokeAccessToken(Identifier);
 }
 
-void FLineSDK::VerifyAccessToken(const TFunction<void(const UResult_AccessTokenVerifyResult*)>& Function)
+void FLineSDK::VerifyAccessToken(const TFunction<void(const UResult*)>& Function)
 {
-	const FString Identifier = FLineAPI::AddAction(
-		UFlattenAction::JsonFlatten(UAccessTokenVerifyResult::StaticClass(), [Function](const UResult* Result)
-		{
-			if (Function)
-			{
-				Function(Cast<UResult_AccessTokenVerifyResult>(Result));
-			}
-		})
-	);
+	const FString Identifier = FLineAPI::AddAction(UFlattenAction::JsonFlatten(UAccessTokenVerifyResult::StaticClass(), Function));
 	FLineSDKModule::Get()->NativeInterface()->VerifyAccessToken(Identifier);
 }
 
-void FLineSDK::GetProfile(const TFunction<void(const UResult_UserProfile*)>& Function)
+void FLineSDK::GetProfile(const TFunction<void(const UResult*)>& Function)
 {
-	const FString Identifier = FLineAPI::AddAction(
-		UFlattenAction::JsonFlatten(UUserProfile::StaticClass(), [Function](const UResult* Result)
-		{
-			if (Function)
-			{
-				Function(Cast<UResult_UserProfile>(Result));
-			}
-		})
-	);
+	const FString Identifier = FLineAPI::AddAction(UFlattenAction::JsonFlatten(UUserProfile::StaticClass(), Function));
 	FLineSDKModule::Get()->NativeInterface()->GetProfile(Identifier);
 }
 
-void FLineSDK::GetBotFriendshipStatus(const TFunction<void(const UResult_BotFriendshipStatus*)>& Function)
+void FLineSDK::GetBotFriendshipStatus(const TFunction<void(const UResult*)>& Function)
 {
-	const FString Identifier = FLineAPI::AddAction(
-		UFlattenAction::JsonFlatten(UBotFriendshipStatus::StaticClass(), [Function](const UResult* Result)
-		{
-			if (Function)
-			{
-				Function(Cast<UResult_BotFriendshipStatus>(Result));
-			}
-		})
-	);
+	const FString Identifier = FLineAPI::AddAction(UFlattenAction::JsonFlatten(UBotFriendshipStatus::StaticClass(), Function));
 	FLineSDKModule::Get()->NativeInterface()->GetBotFriendshipStatus(Identifier);
 }
 

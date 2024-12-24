@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Utils/Response.h"
 #include "AccessToken.generated.h"
 
 UCLASS()
-class LINESDK_API UAccessToken : public UObject
+class LINESDK_API UAccessToken : public UResponse
 {
 	GENERATED_BODY()
 

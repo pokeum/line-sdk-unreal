@@ -25,7 +25,8 @@ extern "C" {
 		
 		// Copies the new key into its final C string buffer
 		const char* UTFString = Env->GetStringUTFChars(Message, nullptr);
-		if (UTFString == nullptr) {
+		if (UTFString == nullptr) 
+		{
 			return;  /* OutOfMemoryError already thrown */
 		}
 		FString Result(UTF8_TO_TCHAR(UTFString));
@@ -34,11 +35,12 @@ extern "C" {
 		Env->ReleaseStringUTFChars(Message, UTFString);
 		Env->DeleteLocalRef(Message);
 
-		switch (PayloadType) {
+		switch (PayloadType) 
+		{
 		case CallbackPayload::API_OK:
 				FLineAPI::OnApiOk(Result);
 				break;
-			case CallbackPayload::API_ERROR:
+		case CallbackPayload::API_ERROR:
 				FLineAPI::OnApiError(Result);
 				break;
 		}
