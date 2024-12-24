@@ -11,7 +11,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(NullableStringTest, "Tests.Type.NullableStringT
 bool NullableStringTest::RunTest(const FString& Parameters)
 {
 	auto What = TEXT("");
-	
+
 	FNullableString String;
 	if (!TestTrue(TEXT("Default is Null"), String.IsNull())) return false;
 
@@ -25,6 +25,6 @@ bool NullableStringTest::RunTest(const FString& Parameters)
 	String = FNullableString(TEXT("123456ABCDEF"));
 	if (!TestFalse(What, String.IsNull())) return false;
 	if (!TestEqual(What, String.GetValue(), TEXT("123456ABCDEF"))) return false;
-	
+
 	return true;
 }

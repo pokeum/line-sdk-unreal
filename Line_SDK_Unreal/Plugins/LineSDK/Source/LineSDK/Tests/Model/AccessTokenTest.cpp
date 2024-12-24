@@ -2,70 +2,67 @@
 #include "Misc/AutomationTest.h"
 #include "Model/AccessToken.h"
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(AccessTokenTest, "Tests.Model.AccessTokenTest",
-                                 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+DEFINE_SPEC(AccessTokenTest, "Tests.Model.AccessTokenTest",
+            EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
-#define TEST_FROM_JSON	TEXT("FromJson()")
-
-/**
- * Make the test pass by returning true,
- * or fail by returning false.
- */
-bool AccessTokenTest::RunTest(const FString& Parameters)
+void AccessTokenTest::Define()
 {
-	auto What = TEXT("");
+	Describe("Test Parse", [this]()
+	{
+		FString Json = TestUtils::GetStringFromFile("AccessToken.json");
+		UAccessToken* AccessToken = UAccessToken::FromJson(Json);
 
-#pragma region TEST_FROM_JSON
-	
-	LINE_SDK_TEST_LOG(TEXT("Test: %s"), TEST_FROM_JSON);
-	FString Json = TestUtils::GetStringFromFile("AccessToken_Refresh.json");
-	UAccessToken* AccessToken = UAccessToken::FromJson(Json);
+		auto What = TEXT("Check AccessToken");
+		It(What, [this, What, AccessToken]()
+		{
+			TestEqual(What, AccessToken->GetAccessToken(), TEXT("abc123"));
+		});
 
-	What = TEXT("Check AccessToken");
-	if (!TestEqual(What,
-		AccessToken->GetAccessToken(),
-		TEXT("eyJhbGciOiJIUzI1NiJ9.1pwlR1VSUoSP11ikunPXN5G07eWPvP9Tt7gzbDEUogCOH_SAHimN2ng_BT_mq98U6C9gQM7HeFWmTIU3fs4flTNBvlvtw-5kcu4ffqbobvM2kkgFswpZnpMfNXLuoezCKdn9XVAfwiGG-KnQbx6G6XPCG72yCKgHKOWl1f2j9Mk.CwjQOWaC3qFtE3IzHWsEg0q9mXgT3OZZLQV5qc3lsT0")))
-	{
-		LINE_SDK_TEST_LOG(TEXT("Fail: [%s][%s]: Actual={%s}"), TEST_FROM_JSON, What, *AccessToken->GetAccessToken());
-		return false;
-	}
-	
-	What = TEXT("Check ExpiresIn");
-	if (!TestEqual(What, AccessToken->GetExpiresIn(), 2592000000))
-	{
-		LINE_SDK_TEST_LOG(TEXT("Fail: [%s][%s]: Actual={%lld}"), TEST_FROM_JSON, What, AccessToken->GetExpiresIn());
-		return false;
-	}
-	
-	What = TEXT("Check IdToken");
-	if (!TestEqual(What, AccessToken->GetIdToken(), TEXT("")))
-	{
-		LINE_SDK_TEST_LOG(TEXT("Fail: [%s][%s]: Actual={%s}"), TEST_FROM_JSON, What, *AccessToken->GetIdToken());
-		return false;
-	}
-	
-	What = TEXT("Check RefreshToken");
-	if (!TestEqual(What, AccessToken->GetRefreshToken(), TEXT("")))
-	{
-		LINE_SDK_TEST_LOG(TEXT("Fail: [%s][%s]: Actual={%s}"), TEST_FROM_JSON, What, *AccessToken->GetRefreshToken());
-		return false;
-	}
+		What = TEXT("Check ExpiresIn");
+		It(What, [this, What, AccessToken]()
+		{
+			TestEqual(What, AccessToken->GetExpiresIn(), 12345l);
+		});
 
-	What = TEXT("Check Scope");
-	if (!TestEqual(What, AccessToken->GetScope(), TEXT("")))
-	{
-		LINE_SDK_TEST_LOG(TEXT("Fail: [%s][%s]: Actual={%s}"), TEST_FROM_JSON, What, *AccessToken->GetScope());
-		return false;
-	}
+		What = TEXT("Check IdToken");
+		It(What, [this, What, AccessToken]()
+		{
+			TestEqual(What, AccessToken->GetIdToken(), TEXT("abcdefg"));
+		});
 
-	What = TEXT("Check TokenType");
-	if (!TestEqual(What, AccessToken->GetTokenType(), TEXT("")))
-	{
-		LINE_SDK_TEST_LOG(TEXT("Fail: [%s][%s]: Actual={%s}"), TEST_FROM_JSON, What, *AccessToken->GetTokenType());
-		return false;
-	}
+		What = TEXT("Check RefreshToken");
+		It(What, [this, What, AccessToken]()
+		{
+			TestEqual(What, AccessToken->GetRefreshToken(), TEXT("abc321"));
+		});
 
-#pragma endregion
-	
-	return true;
+		What = TEXT("Check Scope");
+		It(What, [this, What, AccessToken]()
+		{
+			TestEqual(What, AccessToken->GetScope(), TEXT("profile openid"));
+		});
+
+		What = TEXT("Check TokenType");
+		It(What, [this, What, AccessToken]()
+		{
+			TestEqual(What, AccessToken->GetTokenType(), TEXT("Bearer"));
+		});
+	});
+
+	Describe("Test Invalid", [this]()
+	{
+		auto What = TEXT("\"\" String");
+		It(What, [this, What]()
+		{
+			const UAccessToken* AccessToken = UAccessToken::FromJson("");
+			TestNull(What, AccessToken);
+		});
+
+		What = TEXT("\"abc\" String");
+		It(What, [this, What]()
+		{
+			const UAccessToken* AccessToken = UAccessToken::FromJson(TEXT("abc"));
+			TestNull(What, AccessToken);
+		});
+	});
 }
