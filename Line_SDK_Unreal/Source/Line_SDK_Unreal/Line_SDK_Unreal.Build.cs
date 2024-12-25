@@ -7,8 +7,11 @@ public class Line_SDK_Unreal : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", 
-			"LineSDK" });
+		PublicDependencyModuleNames.AddRange(new string[] { 
+			"Core", "CoreUObject", "Engine", "InputCore", 
+			"WebBrowserWidget",
+			"LineSDK"
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
 

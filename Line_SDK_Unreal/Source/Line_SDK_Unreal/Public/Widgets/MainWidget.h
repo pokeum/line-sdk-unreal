@@ -2,9 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "LineSDK.h"
 #include "MainWidget.generated.h"
 
 class UButton;
+class UTextBlock;
 
 UCLASS()
 class LINE_SDK_UNREAL_API UMainWidget : public UUserWidget
@@ -16,6 +18,18 @@ public:
 	virtual void NativeDestruct() override;
 	
 protected:
+	 UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	 class UWebBrowser* WebBrowser;
+	
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextDisplayName;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextStatusMessage;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextResponse;
+	
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* ButtonLogin;
 
@@ -64,5 +78,13 @@ protected:
 	UFUNCTION()
 	void OnClickButtonVerifyAccessToken();
 
+
+private:
 	void InitUI();
+	
+	void UpdateProfile(const UUserProfile* Profile);
+
+	void ResetProfile();
+	
+	void UpdateResponse(const FString& Response);
 };

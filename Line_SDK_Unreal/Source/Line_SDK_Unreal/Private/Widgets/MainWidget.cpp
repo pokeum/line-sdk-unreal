@@ -1,7 +1,9 @@
 #include "Line_SDK_Unreal/Public/Widgets/MainWidget.h"
 
-#include "LineSDK.h"
 #include "Components/Button.h"
+#include "Components/TextBlock.h"
+#include "Utils/UserInterfaceUtils.h"
+#include "WebBrowserWidget/Public/WebBrowser.h"
 
 void UMainWidget::NativeConstruct()
 {
@@ -18,20 +20,21 @@ void UMainWidget::OnClickButtonLogin()
 {
 	FLineSDK::Login(
 		TArray<FString>(),
-		[](const UResult* Result)
+		[&](const UResult* Result)
 		{
 			Result->Match(
-				[](const UResponse* Response)
+				[&](const UResponse* Response)
 				{
 					const ULoginResult* LoginResult = Cast<ULoginResult>(Response);
 					if (LoginResult)
 					{
-						FLineSDK::Logger(FString::Printf(TEXT("[Login][Ok] %s"), *LoginResult->ToJson()));	
+						UpdateResponse(LoginResult->ToJson());
+						UpdateProfile(LoginResult->GetUserProfile());
 					}
 				},
-				[](const UError* Error)
+				[&](const UError* Error)
 				{
-					FLineSDK::Logger(FString::Printf(TEXT("[Login][Error] %s"), *Error->ToJson()));
+					UpdateResponse(Error->ToJson());
 				}
 			);
 		}
@@ -40,20 +43,21 @@ void UMainWidget::OnClickButtonLogin()
 
 void UMainWidget::OnClickButtonGetProfile()
 {
-	FLineSDK::GetProfile([](const UResult* Result)
+	FLineSDK::GetProfile([&](const UResult* Result)
 	{
 		Result->Match(
-			[](const UResponse* Response)
+			[&](const UResponse* Response)
 			{
 				const UUserProfile* UserProfile = Cast<UUserProfile>(Response);
 				if (UserProfile)
 				{
-					FLineSDK::Logger(FString::Printf(TEXT("[Get Profile][Ok] %s"), *UserProfile->ToJson()));
+					UpdateProfile(UserProfile);
+					UpdateResponse(UserProfile->ToJson());
 				}
 			},
-			[](const UError* Error)
+			[&](const UError* Error)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Get Profile][Error] %s"), *Error->ToJson()));
+				UpdateResponse(Error->ToJson());
 			}
 		);
 	});
@@ -62,21 +66,22 @@ void UMainWidget::OnClickButtonGetProfile()
 void UMainWidget::OnClickButtonGetCurrentAccessToken()
 {
 	const FString AccessToken = FLineSDK::GetCurrentAccessToken();
-	FLineSDK::Logger(FString::Printf(TEXT("[Get Current Access Token] %s"), *AccessToken));
+	// FLineSDK::Logger(FString::Printf(TEXT("[GetCurrentAccessToken] %s"), *AccessToken));
+	UpdateResponse(AccessToken);
 }
 
 void UMainWidget::OnClickButtonLogout()
 {
-	FLineSDK::Logout([](const UResult* Result)
+	FLineSDK::Logout([&](const UResult* Result)
 	{
 		Result->Match(
-			[](const UResponse* _)
+			[&](const UResponse* _)
 			{
-				FLineSDK::Logger(TEXT("[Logout][Ok]"));
+				ResetProfile();
 			},
-			[](const UError* Error)
+			[&](const UError* Error)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Logout][Error] %s"), *Error->ToJson()));
+				UpdateResponse(Error->ToJson());
 			}
 		);
 	});
@@ -84,20 +89,20 @@ void UMainWidget::OnClickButtonLogout()
 
 void UMainWidget::OnClickButtonGetBotFriendshipStatus()
 {
-	FLineSDK::GetBotFriendshipStatus([](const UResult* Result)
+	FLineSDK::GetBotFriendshipStatus([&](const UResult* Result)
 	{
 		Result->Match(
-			[](const UResponse* Response)
+			[&](const UResponse* Response)
 			{
 				const UBotFriendshipStatus* BotFriendshipStatus = Cast<UBotFriendshipStatus>(Response);
 				if (BotFriendshipStatus)
 				{
-					FLineSDK::Logger(FString::Printf(TEXT("[Get Bot Friendship Status][Ok] %s"), *BotFriendshipStatus->ToJson()));	
+					UpdateResponse(BotFriendshipStatus->ToJson());
 				}
 			},
-			[](const UError* Error)
+			[&](const UError* Error)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Get Bot Friendship Status][Error] %s"), *Error->ToJson()));
+				UpdateResponse(Error->ToJson());
 			}
 		);
 	});
@@ -105,20 +110,20 @@ void UMainWidget::OnClickButtonGetBotFriendshipStatus()
 
 void UMainWidget::OnClickButtonRefreshAccessToken()
 {
-	FLineSDK::RefreshAccessToken([](const UResult* Result)
+	FLineSDK::RefreshAccessToken([&](const UResult* Result)
 	{
 		Result->Match(
-			[](const UResponse* Response)
+			[&](const UResponse* Response)
 			{
 				const UAccessToken* AccessToken = Cast<UAccessToken>(Response);
 				if (AccessToken)
 				{
-					FLineSDK::Logger(FString::Printf(TEXT("[Refresh Access Token][Ok] %s"), *AccessToken->ToJson()));	
+					UpdateResponse(AccessToken->ToJson());
 				}
 			},
-			[](const UError* Error)
+			[&](const UError* Error)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Refresh Access Token][Error] %s"), *Error->ToJson()));
+				UpdateResponse(Error->ToJson());
 			}
 		);
 	});
@@ -126,16 +131,15 @@ void UMainWidget::OnClickButtonRefreshAccessToken()
 
 void UMainWidget::OnClickButtonRevokeAccessToken()
 {
-	FLineSDK::RevokeAccessToken([](const UResult* Result)
+	FLineSDK::RevokeAccessToken([&](const UResult* Result)
 	{
 		Result->Match(
-			[](const UResponse* _)
+			[&](const UUnit* _)
 			{
-				FLineSDK::Logger(TEXT("[Revoke Access Token][Ok]"));
 			},
-			[](const UError* Error)
+			[&](const UError* Error)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Revoke Access Token][Error] %s"), *Error->ToJson()));
+				UpdateResponse(Error->ToJson());
 			}
 		);
 	});
@@ -143,20 +147,20 @@ void UMainWidget::OnClickButtonRevokeAccessToken()
 
 void UMainWidget::OnClickButtonVerifyAccessToken()
 {
-	FLineSDK::VerifyAccessToken([](const UResult* Result)
+	FLineSDK::VerifyAccessToken([&](const UResult* Result)
 	{
 		Result->Match(
-			[](const UResponse* Response)
+			[&](const UResponse* Response)
 			{
 				const UAccessTokenVerifyResult* AccessTokenVerifyResult = Cast<UAccessTokenVerifyResult>(Response);
 				if (AccessTokenVerifyResult)
 				{
-					FLineSDK::Logger(FString::Printf(TEXT("[Verify Access Token][Error] %s"), *AccessTokenVerifyResult->ToJson()));	
+					UpdateResponse(AccessTokenVerifyResult->ToJson());
 				}
 			},
-			[](const UError* Error)
+			[&](const UError* Error)
 			{
-				FLineSDK::Logger(FString::Printf(TEXT("[Verify Access Token][Error] %s"), *Error->ToJson()));
+				UpdateResponse(Error->ToJson());
 			}
 		);
 	});
@@ -164,6 +168,8 @@ void UMainWidget::OnClickButtonVerifyAccessToken()
 
 void UMainWidget::InitUI()
 {
+	WebBrowser->SetVisibility(ESlateVisibility::Hidden);
+	
 	if (!ButtonLogin->OnClicked.IsBound())
 		ButtonLogin->OnClicked.AddDynamic(this, &UMainWidget::OnClickButtonLogin);
 
@@ -187,4 +193,35 @@ void UMainWidget::InitUI()
 
 	if (!ButtonVerifyAccessToken->OnClicked.IsBound())
 		ButtonVerifyAccessToken->OnClicked.AddDynamic(this, &UMainWidget::OnClickButtonVerifyAccessToken);
+}
+
+void UMainWidget::UpdateProfile(const UUserProfile* Profile)
+{
+	UserInterfaceUtils::FromGameThread([&, Profile]()
+	{
+		WebBrowser->SetVisibility(ESlateVisibility::Visible);
+		WebBrowser->LoadURL(Profile->GetPictureUrl());
+
+		TextDisplayName->SetText(FText::FromString(Profile->GetDisplayName()));
+		TextStatusMessage->SetText(FText::FromString(Profile->GetStatusMessage()));
+	});
+}
+
+void UMainWidget::ResetProfile()
+{
+	UserInterfaceUtils::FromGameThread([&]()
+	{
+		WebBrowser->SetVisibility(ESlateVisibility::Hidden);
+
+		TextDisplayName->SetText(FText::FromString(TEXT("Display Name")));
+		TextStatusMessage->SetText(FText::FromString(TEXT("Status Message")));
+	});
+}
+
+void UMainWidget::UpdateResponse(const FString& Response)
+{
+	UserInterfaceUtils::FromGameThread([&, Response]()
+	{
+		TextResponse->SetText(FText::FromString(Response));
+	});
 }
