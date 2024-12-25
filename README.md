@@ -1,4 +1,9 @@
+[![Generic badge](https://img.shields.io/badge/LINE_SDK_for_Unreal-C++_Document-red?logo=unrealengine&logoColor=white.svg)](document/LineSDKforUnrealEngine.md)
+[![Generic badge](https://img.shields.io/badge/LINE_SDK_for_Unreal-Blueprints_Document-blue?logo=unrealengine&logoColor=white.svg)](document/Blueprints.md)
+
+
 <img src="document/image/UNOFFICIAL_Line_SDK_icon.png"  width="254">   
+
 
 # [⚠️ UNOFFICIAL] LINE SDK for Unreal
 
