@@ -199,7 +199,7 @@ void UMainWidget::InitUI()
 
 void UMainWidget::UpdateProfile(const UUserProfile* Profile)
 {
-	UserInterfaceUtils::FromGameThread([&, Profile]()
+	UUserInterfaceUtils::FromGameThread([&, Profile]()
 	{
 		WebBrowser->SetVisibility(ESlateVisibility::Visible);
 		WebBrowser->LoadURL(Profile->GetPictureUrl());
@@ -211,7 +211,7 @@ void UMainWidget::UpdateProfile(const UUserProfile* Profile)
 
 void UMainWidget::ResetProfile()
 {
-	UserInterfaceUtils::FromGameThread([&]()
+	UUserInterfaceUtils::FromGameThread([&]()
 	{
 		WebBrowser->SetVisibility(ESlateVisibility::Hidden);
 
@@ -222,7 +222,7 @@ void UMainWidget::ResetProfile()
 
 void UMainWidget::UpdateResponse(const FString& Response)
 {
-	UserInterfaceUtils::FromGameThread([&, Response]()
+	UUserInterfaceUtils::FromGameThread([&, Response]()
 	{
 		TextResponse->SetText(FText::FromString(Response));
 	});

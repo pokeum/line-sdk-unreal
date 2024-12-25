@@ -15,7 +15,8 @@ public:
 
 	TSharedPtr<FJsonObject> ToJsonObject() const;
 
-	FString ToJson() const;
+	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
+	UPARAM(DisplayName = "Json") FString ToJson() const;
 
 private:
 	UPROPERTY()
@@ -28,12 +29,12 @@ private:
 	int64 ExpiresIn;
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Access Token Verify Result")
+	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
 	UPARAM(DisplayName = "Client Id") FString GetClientId() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Access Token Verify Result")
+	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
 	UPARAM(DisplayName = "Scope") FString GetScope() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Access Token")
+	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
 	UPARAM(DisplayName = "Expires In") int64 GetExpiresIn() const;
 };

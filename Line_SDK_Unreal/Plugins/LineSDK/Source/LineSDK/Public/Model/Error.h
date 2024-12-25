@@ -14,7 +14,8 @@ public:
 
 	TSharedPtr<FJsonObject> ToJsonObject() const;
 
-	FString ToJson() const;
+	UFUNCTION(BlueprintCallable, Category = "Line|Error")
+	UPARAM(DisplayName = "Json") FString ToJson() const;
 	
 private:
 	UPROPERTY()
@@ -24,9 +25,9 @@ private:
 	FString Message;
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Error")
+	UFUNCTION(BlueprintCallable, Category = "Line|Error")
 	UPARAM(DisplayName = "Code") int32 GetCode() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Error")
+	UFUNCTION(BlueprintCallable, Category = "Line|Error")
 	UPARAM(DisplayName = "Message") FString GetMessage() const;
 };

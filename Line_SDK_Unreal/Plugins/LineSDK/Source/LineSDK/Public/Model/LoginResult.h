@@ -16,7 +16,8 @@ public:
 
 	TSharedPtr<FJsonObject> ToJsonObject() const;
 
-	FString ToJson() const;
+	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
+	UPARAM(DisplayName = "Json") FString ToJson() const;
 	
 private:
 	UPROPERTY()
@@ -35,18 +36,18 @@ private:
 	FString IDTokenNonce;
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Login Result")
+	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
 	UPARAM(DisplayName = "Access Token") UAccessToken* GetAccessToken() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Login Result")
+	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
 	UPARAM(DisplayName = "Scope") FString GetScope() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Login Result")
+	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
 	UPARAM(DisplayName = "User Profile") UUserProfile* GetUserProfile() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Login Result")
+	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
 	UPARAM(DisplayName = "Friendship Status Changed") bool GetFriendshipStatusChanged() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Login Result")
+	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
 	UPARAM(DisplayName = "ID Token Nonce") FString GetIDTokenNonce() const;
 };

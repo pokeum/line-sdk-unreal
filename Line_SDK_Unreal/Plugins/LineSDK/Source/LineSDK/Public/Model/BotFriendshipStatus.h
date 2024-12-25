@@ -15,13 +15,14 @@ public:
 
 	TSharedPtr<FJsonObject> ToJsonObject() const;
 
-	FString ToJson() const;
+	UFUNCTION(BlueprintCallable, Category = "Line|Bot Friendship Status")
+	UPARAM(DisplayName = "Json") FString ToJson() const;
 
 private:
 	UPROPERTY()
 	bool FriendFlag;
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Bot Friendship Status")
+	UFUNCTION(BlueprintCallable, Category = "Line|Bot Friendship Status")
 	UPARAM(DisplayName = "Friend Flag") bool GetFriendFlag() const;
 };

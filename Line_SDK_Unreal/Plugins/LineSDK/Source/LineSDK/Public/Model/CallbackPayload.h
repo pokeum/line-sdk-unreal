@@ -24,9 +24,9 @@ private:
 	FString Value;
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Callback Payload")
+	UFUNCTION(BlueprintCallable, Category = "Line|Callback Payload")
 	UPARAM(DisplayName = "Identifier") FString GetIdentifier() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|Callback Payload")
+	UFUNCTION(BlueprintCallable, Category = "Line|Callback Payload")
 	UPARAM(DisplayName = "Value") FString GetValue() const;
 };

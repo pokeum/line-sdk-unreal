@@ -14,7 +14,8 @@ public:
 
 	TSharedPtr<FJsonObject> ToJsonObject() const;
 
-	FString ToJson() const;
+	UFUNCTION(BlueprintCallable, Category = "Line|User Profile")
+	UPARAM(DisplayName = "Json") FString ToJson() const;
 
 private:
 	UPROPERTY()
@@ -30,15 +31,15 @@ private:
 	FString StatusMessage;
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|User Profile")
+	UFUNCTION(BlueprintCallable, Category = "Line|User Profile")
 	UPARAM(DisplayName = "User Id") FString GetUserId() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|User Profile")
+	UFUNCTION(BlueprintCallable, Category = "Line|User Profile")
 	UPARAM(DisplayName = "Display Name") FString GetDisplayName() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|User Profile")
+	UFUNCTION(BlueprintCallable, Category = "Line|User Profile")
 	UPARAM(DisplayName = "Picture Url") FString GetPictureUrl() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Line SDK|User Profile")
+	UFUNCTION(BlueprintCallable, Category = "Line|User Profile")
 	UPARAM(DisplayName = "Status Message") FString GetStatusMessage() const;
 };

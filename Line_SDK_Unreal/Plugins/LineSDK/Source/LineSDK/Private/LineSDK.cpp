@@ -26,7 +26,18 @@ void FLineSDK::Login(const TArray<FString>& Scopes, const ULoginOption* Option, 
 {
 	const FString Identifier = FLineAPI::AddAction(UFlattenAction::JsonFlatten(ULoginResult::StaticClass(), Function));
 
-	const TArray<FString> FinalScopes = (Scopes.Num() > 0)? Scopes : TArray<FString>{ TEXT("profile") };
+	TArray<FString> FinalScopes;
+	for (auto& Scope : Scopes)
+	{
+		if (!Scope.TrimStartAndEnd().IsEmpty())
+		{
+			FinalScopes.Emplace(Scope);
+		}
+	}
+	if (FinalScopes.Num() <= 0)
+	{
+		FinalScopes.Emplace(TEXT("profile"));
+	}
 
 	FLineSDKModule::Get()->NativeInterface()->Login(
 		Identifier,
@@ -73,7 +84,7 @@ void FLineSDK::GetBotFriendshipStatus(const TFunction<void(const UResult*)>& Fun
 	FLineSDKModule::Get()->NativeInterface()->GetBotFriendshipStatus(Identifier);
 }
 
-const UStoredAccessToken* FLineSDK::GetCurrentAccessToken()
+UStoredAccessToken* FLineSDK::GetCurrentAccessToken()
 {
 	return UStoredAccessToken::FromJson(FLineSDKModule::Get()->NativeInterface()->GetCurrentAccessToken());
 }

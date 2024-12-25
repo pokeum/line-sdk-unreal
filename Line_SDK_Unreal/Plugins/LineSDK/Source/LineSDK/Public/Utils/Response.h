@@ -2,7 +2,7 @@
 
 #include "Response.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class LINESDK_API UResponse : public UObject
 {
 	GENERATED_BODY()

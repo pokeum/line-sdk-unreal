@@ -58,5 +58,5 @@ public:
 
 	static void GetBotFriendshipStatus(const TFunction<void(const UResult*)>& Function);
 
-	static const UStoredAccessToken* GetCurrentAccessToken();
+	static UStoredAccessToken* GetCurrentAccessToken();
 };
