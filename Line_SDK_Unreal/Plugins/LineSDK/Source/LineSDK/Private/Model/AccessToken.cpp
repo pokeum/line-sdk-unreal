@@ -55,11 +55,11 @@ FString UAccessToken::ToJson() const
 	return JSONUtils::ToJson(ToJsonObject());
 }
 
-FString UAccessToken::GetAccessToken() const { return AccessToken; }
+FString UAccessToken::GetValue() const { return AccessToken; }
 
 int64 UAccessToken::GetExpiresIn() const { return ExpiresIn; }
 
-FString UAccessToken::GetIdToken() const { return IdToken; }
+FString UAccessToken::GetIdTokenRaw() const { return IdToken; }
 
 FString UAccessToken::GetRefreshToken() const { return RefreshToken; }
 

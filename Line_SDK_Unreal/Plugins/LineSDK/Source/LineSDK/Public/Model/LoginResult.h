@@ -40,14 +40,14 @@ public:
 	UPARAM(DisplayName = "Access Token") UAccessToken* GetAccessToken() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
-	UPARAM(DisplayName = "Scope") FString GetScope() const;
+	UPARAM(DisplayName = "Scopes") TArray<FString> GetScopes() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
 	UPARAM(DisplayName = "User Profile") UUserProfile* GetUserProfile() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
-	UPARAM(DisplayName = "Friendship Status Changed") bool GetFriendshipStatusChanged() const;
+	UPARAM(DisplayName = "Is Friendship Status Changed") bool IsFriendshipStatusChanged() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Login Result")
-	UPARAM(DisplayName = "ID Token Nonce") FString GetIDTokenNonce() const;
+	UPARAM(DisplayName = "Id Token Nonce") FString GetIdTokenNonce() const;
 };

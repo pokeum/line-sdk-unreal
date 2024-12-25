@@ -30,4 +30,4 @@ FString UBotFriendshipStatus::ToJson() const
 	return JSONUtils::ToJson(ToJsonObject());
 }
 
-bool UBotFriendshipStatus::GetFriendFlag() const { return FriendFlag; }
+bool UBotFriendshipStatus::IsFriend() const { return FriendFlag; }

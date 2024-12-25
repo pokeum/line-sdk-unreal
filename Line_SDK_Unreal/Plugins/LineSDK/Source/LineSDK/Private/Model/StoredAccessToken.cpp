@@ -35,6 +35,6 @@ FString UStoredAccessToken::ToJson() const
 	return JSONUtils::ToJson(ToJsonObject());
 }
 
-FString UStoredAccessToken::GetAccessToken() const { return AccessToken; }
+FString UStoredAccessToken::GetValue() const { return AccessToken; }
 
 int64 UStoredAccessToken::GetExpiresIn() const { return ExpiresIn; }

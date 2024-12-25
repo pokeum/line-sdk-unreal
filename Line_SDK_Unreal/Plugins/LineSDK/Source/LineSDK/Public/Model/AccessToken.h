@@ -39,13 +39,13 @@ private:
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token")
-	UPARAM(DisplayName = "Access Token") FString GetAccessToken() const;
+	UPARAM(DisplayName = "Value") FString GetValue() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token")
 	UPARAM(DisplayName = "Expires In") int64 GetExpiresIn() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token")
-	UPARAM(DisplayName = "Id Token") FString GetIdToken() const;
+	UPARAM(DisplayName = "Id Token Raw") FString GetIdTokenRaw() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token")
 	UPARAM(DisplayName = "Refresh Token") FString GetRefreshToken() const;

@@ -15,7 +15,7 @@ void LoginResultTest::Define()
 		auto What = TEXT("Check AccessToken");
 		It(What, [this, What, LoginResult]()
 		{
-			TestEqual(What, LoginResult->GetAccessToken()->GetAccessToken(), TEXT("abc123"));
+			TestEqual(What, LoginResult->GetAccessToken()->GetValue(), TEXT("abc123"));
 		});
 
 		What = TEXT("Check ExpiresIn");
@@ -27,7 +27,7 @@ void LoginResultTest::Define()
 		What = TEXT("Check IdToken");
 		It(What, [this, What, LoginResult]()
 		{
-			TestEqual(What, LoginResult->GetAccessToken()->GetIdToken(), TEXT("abcdefg"));
+			TestEqual(What, LoginResult->GetAccessToken()->GetIdTokenRaw(), TEXT("abcdefg"));
 		});
 
 		What = TEXT("Check RefreshToken");
@@ -81,19 +81,21 @@ void LoginResultTest::Define()
 		auto What = TEXT("Check Scope");
 		It(What, [this, What, LoginResult]()
 		{
-			TestEqual(What, LoginResult->GetScope(), TEXT("profile openid"));
+			TestEqual(What, LoginResult->GetScopes().Num(), 2);
+			TestTrue(What, LoginResult->GetScopes().Contains(TEXT("profile")));
+			TestTrue(What, LoginResult->GetScopes().Contains(TEXT("openid")));
 		});
 
 		What = TEXT("Check FriendshipStatusChanged");
 		It(What, [this, What, LoginResult]()
 		{
-			TestTrue(What, LoginResult->GetFriendshipStatusChanged());
+			TestTrue(What, LoginResult->IsFriendshipStatusChanged());
 		});
 
 		What = TEXT("Check IDTokenNonce");
 		It(What, [this, What, LoginResult]()
 		{
-			TestEqual(What, LoginResult->GetIDTokenNonce(), TEXT("ABCD"));
+			TestEqual(What, LoginResult->GetIdTokenNonce(), TEXT("ABCD"));
 		});
 	});
 }

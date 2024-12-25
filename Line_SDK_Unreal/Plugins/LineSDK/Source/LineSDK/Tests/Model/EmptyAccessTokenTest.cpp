@@ -20,9 +20,9 @@ bool EmptyAccessTokenTest::RunTest(const FString& Parameters)
 	}
 
 	What = TEXT("Check AccessToken");
-	if (!TestEqual(What, AccessToken->GetAccessToken(), TEXT("")))
+	if (!TestEqual(What, AccessToken->GetValue(), TEXT("")))
 	{
-		LINE_SDK_TEST_LOG(TEXT("Fail: [%s]: Actual={%s}"), What, *AccessToken->GetAccessToken());
+		LINE_SDK_TEST_LOG(TEXT("Fail: [%s]: Actual={%s}"), What, *AccessToken->GetValue());
 		return false;
 	}
 
@@ -34,9 +34,9 @@ bool EmptyAccessTokenTest::RunTest(const FString& Parameters)
 	}
 
 	What = TEXT("Check IdToken");
-	if (!TestEqual(What, AccessToken->GetIdToken(), TEXT("")))
+	if (!TestEqual(What, AccessToken->GetIdTokenRaw(), TEXT("")))
 	{
-		LINE_SDK_TEST_LOG(TEXT("Fail: [%s]: Actual={%s}"), What, *AccessToken->GetIdToken());
+		LINE_SDK_TEST_LOG(TEXT("Fail: [%s]: Actual={%s}"), What, *AccessToken->GetIdTokenRaw());
 		return false;
 	}
 

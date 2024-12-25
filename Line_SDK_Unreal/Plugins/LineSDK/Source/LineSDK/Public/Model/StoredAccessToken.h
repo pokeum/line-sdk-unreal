@@ -26,7 +26,7 @@ private:
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Line|Stored Access Token")
-	UPARAM(DisplayName = "Access Token") FString GetAccessToken() const;
+	UPARAM(DisplayName = "Value") FString GetValue() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Stored Access Token")
 	UPARAM(DisplayName = "Expires In") int64 GetExpiresIn() const;

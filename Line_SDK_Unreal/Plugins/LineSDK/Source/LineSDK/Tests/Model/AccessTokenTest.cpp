@@ -15,7 +15,7 @@ void AccessTokenTest::Define()
 		auto What = TEXT("Check AccessToken");
 		It(What, [this, What, AccessToken]()
 		{
-			TestEqual(What, AccessToken->GetAccessToken(), TEXT("abc123"));
+			TestEqual(What, AccessToken->GetValue(), TEXT("abc123"));
 		});
 
 		What = TEXT("Check ExpiresIn");
@@ -27,7 +27,7 @@ void AccessTokenTest::Define()
 		What = TEXT("Check IdToken");
 		It(What, [this, What, AccessToken]()
 		{
-			TestEqual(What, AccessToken->GetIdToken(), TEXT("abcdefg"));
+			TestEqual(What, AccessToken->GetIdTokenRaw(), TEXT("abcdefg"));
 		});
 
 		What = TEXT("Check RefreshToken");

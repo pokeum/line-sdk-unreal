@@ -24,5 +24,5 @@ private:
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Line|Bot Friendship Status")
-	UPARAM(DisplayName = "Friend Flag") bool GetFriendFlag() const;
+	UPARAM(DisplayName = "Is Friend") bool IsFriend() const;
 };

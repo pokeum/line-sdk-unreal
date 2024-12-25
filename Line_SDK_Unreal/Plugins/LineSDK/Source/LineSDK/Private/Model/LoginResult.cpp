@@ -53,10 +53,15 @@ FString ULoginResult::ToJson() const
 
 UAccessToken* ULoginResult::GetAccessToken() const { return AccessToken; }
 
-FString ULoginResult::GetScope() const { return Scope; }
+TArray<FString> ULoginResult::GetScopes() const
+{
+	TArray<FString> Scopes;
+	Scope.ParseIntoArray(Scopes, TEXT(" "), true);
+	return Scopes;
+}
 
 UUserProfile* ULoginResult::GetUserProfile() const { return UserProfile; }
 
-bool ULoginResult::GetFriendshipStatusChanged() const { return FriendshipStatusChanged; }
+bool ULoginResult::IsFriendshipStatusChanged() const { return FriendshipStatusChanged; }
 
-FString ULoginResult::GetIDTokenNonce() const { return IDTokenNonce; }
+FString ULoginResult::GetIdTokenNonce() const { return IDTokenNonce; }
