@@ -11,7 +11,7 @@ Implemented SDK versions:
 
 ## Overview
 
-This repo contains the _**⚠️ UNOFFICIAL** LINE SDK_ for Unreal Engine. It allows you to use LINE Login and LINE API in your Unity games easier.
+This repo contains the _**⚠️ UNOFFICIAL** LINE SDK_ for Unreal Engine. It allows you to use LINE Login and LINE API in your Unreal Engine games easier.
 
 ## Features
 
@@ -38,7 +38,27 @@ The LINE SDK supports the OpenID Connect 1.0 specification. You can get ID token
 > | <img src="document/image/readme_minSdkVersion_24.png"  width="650"> |
 > | --- |
 
-* Unreal Engine 4.23 or later.
+* Unreal Engine 4.23 or later, with <del>iOS</del>_(not yet supported)_ and Android modules installed.
+
+To use the LINE SDK with your game, follow the steps below.
+
+* Create a channel.
+* Integrate LINE Login into your Unreal Engine project.
+* Make API calls from your game using the SDK or from the server-side.
+
+For more information, refer to the [LINE SDK for Unreal Engine](document/LineSDKforUnrealEngine.md) guide.
+
+### Trying the starter app
+
+To have a quick look at the features of the LINE SDK, try our starter app by following the steps below:
+
+1. Clone the repository.
+
+    ```git clone https://github.com/pokeum/line-sdk-unreal```
+
+2. Open the Unreal Engine project under "Line_SDK_Unreal" folder.
+
+3. Package project to either iOS or Android, and deploy it to your device and run.
 
 ## Troubleshooting
 
