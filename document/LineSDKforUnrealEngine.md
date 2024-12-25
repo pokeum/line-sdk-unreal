@@ -224,7 +224,7 @@ Call the `FLineSDK::GetCurrentAccessToken` method to get the current access toke
 const UStoredAccessToken* StoredAccessToken = FLineSDK::GetCurrentAccessToken();
 if (StoredAccessToken)
 {
-    FLineSDK::Logger(FString::Printf(TEXT("Current token value: %s"), *StoredAccessToken->GetAccessToken()));
+    FLineSDK::Logger(FString::Printf(TEXT("Current token value: %s"), *StoredAccessToken->GetValue()));
 }
 ```
 
@@ -270,7 +270,7 @@ FLineSDK::RefreshAccessToken([&](const UResult* Result)
             const UAccessToken* AccessToken = Cast<UAccessToken>(Response);
             if (AccessToken)
             {
-                FLineSDK::Logger(FString::Printf(TEXT("Token refreshed. New token: %s"), *AccessToken->GetAccessToken()));
+                FLineSDK::Logger(FString::Printf(TEXT("Token refreshed. New token: %s"), *AccessToken->GetValue()));
             }
         },
         [&](const UError* Error)
