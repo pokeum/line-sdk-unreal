@@ -30,7 +30,7 @@ private:
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
-	UPARAM(DisplayName = "Client Id") FString GetClientId() const;
+	UPARAM(DisplayName = "Channel Id") FString GetChannelId() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
 	UPARAM(DisplayName = "Scope") FString GetScope() const;

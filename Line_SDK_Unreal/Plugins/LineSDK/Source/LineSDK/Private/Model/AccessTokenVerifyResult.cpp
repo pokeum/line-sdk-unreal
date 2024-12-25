@@ -40,7 +40,7 @@ FString UAccessTokenVerifyResult::ToJson() const
 	return JSONUtils::ToJson(ToJsonObject());
 }
 
-FString UAccessTokenVerifyResult::GetClientId() const { return ClientId; }
+FString UAccessTokenVerifyResult::GetChannelId() const { return ClientId; }
 
 FString UAccessTokenVerifyResult::GetScope() const { return Scope; }
 
