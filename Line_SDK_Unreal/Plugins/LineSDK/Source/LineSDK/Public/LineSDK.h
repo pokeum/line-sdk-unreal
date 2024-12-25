@@ -7,6 +7,7 @@
 #include "Model/Error.h"
 #include "Model/LoginOption.h"
 #include "Model/LoginResult.h"
+#include "Model/StoredAccessToken.h"
 #include "Model/UserProfile.h"
 #pragma endregion
 
@@ -57,5 +58,5 @@ public:
 
 	static void GetBotFriendshipStatus(const TFunction<void(const UResult*)>& Function);
 
-	static FString GetCurrentAccessToken();
+	static const UStoredAccessToken* GetCurrentAccessToken();
 };

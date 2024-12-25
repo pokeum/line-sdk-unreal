@@ -73,7 +73,7 @@ void FLineSDK::GetBotFriendshipStatus(const TFunction<void(const UResult*)>& Fun
 	FLineSDKModule::Get()->NativeInterface()->GetBotFriendshipStatus(Identifier);
 }
 
-FString FLineSDK::GetCurrentAccessToken()
+const UStoredAccessToken* FLineSDK::GetCurrentAccessToken()
 {
-	return FLineSDKModule::Get()->NativeInterface()->GetCurrentAccessToken();
+	return UStoredAccessToken::FromJson(FLineSDKModule::Get()->NativeInterface()->GetCurrentAccessToken());
 }

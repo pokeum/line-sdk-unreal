@@ -4,12 +4,6 @@
 
 namespace JSONKeys
 {
-	namespace CallbackPayload
-	{
-		static const FString Identifier		(TEXT("identifier"));
-		static const FString Value			(TEXT("value"));
-	}
-
 	namespace AccessToken
 	{
 		static const FString AccessToken		(TEXT("access_token"));
@@ -26,13 +20,22 @@ namespace JSONKeys
 		static const FString Scope				(TEXT("scope"));
 		static const FString ExpiresIn			(TEXT("expires_in"));
 	}
-	
-	namespace UserProfile
+
+	namespace BotFriendshipStatus
 	{
-		static const FString UserId				(TEXT("userId"));
-		static const FString DisplayName		(TEXT("displayName"));
-		static const FString PictureUrl			(TEXT("pictureUrl"));
-		static const FString StatusMessage		(TEXT("statusMessage"));
+		static const FString FriendFlag		(TEXT("friendFlag"));
+	}
+	
+	namespace CallbackPayload
+	{
+		static const FString Identifier		(TEXT("identifier"));
+		static const FString Value			(TEXT("value"));
+	}
+
+	namespace Error
+	{
+		static const FString Code			(TEXT("code"));
+		static const FString Message		(TEXT("message"));
 	}
 
 	namespace LoginResult
@@ -43,16 +46,19 @@ namespace JSONKeys
 		static const FString FriendshipStatusChanged	(TEXT("friendshipStatusChanged"));
 		static const FString IDTokenNonce				(TEXT("IDTokenNonce"));
 	}
-	
-	namespace BotFriendshipStatus
+
+	namespace StoredAccessToken
 	{
-		static const FString FriendFlag		(TEXT("friendFlag"));
+		static const FString AccessToken		(TEXT("access_token"));
+		static const FString ExpiresIn			(TEXT("expires_in"));
 	}
 	
-	namespace Error
+	namespace UserProfile
 	{
-		static const FString Code			(TEXT("code"));
-		static const FString Message		(TEXT("message"));
+		static const FString UserId				(TEXT("userId"));
+		static const FString DisplayName		(TEXT("displayName"));
+		static const FString PictureUrl			(TEXT("pictureUrl"));
+		static const FString StatusMessage		(TEXT("statusMessage"));
 	}
 }
 

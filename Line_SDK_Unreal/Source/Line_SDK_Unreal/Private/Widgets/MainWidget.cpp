@@ -65,9 +65,11 @@ void UMainWidget::OnClickButtonGetProfile()
 
 void UMainWidget::OnClickButtonGetCurrentAccessToken()
 {
-	const FString AccessToken = FLineSDK::GetCurrentAccessToken();
-	// FLineSDK::Logger(FString::Printf(TEXT("[GetCurrentAccessToken] %s"), *AccessToken));
-	UpdateResponse(AccessToken);
+	const UStoredAccessToken* StoredAccessToken = FLineSDK::GetCurrentAccessToken();
+	if (StoredAccessToken)
+	{
+		UpdateResponse(StoredAccessToken->ToJson());	
+	}
 }
 
 void UMainWidget::OnClickButtonLogout()
