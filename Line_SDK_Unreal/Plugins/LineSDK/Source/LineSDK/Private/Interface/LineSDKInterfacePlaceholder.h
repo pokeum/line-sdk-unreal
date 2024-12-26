@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Interface/LineSDKInterface.h"
+#include "Utils/Helpers.h"
 
 class FLineSDKInterfacePlaceholder final : public FLineSDKInterface
 {
@@ -19,37 +20,37 @@ public:
 		const FNullableString& TokenNonce
 	) override
 	{
-		
+		Helpers::IsInvalidRuntime(Identifier);
 	}
 	
 	virtual void Logout(const FString& Identifier) override
 	{
-		
+		Helpers::IsInvalidRuntime(Identifier);
 	}
 
 	virtual void RefreshAccessToken(const FString& Identifier) override
 	{
-		
+		Helpers::IsInvalidRuntime(Identifier);
 	}
 
 	virtual void RevokeAccessToken(const FString& Identifier) override
 	{
-		
+		Helpers::IsInvalidRuntime(Identifier);
 	}
 
 	virtual void VerifyAccessToken(const FString& Identifier) override
 	{
-		
+		Helpers::IsInvalidRuntime(Identifier);
 	}
 
 	virtual void GetProfile(const FString&  Identifier) override
 	{
-		
+		Helpers::IsInvalidRuntime(Identifier);
 	}
 
 	virtual void GetBotFriendshipStatus(const FString& Identifier) override
 	{
-		
+		Helpers::IsInvalidRuntime(Identifier);
 	}
 	
 	virtual FString GetCurrentAccessToken() override
