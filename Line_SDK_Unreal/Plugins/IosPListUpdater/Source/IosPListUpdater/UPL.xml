@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:android="http://schemas.android.com/apk/res/ios">
+
+    <!-- init section is always evaluated once per architecture -->
+    <init>
+        <log text="Running iOS Info.plist updater..."/>
+    </init>
+
+    <!-- modify an IOS IPA plist file -->
+    <iosPListUpdates>
+        <addElements tag="dict" once="true">
+        <!-- BEGIN -->
+
+        <!-- END -->
+        </addElements>
+    </iosPListUpdates>
+</root>
