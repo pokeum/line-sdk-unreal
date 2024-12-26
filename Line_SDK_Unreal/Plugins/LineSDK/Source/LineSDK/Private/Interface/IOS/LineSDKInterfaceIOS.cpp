@@ -2,7 +2,7 @@
 
 FLineSDKInterfaceIOS::FLineSDKInterfaceIOS()
 {
-	
+	SetupSDK();
 }
 
 FLineSDKInterfaceIOS::~FLineSDKInterfaceIOS()
@@ -13,6 +13,11 @@ FLineSDKInterfaceIOS::~FLineSDKInterfaceIOS()
 void FLineSDKInterfaceIOS::Logger(const FString& Message)
 {
 	UE_LOG(LogTemp, Display, TEXT("[LineSDK] %s"), *Message);
+}
+
+void FLineSDKInterfaceIOS::SetupSDK() override
+{
+	// TODO("Not yet implemented")
 }
 
 void FLineSDKInterfaceIOS::Login(

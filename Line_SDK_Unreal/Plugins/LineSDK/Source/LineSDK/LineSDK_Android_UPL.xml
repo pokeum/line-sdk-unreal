@@ -35,29 +35,12 @@
     
     <androidManifestUpdates>
         <addPermission android:name="android.permission.INTERNET" />
-
-        <!-- Meta data for Line SDK -->
-        <addElements tag="application">
-            <meta-data android:name="co.pokeum.linesdk.ChannelId" />
-        </addElements>
-        <loopElements tag="meta-data">
-            <setStringFromAttribute result="MetaDataName" tag="$" name="android:name"/>
-            <setBoolIsEqual result="IsChannelIdMetaData" arg1="$S(MetaDataName)" arg2="co.pokeum.linesdk.ChannelId"/>
-            <if condition="IsChannelIdMetaData">
-                <true>
-                    <addAttribute tag="$" name="android:value" value="$S(ChannelID)"/>
-                </true>
-            </if>
-        </loopElements>
     </androidManifestUpdates>
     
     <gameActivityImportAdditions>
         <insert>
-            import android.content.pm.PackageManager;
-            import android.os.Bundle;
             import org.jetbrains.annotations.NotNull;
             import org.jetbrains.annotations.Nullable;
-            import java.util.Objects;
             import co.pokeum.linesdk.unrealwrapper.LineSdkWrapper;
         </insert>
     </gameActivityImportAdditions>
@@ -67,6 +50,10 @@
             private static final String LINE_SDK_TAG = "LineSDK";
 
             public void lineSdk_logger(String message) { android.util.Log.d(LINE_SDK_TAG, message); }
+
+            public void lineSdk_setupSdk(@NotNull String channelId) {
+                LineSdkWrapper.setupSdk(getApplicationContext(), channelId);
+            }
             
             public void lineSdk_login(
                 @NotNull String identifier,
@@ -107,22 +94,4 @@
             }
         </insert>
     </gameActivityClassAdditions>
-    
-    <gameActivityOnCreateAdditions>
-        <insert>
-            try {
-                Bundle bundle = getPackageManager().getApplicationInfo(
-                    getApplicationContext().getPackageName(),
-                    PackageManager.GET_META_DATA
-                ).metaData;
-                Object channelId = bundle.get("co.pokeum.linesdk.ChannelId");
-                LineSdkWrapper.setupSdk(
-                    getApplicationContext(),
-                    Objects.requireNonNull(channelId).toString()
-                );
-            } catch (Throwable throwable) {
-                android.util.Log.e(LINE_SDK_TAG, "Failed to setup Line SDK", throwable);
-            }
-        </insert>
-    </gameActivityOnCreateAdditions>
 </root>

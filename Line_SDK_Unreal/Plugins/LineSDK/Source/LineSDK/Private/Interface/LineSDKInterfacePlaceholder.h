@@ -11,6 +11,10 @@ public:
 		FColor Color(153, 153, 0, 255);
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, Color, FString::Printf(TEXT("[LineSDK] %s"), *Message));
 	}
+
+	virtual void SetupSDK() override
+	{
+	}
 	
 	virtual void Login(
 		const FString& Identifier,

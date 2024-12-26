@@ -8,6 +8,8 @@ public:
 	virtual ~FLineSDKInterface() = default;
 
 	virtual void Logger(const FString& Message) = 0;
+
+	virtual void SetupSDK() = 0;
 	
 	virtual void Login(
 		const FString& Identifier,

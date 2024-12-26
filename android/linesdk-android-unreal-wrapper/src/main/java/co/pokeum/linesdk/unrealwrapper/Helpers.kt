@@ -8,7 +8,7 @@ object Helpers {
     fun isInvalidRuntime(identifier: String) {
         val errorForUnity = ErrorForUnreal(
             code = -1,
-            message = "Function not supported on Android platform."
+            message = "platform not supported."
         )
         CallbackPayload(identifier, Gson().toJson(errorForUnity)).sendMessageError()
     }

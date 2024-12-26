@@ -1,8 +1,10 @@
 #include "LineSDKInterfaceAndroid.h"
 
+#include "LineSDKConfig.h"
+
 FLineSDKInterfaceAndroid::FLineSDKInterfaceAndroid()
 {
-	
+	SetupSDK();
 }
 
 FLineSDKInterfaceAndroid::~FLineSDKInterfaceAndroid()
@@ -39,6 +41,11 @@ void FLineSDKInterfaceAndroid::Login(
 		);
 	}
 #endif
+}
+
+void FLineSDKInterfaceAndroid::SetupSDK()
+{
+	GameActivityCallMethod_OneParam_String("lineSdk_setupSdk", LineSDKConfig::ChannelID);
 }
 	
 void FLineSDKInterfaceAndroid::Logout(const FString& Identifier)

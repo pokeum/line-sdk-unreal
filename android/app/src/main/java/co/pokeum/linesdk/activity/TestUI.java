@@ -1,21 +1,18 @@
-package co.pokeum.linesdk;
+package co.pokeum.linesdk.activity;
 
-import static co.pokeum.linesdk.InputsDialogConstant.*;
+import static co.pokeum.linesdk.InputsDialogConstant.KEY_BOT_PROMPT;
+import static co.pokeum.linesdk.InputsDialogConstant.KEY_ONLY_WEB_LOGIN;
+import static co.pokeum.linesdk.InputsDialogConstant.KEY_SCOPE;
+import static co.pokeum.linesdk.InputsDialogConstant.KEY_TOKEN_NONCE;
+import static co.pokeum.linesdk.InputsDialogConstant.LISTENER_ID_LOGIN;
 
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.UUID;
 
 import co.pokeum.inputs.dialog.InputsDialogFragment;
@@ -24,89 +21,19 @@ import co.pokeum.inputs.dialog.model.InputModel;
 import co.pokeum.inputs.dialog.model.InputModelBuilder;
 import co.pokeum.inputs.dialog.model.InputModelType;
 import co.pokeum.inputs.dialog.model.ResultModel;
-import co.pokeum.linesdk.databinding.ActivityMainBinding;
-import co.pokeum.linesdk.unrealwrapper.LineSdkWrapper;
+import co.pokeum.linesdk.R;
 
-public class MainActivity extends AppCompatActivity implements InputsDialogInterface.ResultListener {
+public class TestUI extends UPL implements InputsDialogInterface.ResultListener {
 
-    private ActivityMainBinding binding;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        gameActivityOnCreateAdditions();
-
-        initUI();
+    private String newGuid() {
+        return UUID.randomUUID().toString();
     }
 
-    //===================================== gameActivityClassAdditions =====================================//
+    public void initUI() {
 
-    private void gameActivityOnCreateAdditions() {
-        try {
-            Bundle bundle = getPackageManager().getApplicationInfo(
-                    getApplicationContext().getPackageName(),
-                    PackageManager.GET_META_DATA
-            ).metaData;
-            Object channelId = bundle.get("co.pokeum.linesdk.ChannelId");
-            LineSdkWrapper.setupSdk(
-                    getApplicationContext(),
-                    Objects.requireNonNull(channelId).toString()
-            );
-        } catch (Throwable throwable) {
-            android.util.Log.e(LINE_SDK_TAG, "Failed to setup Line SDK", throwable);
-        }
-    }
-
-    //===================================== gameActivityClassAdditions =====================================//
-
-    private static final String LINE_SDK_TAG = "LineSDK";
-
-    public void lineSdk_logger(String message) { android.util.Log.d(LINE_SDK_TAG, message); }
-
-    public void lineSdk_login(
-            @NotNull String identifier,
-            @NotNull String scope,
-            boolean onlyWebLogin,
-            @Nullable String botPrompt,
-            @Nullable String tokenNonce
-    ) {
-        LineSdkWrapper.login(this, identifier, scope, onlyWebLogin, botPrompt, tokenNonce);
-    }
-
-    public void lineSdk_getProfile(@NotNull String identifier) {
-        LineSdkWrapper.getProfile(identifier);
-    }
-
-    public String lineSdk_getCurrentAccessToken() {
-        return LineSdkWrapper.getCurrentAccessToken();
-    }
-
-    public void lineSdk_logout(@NotNull String identifier) {
-        LineSdkWrapper.logout(identifier);
-    }
-
-    public void lineSdk_getBotFriendshipStatus(@NotNull String identifier) {
-        LineSdkWrapper.getBotFriendshipStatus(identifier);
-    }
-
-    public void lineSdk_refreshAccessToken(@NotNull String identifier) {
-        LineSdkWrapper.refreshAccessToken(identifier);
-    }
-
-    public void lineSdk_revokeAccessToken(@NotNull String identifier) {
-        LineSdkWrapper.revokeAccessToken(identifier);
-    }
-
-    public void lineSdk_verifyAccessToken(@NotNull String identifier) {
-        LineSdkWrapper.refreshAccessToken(identifier);
-    }
-
-    //================================================================================================================//
-
-    private void initUI() {
+        binding.btnSetupSdk.setOnClickListener(view -> {
+            lineSdk_setupSdk(getString(R.string.channel_id));
+        });
 
         binding.btnLogin.setOnClickListener(view -> {
             new InputsDialogFragment.Builder()
@@ -178,10 +105,6 @@ public class MainActivity extends AppCompatActivity implements InputsDialogInter
             Log.d(LINE_SDK_TAG, "'Verify Access Token' button clicked with identifier={" + identifier + "}");
             lineSdk_verifyAccessToken(identifier);
         });
-    }
-
-    private String newGuid() {
-        return UUID.randomUUID().toString();
     }
 
     /**

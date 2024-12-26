@@ -10,6 +10,8 @@ public:
 	virtual ~FLineSDKInterfaceIOS() override;
 
 	virtual void Logger(const FString& Message) override;
+
+	virtual void SetupSDK() override;
 	
 	virtual void Login(
 		const FString& Identifier,
