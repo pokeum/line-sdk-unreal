@@ -23,10 +23,7 @@ class ULineSDKSettings : public UObject
 
 public:
 	ULineSDKSettings(const FObjectInitializer& ObjectInitializer);
-
-	/// <summary>
-	/// The channel ID for your app.
-	/// </summary>
+	
 	UPROPERTY(Config, EditAnywhere, Category = "Line SDK", meta = (DisplayName = "Channel ID"))
 	FString ChannelID;
 

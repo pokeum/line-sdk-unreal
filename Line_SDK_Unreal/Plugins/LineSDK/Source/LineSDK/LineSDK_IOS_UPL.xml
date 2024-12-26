@@ -3,8 +3,10 @@
 
     <!-- init section is always evaluated once per architecture -->
     <init>
-        <setStringFromProperty result="ChannelID" ini="Engine" section="/Script/LineSDK.LineSDKSettings" property="ChannelID" default=""/>
-        <setStringFromProperty result="UniversalLinkURL" ini="Engine" section="/Script/LineSDK.LineSDKSettings" property="UniversalLinkURL" default=""/>
+        <setStringFromProperty result="ChannelID" ini="Engine" section="/Script/LineSDK.LineSDKSettings"
+                               property="ChannelID" default=""/>
+        <setStringFromProperty result="UniversalLinkURL" ini="Engine" section="/Script/LineSDK.LineSDKSettings"
+                               property="UniversalLinkURL" default=""/>
 
         <log text="[LineSDK] initialization: ChannelID={$S(ChannelID)}, UniversalLinkURL={$S(UniversalLinkURL)}"/>
     </init>
