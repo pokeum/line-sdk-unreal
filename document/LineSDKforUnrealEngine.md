@@ -2,12 +2,12 @@
 
 ## Setting up your project
 
-The LINE SDK for Unreal Engine provides an interface for using LINE SDK on either iOS or Android platform.
+The LINE SDK for Unreal Engine provides an interface for using LINE SDK on either Android or iOS platform.
 To use LINE SDK in Unreal Engine and export it to a platform, your development environment needs a few things.
 
 ### Unreal Engine requirements
 
-* Unreal Engine `4.23` or later, with iOS and Android modules installed.
+* Unreal Engine `4.23` or later, with Android and iOS modules installed.
 
 <br/>
 
@@ -30,7 +30,7 @@ To try the starter app with our sample channel, follow these steps:
     | <img src="image/change_viewport_widget.png"  width="650"> |
     | -- |
 
-4. Package project to either iOS or Android, and install it to your device and run.
+4. Package project to either Android or iOS, and install it to your device and run.
 
 ### Trying the starter app with your own channel
 
@@ -40,16 +40,17 @@ You'll also have to select or create a [provider](https://developers.line.biz/en
 To link the starter app with your channel, make the following changes in your Unreal Engine project:
 
 1. Select **Project Settings**.
-2. Select **Platforms** > **iOS** > **Bundle Information**, and set **Bundle Identifier** to the same value as **iOS bundle ID** in the **LINE Login** tab of your LINE Login channel in the LINE Developers Console.
-   
-    | <img src="image/set_bundle_identifier.png"  width="850"> |
-    | -- |
-   
-3. Select **Platforms** > **Android** > **APK Packaging**, and set **Android Package Name** to the same value as **Android Package Name** in the **LINE Login** tab of your LINE Login channel in the LINE Developers Console.
+
+2. Select **Platforms** > **Android** > **APK Packaging**, and set **Android Package Name** to the same value as **Android Package Name** in the **LINE Login** tab of your LINE Login channel in the LINE Developers Console.
 
     | <img src="image/set_android_package_name.png"  width="850"> |
     | -- |
+
+3. Select **Platforms** > **iOS** > **Bundle Information**, and set **Bundle Identifier** to the same value as **iOS bundle ID** in the **LINE Login** tab of your LINE Login channel in the LINE Developers Console.
    
+    | <img src="image/set_bundle_identifier.png"  width="850"> |
+    | -- |
+
 4. Select **Plugins** > **Line SDK**, and enter your LINE Login channel ID in the **Channel ID** field.
 
     | <img src="image/set_channel_id.png"  width="850"> |
@@ -57,7 +58,7 @@ To link the starter app with your channel, make the following changes in your Un
 
 ### Running the starter app
 
-Run the starter app using an iOS/Android device or Simulator. When you first log in, you must agree to let the app access your profile information.
+Run the starter app using an Android/iOS device or Simulator. When you first log in, you must agree to let the app access your profile information.
 
 Tap **Login with LINE** to log in using app-to-app login.
 
@@ -89,7 +90,7 @@ git clone https://github.com/pokeum/line-sdk-unreal
                   └── LineSDK.uplugin
     ```
 
-3. If using a C++ Project, configure your module to reference the **LineSDK** module. In your `MyProject.Build.cs` file, add "LineSDK" to your PublicDependencyModuleNames. Ex:
+3. If using a C++ Project, configure your module to reference the LineSDK module. In your `MyProject.Build.cs` file, add **"LineSDK"** to your PublicDependencyModuleNames. Ex:
 
     ```csharp
     PublicDependencyModuleNames.AddRange(new string[] { ... , "LineSDK" });
@@ -123,6 +124,8 @@ FLineSDK::Login(Scopes,
 );
 ```
 
+LINE SDK for Unreal Engine supports only Android and iOS for now. It will always return an error if you run it in Unreal Engine In-Editor Testing mode. To test it, you need to package your project to to either an Android or iOS device.
+
 <br/>
 
 ## Using LINE SDK for other APIs and result handling
@@ -132,6 +135,8 @@ FLineSDK::Login(Scopes,
 Every LINE SDK for Unreal Engine API operation that can fail, provides a `UResult` object in the callback. By checking the Result value, you can handle both the success and failure case elegantly:
 
 ```cpp
+#include "LineSDK.h"
+
 FLineSDK::Login(Scopes, 
     [&](const UResult* Result)
     {
@@ -155,10 +160,10 @@ FLineSDK::Login(Scopes,
 
 In the `OnMatchedError` branch, every `UError` object contains an error `Code`. The error code will be different for each platform. Learn more on these pages:
 
-* [Handling errors for LINE SDK for iOS Swift](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/error-handling/)
 * [Handling errors for LINE SDK for Android](https://developers.line.biz/en/docs/line-login-sdks/android-sdk/handling-errors/)
-* [Error API reference and definition for Swift](https://developers.line.biz/en/reference/ios-sdk-swift/Enums/LineSDKError.html)
+* [Handling errors for LINE SDK for iOS Swift](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/error-handling/)
 * [Error API reference and definition for Android](https://developers.line.biz/en/reference/android-sdk/reference/com/linecorp/linesdk/LineApiResponseCode.html)
+* [Error API reference and definition for Swift](https://developers.line.biz/en/reference/ios-sdk-swift/Enums/LineSDKError.html)
 
 ### Getting user profile
 
