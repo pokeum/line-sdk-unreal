@@ -9,5 +9,9 @@
                                property="UniversalLinkURL" default=""/>
 
         <log text="[LineSDK] initialization: ChannelID={$S(ChannelID)}, UniversalLinkURL={$S(UniversalLinkURL)}"/>
+        
+        <copyDir
+                src="$S(EngineDir)/Intermediate/UnzippedFrameworks/LineSDKWrapper/LineSDKWrapper.embeddedframework/LineSDKWrapper.framework"
+                dst="$S(BuildDir)/Frameworks/LineSDKWrapper.framework"/>
     </init>
 </root>

@@ -1,7 +1,21 @@
 #include "LineSDKInterfaceIOS.h"
 
+#include "API/LineAPI.h"
+#include "LineSDKConfig.h"
+
+#import <LineSDKWrapper/LineSDKWrapper.h>
+
 FLineSDKInterfaceIOS::FLineSDKInterfaceIOS()
 {
+	// Unreal Bridge
+	[LineSDKWrapper
+		registerOnSuccess:^(NSString *message) {
+			FLineAPI::OnApiOk(FString(message));
+		}
+		onFailure:^(NSString *message) {
+			FLineAPI::OnApiError(FString(message));
+		}];
+	
 	SetupSDK();
 }
 
@@ -15,54 +29,58 @@ void FLineSDKInterfaceIOS::Logger(const FString& Message)
 	UE_LOG(LogTemp, Display, TEXT("[LineSDK] %s"), *Message);
 }
 
-void FLineSDKInterfaceIOS::SetupSDK() override
+void FLineSDKInterfaceIOS::SetupSDK()
 {
-	// TODO("Not yet implemented")
+	[[LineSDKWrapper sharedInstance] setupChannelID:LineSDKConfig::ChannelID.GetNSString()
+									  universalLink:LineSDKConfig::UniversalLinkURL.GetNSString()];
 }
 
 void FLineSDKInterfaceIOS::Login(
 	const FString& Identifier,
-	const FString& Scope,
+	const FString& Scopes,
 	bool OnlyWebLogin,
 	const FNullableString& BotPrompt,
 	const FNullableString& TokenNonce
 )
 {
-	// TODO("Not yet implemented")
+	[[LineSDKWrapper sharedInstance] loginWithIdentifier:Identifier.GetNSString()
+												  scopes:Scopes.GetNSString()
+											onlyWebLogin:(OnlyWebLogin ? YES : NO)
+											   botPrompt:BotPrompt.GetNSString()
+											IDTokenNonce:TokenNonce.GetNSString()];
 }
 	
 void FLineSDKInterfaceIOS::Logout(const FString& Identifier)
 {
-	// TODO("Not yet implemented")
+	[[LineSDKWrapper sharedInstance] logoutWithIdentifier:Identifier.GetNSString()];
 }
 
 void FLineSDKInterfaceIOS::RefreshAccessToken(const FString& Identifier)
 {
-	// TODO("Not yet implemented")
+	[[LineSDKWrapper sharedInstance] refreshAccessTokenWithIdentifier:Identifier.GetNSString()];
 }
 
 void FLineSDKInterfaceIOS::RevokeAccessToken(const FString& Identifier)
 {
-	// TODO("Not yet implemented")
+	[[LineSDKWrapper sharedInstance] revokeAccessTokenWithIdentifier:Identifier.GetNSString()];
 }
 
 void FLineSDKInterfaceIOS::VerifyAccessToken(const FString& Identifier)
 {
-	// TODO("Not yet implemented")
+	[[LineSDKWrapper sharedInstance] verifyAccessTokenWithIdentifier:Identifier.GetNSString()];
 }
 
 void FLineSDKInterfaceIOS::GetProfile(const FString&  Identifier)
 {
-	// TODO("Not yet implemented")
+	[[LineSDKWrapper sharedInstance] getProfileWithIdentifier:Identifier.GetNSString()];
 }
 
 void FLineSDKInterfaceIOS::GetBotFriendshipStatus(const FString& Identifier)
 {
-	// TODO("Not yet implemented")
+	[[LineSDKWrapper sharedInstance] getBotFriendshipStatusWithIdentifier:Identifier.GetNSString()];
 }
 
 FString FLineSDKInterfaceIOS::GetCurrentAccessToken()
 {
-	// TODO("Not yet implemented")
-	return FString();
+	return FString([[LineSDKWrapper sharedInstance] currentAccessToken]);
 }

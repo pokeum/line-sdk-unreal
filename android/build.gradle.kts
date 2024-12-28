@@ -5,4 +5,4 @@ plugins {
     id("com.android.library") version "8.2.0" apply false
 }
 
-val applicationId: String by extra("com.linecorp.linesdk.unitydemo")
+val applicationId: String by extra("com.linecorp.linesdk.sample")

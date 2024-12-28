@@ -11,8 +11,8 @@ public class LineSDK : ModuleRules
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Engine", "Core", "CoreUObject", });
-		PrivateDependencyModuleNames.AddRange(new string[] { "Settings", "Json" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Engine", "Core", "CoreUObject", "Json" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Settings" });
 
 		// Read Line SDK Settings
 		var Settings = new LineSDKSettings();
@@ -33,6 +33,24 @@ public class LineSDK : ModuleRules
 		else if (Target.Platform == UnrealTargetPlatform.IOS)
 		{
 			AdditionalPropertiesForReceipt.Add("IOSPlugin", Path.Combine(pluginPath, "LineSDK_IOS_UPL.xml"));
+			
+#if UE_4_26_OR_LATER
+			PublicAdditionalFrameworks.Add(
+				new Framework(
+					"LineSDKWrapper",
+					"../ThirdParty/iOS/LineSDKWrapper.embeddedframework.zip",
+					null,
+					true
+				)
+			);
+#else
+			PublicAdditionalFrameworks.Add(
+				new Framework(
+					"LineSDKWrapper",
+					"../ThirdParty/iOS/LineSDKWrapper.embeddedframework.zip"
+				)
+			);
+#endif
 		}
 	}
 
