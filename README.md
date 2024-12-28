@@ -1,11 +1,11 @@
-[![Generic badge](https://img.shields.io/badge/LINE_SDK_for_Unreal-C++_Document-red?logo=unrealengine&logoColor=white.svg)](document/LineSDKforUnrealEngine.md)
-[![Generic badge](https://img.shields.io/badge/LINE_SDK_for_Unreal-Blueprints_Document-blue?logo=unrealengine&logoColor=white.svg)](document/Blueprints.md)
+[![Generic badge](https://img.shields.io/badge/LINE_SDK_for_Unreal_Engine-C++_Document-red?logo=unrealengine&logoColor=white.svg)](document/LineSDKforUnrealEngine.md)
+[![Generic badge](https://img.shields.io/badge/LINE_SDK_for_Unreal_Engine-Blueprints_Document-blue?logo=unrealengine&logoColor=white.svg)](document/Blueprints.md)
 
 
 <img src="document/image/UNOFFICIAL_Line_SDK_icon.png"  width="254">   
 
 
-# [⚠️ UNOFFICIAL] LINE SDK for Unreal
+# [⚠️ UNOFFICIAL] LINE SDK for Unreal Engine
 
 [![line/line-sdk-android](https://img.shields.io/badge/GitHub-line--sdk--android-51A687?logo=github&logoColor=white)](https://github.com/line/line-sdk-android)
 [![line/line-sdk-ios-swift](https://img.shields.io/badge/GitHub-line--sdk--ios--swift-51A687?logo=github&logoColor=white)](https://github.com/line/line-sdk-ios-swift)
@@ -18,7 +18,7 @@ Implemented SDK versions:
 
 ## Overview
 
-This repo contains the _**⚠️ UNOFFICIAL** LINE SDK_ for Unreal Engine. It allows you to use LINE Login and LINE API in your Unreal Engine games easier.
+This repo contains the _**⚠️ UNOFFICIAL** LINE SDK for Unreal Engine_. It allows you to use LINE Login and LINE API in your Unreal Engine games easier.
 
 ## Features
 
@@ -59,7 +59,7 @@ To use the LINE SDK with your game, follow the steps below.
 * Integrate LINE Login into your Unreal Engine project.
 * Make API calls from your game using the SDK or from the server-side.
 
-For more information, refer to the [LINE SDK for Unreal Engine](document/LineSDKforUnrealEngine.md) guide.
+For more information, refer to the [[⚠️ UNOFFICIAL] LINE SDK for Unreal Engine](document/LineSDKforUnrealEngine.md) guide.
 
 ### Trying the starter app
 
