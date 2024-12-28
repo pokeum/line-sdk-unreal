@@ -1,0 +1,25 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "iOS PList Updater",
+	"Description": "Unreal Engine plugin for iOS Information Property List updates.",
+	"Category": "Other",
+	"CreatedBy": "pokeum",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "IosPListUpdater",
+			"Type": "Runtime",
+			"LoadingPhase": "None"
+		}
+	],
+	"WhitelistPlatforms" : [ "IOS" ]
+}

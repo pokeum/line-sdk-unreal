@@ -2,6 +2,6 @@
 
 namespace LineSDKConfig
 {
-	const FString& ChannelID = "1606667895";
+	const FString& ChannelID = "1620019587";
 	const FString& UniversalLinkURL = "";
 }

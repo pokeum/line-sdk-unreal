@@ -18,7 +18,7 @@ public:
 	
 	virtual void Login(
 		const FString& Identifier,
-		const FString& Scope,
+		const FString& Scopes,
 		bool OnlyWebLogin,
 		const FNullableString& BotPrompt,
 		const FNullableString& TokenNonce

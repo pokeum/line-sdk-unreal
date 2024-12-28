@@ -19,7 +19,7 @@ void FLineSDKInterfaceAndroid::Logger(const FString& Message)
 
 void FLineSDKInterfaceAndroid::Login(
 	const FString& Identifier,
-	const FString& Scope,
+	const FString& Scopes,
 	bool OnlyWebLogin,
 	const FNullableString& BotPrompt,
 	const FNullableString& TokenNonce
@@ -34,7 +34,7 @@ void FLineSDKInterfaceAndroid::Login(
 			"(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;)V", false);
 		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method,
 			Env->NewStringUTF(TCHAR_TO_UTF8(*Identifier)),
-			Env->NewStringUTF(TCHAR_TO_UTF8(*Scope)),
+			Env->NewStringUTF(TCHAR_TO_UTF8(*Scopes)),
 			(OnlyWebLogin ? JNI_TRUE : JNI_FALSE),
 			BotPrompt.GetJavaString(Env),
 			TokenNonce.GetJavaString(Env)
