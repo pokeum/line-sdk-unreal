@@ -1,4 +1,3 @@
-#include "LineSDK/Tests/TestUtils.h"
 #include "Misc/AutomationTest.h"
 #include "Model/LoginResult.h"
 
@@ -7,12 +6,35 @@ DEFINE_SPEC(LoginResultTest, "Tests.Model.LoginResultTest",
 
 void LoginResultTest::Define()
 {
-	const FString Json = TestUtils::GetStringFromFile("LoginResult.json");
+	// Test description
+	auto What = TEXT("Login Result Test");
+	
+	const auto Json = R"({
+	"accessToken": {
+		"access_token": "abc123",
+		"expires_in": 12345,
+		"id_token": "abcdefg",
+		"refresh_token": "abc321",
+		"scope": "profile openid",
+		"token_type": "Bearer"
+	},
+	"scope": "profile openid",
+	"userProfile": {
+		"displayName": "testuser",
+		"userId": "user_id",
+		"pictureUrl": "https://example.com/abcd",
+		"statusMessage": "Hi"
+	},
+	"friendshipStatusChanged": true,
+	"IDTokenNonce": "ABCD"
+})";
+
 	ULoginResult* LoginResult = ULoginResult::FromJson(Json);
 
-	Describe(TEXT("Check AccessToken"), [this, LoginResult]()
+	What = TEXT("Check AccessToken");
+	Describe(What, [this, &What, LoginResult]()
 	{
-		auto What = TEXT("Check AccessToken");
+		What = TEXT("Check AccessToken");
 		It(What, [this, What, LoginResult]()
 		{
 			TestEqual(What, LoginResult->GetAccessToken()->GetValue(), TEXT("abc123"));
@@ -49,9 +71,10 @@ void LoginResultTest::Define()
 		});
 	});
 
-	Describe(TEXT("Check UserProfile"), [this, LoginResult]()
+	What = TEXT("Check UserProfile");
+	Describe(What, [this, &What, LoginResult]()
 	{
-		auto What = TEXT("Check UserId");
+		What = TEXT("Check UserId");
 		It(What, [this, What, LoginResult]()
 		{
 			TestEqual(What, LoginResult->GetUserProfile()->GetUserId(), TEXT("user_id"));
@@ -76,9 +99,10 @@ void LoginResultTest::Define()
 		});
 	});
 
-	Describe(TEXT("Check"), [this, LoginResult]()
+	What = TEXT("Check");
+	Describe(What, [this, &What, LoginResult]()
 	{
-		auto What = TEXT("Check Scope");
+		What = TEXT("Check Scope");
 		It(What, [this, What, LoginResult]()
 		{
 			TestEqual(What, LoginResult->GetScopes().Num(), 2);

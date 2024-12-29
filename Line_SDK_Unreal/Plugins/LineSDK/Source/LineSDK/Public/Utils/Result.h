@@ -32,7 +32,8 @@ private:
 
 	UPROPERTY()
 	bool bSuccess;
-	
+
+public:
 	bool IsSuccess() const;
 	
 	bool IsFailure() const;

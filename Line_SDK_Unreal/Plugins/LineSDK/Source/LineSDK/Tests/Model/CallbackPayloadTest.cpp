@@ -1,4 +1,3 @@
-#include "LineSDK/Tests/TestUtils.h"
 #include "Misc/AutomationTest.h"
 #include "Model/CallbackPayload.h"
 
@@ -7,12 +6,20 @@ DEFINE_SPEC(CallbackPayloadTest, "Tests.Model.CallbackPayloadTest",
 
 void CallbackPayloadTest::Define()
 {
-	Describe(TEXT("Test Parse"), [this]()
+	// Test description
+	auto What = TEXT("Callback Payload Test");
+
+	What = TEXT("Test Parse");
+	Describe(What, [this, &What]()
 	{
-		const FString Json = TestUtils::GetStringFromFile("CallbackPayload.json");
+		const auto Json = R"({
+	"identifier": "4c53e374-fa5f-493c-8d17-e585204ee3ee",
+	"value": "{\"code\":1,\"message\":\"login is canceled\"}"
+})";
+
 		UCallbackPayload* Payload = UCallbackPayload::FromJson(Json);
 
-		auto What = TEXT("Check Identifier");
+		What = TEXT("Check Identifier");
 		It(What, [this, What, Payload]()
 		{
 			TestEqual(What, Payload->GetIdentifier(), TEXT("4c53e374-fa5f-493c-8d17-e585204ee3ee"));
@@ -25,12 +32,13 @@ void CallbackPayloadTest::Define()
 		});
 	});
 
-	Describe(TEXT("Test Wrap"), [this]()
+	What = TEXT("Test Wrap");
+	Describe(What, [this, &What]()
 	{
 		const FString Json = UCallbackPayload::WrapValue(TEXT("test_identifier"), TEXT("test_value"));
 		UCallbackPayload* Payload = UCallbackPayload::FromJson(Json);
 
-		auto What = TEXT("Check Identifier");
+		What = TEXT("Check Identifier");
 		It(What, [this, What, Payload]()
 		{
 			TestEqual(What, Payload->GetIdentifier(), TEXT("test_identifier"));

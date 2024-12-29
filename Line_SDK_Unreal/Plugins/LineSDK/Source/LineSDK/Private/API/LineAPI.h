@@ -10,8 +10,9 @@ public:
 	
 	static void OnApiOk(const FString& Result);
 	static void OnApiError(const FString& Result);
+	
+	static TMap<FString, const UFlattenAction*> Actions;
 
 private:
-	static TMap<FString, const UFlattenAction*> Actions;
 	static const UFlattenAction* PopActionFromPayload(const UCallbackPayload* Payload);	
 };

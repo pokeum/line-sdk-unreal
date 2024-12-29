@@ -1,4 +1,3 @@
-#include "LineSDK/Tests/TestUtils.h"
 #include "Misc/AutomationTest.h"
 #include "Model/AccessToken.h"
 
@@ -7,12 +6,24 @@ DEFINE_SPEC(AccessTokenTest, "Tests.Model.AccessTokenTest",
 
 void AccessTokenTest::Define()
 {
-	Describe("Test Parse", [this]()
+	// Test description
+	auto What = TEXT("Access Token Test");
+
+	What = TEXT("Test Parse");
+	Describe(What, [this, &What]()
 	{
-		FString Json = TestUtils::GetStringFromFile("AccessToken.json");
+		const auto Json = R"({
+	"access_token": "abc123",
+	"expires_in": 12345,
+	"id_token": "abcdefg",
+	"refresh_token": "abc321",
+	"scope": "profile openid",
+	"token_type": "Bearer"
+})";
+
 		UAccessToken* AccessToken = UAccessToken::FromJson(Json);
 
-		auto What = TEXT("Check AccessToken");
+		What = TEXT("Check AccessToken");
 		It(What, [this, What, AccessToken]()
 		{
 			TestEqual(What, AccessToken->GetValue(), TEXT("abc123"));
@@ -48,10 +59,11 @@ void AccessTokenTest::Define()
 			TestEqual(What, AccessToken->GetTokenType(), TEXT("Bearer"));
 		});
 	});
-
-	Describe("Test Invalid", [this]()
+	
+	What = TEXT("Test Invalid");
+	Describe(What, [this, &What]()
 	{
-		auto What = TEXT("\"\" String");
+		What = TEXT("\"\" String");
 		It(What, [this, What]()
 		{
 			const UAccessToken* AccessToken = UAccessToken::FromJson("");

@@ -10,10 +10,12 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(NullableStringTest, "Tests.Type.NullableStringT
  */
 bool NullableStringTest::RunTest(const FString& Parameters)
 {
-	auto What = TEXT("");
+	// Test description
+	auto What = TEXT("Nullable String Test");
 
 	FNullableString String;
-	if (!TestTrue(TEXT("Default is Null"), String.IsNull())) return false;
+	What = TEXT("Default is Null");
+	if (!TestTrue(What, String.IsNull())) return false;
 
 	String = FString("Hello, ") + "World!";
 	if (!TestFalse(What, String.IsNull())) return false;

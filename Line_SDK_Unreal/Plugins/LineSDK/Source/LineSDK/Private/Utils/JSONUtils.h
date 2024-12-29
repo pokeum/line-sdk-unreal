@@ -64,7 +64,7 @@ namespace JSONKeys
 
 namespace JSONUtils
 {
-	bool GetStringField(const TSharedPtr<FJsonObject>& JsonObject, const FString& FieldName, FString& Field, const FString& Default = "");
+	bool GetStringField(const TSharedPtr<FJsonObject>& JsonObject, const FString& FieldName, FString& Field, const FString& Default = TEXT(""));
 	
 	bool GetInt32Field(const TSharedPtr<FJsonObject>& JsonObject, const FString& FieldName, int32& Field, const int32& Default = 0);
 	
@@ -72,7 +72,7 @@ namespace JSONUtils
 
 	bool GetBoolField(const TSharedPtr<FJsonObject>& JsonObject, const FString& FieldName, bool& Field, const bool& Default = false);
 
-	bool GetObjectField(const TSharedPtr<FJsonObject>& JsonObject, const FString& FieldName, FString& Field, const FString& Default = "{}");
+	bool GetObjectField(const TSharedPtr<FJsonObject>& JsonObject, const FString& FieldName, FString& Field, const FString& Default = TEXT("{}"));
 
 	FString ToJson(const TSharedPtr<FJsonObject>& JsonObject);
 }
