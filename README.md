@@ -34,6 +34,11 @@ Once the user authorizes, you can get the user’s LINE profile. You can utilize
 
 The LINE SDK supports the OpenID Connect 1.0 specification. You can get ID tokens that contain the user’s LINE profile when you retrieve the access token.
 
+## Structure
+
+| <img src="document/image/basic_structure.png"  width="1000"> |
+| --- |
+
 ## Using the SDK
 
 ### Prerequisites
