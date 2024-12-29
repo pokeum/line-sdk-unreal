@@ -9,8 +9,9 @@ public class Line_SDK_UnrealTarget : TargetRules
 	public Line_SDK_UnrealTarget( TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "Line_SDK_Unreal" } );
+		DefaultBuildSettings = BuildSettingsVersion.V5;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_4;
+		ExtraModuleNames.Add("Line_SDK_Unreal");
 		
 		if (Target.Platform == UnrealTargetPlatform.Mac ||
 		    Target.Platform == UnrealTargetPlatform.IOS)
