@@ -1,11 +1,20 @@
 #import "SceneDelegate.h"
 
+#import <LineSDKWrapper/LineSDKWrapper.h>
+
 @interface SceneDelegate ()
 
 @end
 
 @implementation SceneDelegate
 
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    NSURL* url = URLContexts.anyObject.URL;
+    NSLog(@"[SceneDelegate][scene:openURLContexts:] URL={%@}", [url absoluteURL]);
+    
+    [[LineSDKWrapper sharedInstance] application:[UIApplication sharedApplication]
+                                         openURL:URLContexts.anyObject.URL];
+}
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.

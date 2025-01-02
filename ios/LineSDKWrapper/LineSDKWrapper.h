@@ -18,7 +18,7 @@
 //  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 @interface LineSDKWrapper : NSObject
@@ -27,6 +27,8 @@
                 onFailure:(void(^)(NSString *message))failureCallback;
 
 + (instancetype)sharedInstance;
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url;
 
 - (void)setupChannelID:(NSString *)channelID universalLink:(NSString *)universalLink;
 

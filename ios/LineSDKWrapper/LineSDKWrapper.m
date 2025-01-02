@@ -47,6 +47,14 @@
     return sharedInstance;
 }
 
+// https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/universal-links-support/#ul-s4
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+{
+    return [[LineSDKLoginManager sharedManager] application:app
+                                                       open:url
+                                                    options:@{}];
+}
+
 - (void)setupChannelID:(NSString *)channelID universalLink:(NSString *)universalLink {
     if (self.setup) { return; }
     self.setup = YES;

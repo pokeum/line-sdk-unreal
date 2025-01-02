@@ -1,5 +1,7 @@
 #import "AppDelegate.h"
 
+#import <LineSDKWrapper/LineSDKWrapper.h>
+
 @interface AppDelegate ()
 
 @end
@@ -12,6 +14,13 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    NSLog(@"[AppDelegate][application:openURL:options:] URL={%@}", [url absoluteURL]);
+    
+    // Returns true if the delegate successfully handled the request
+    // or false if the attempt to open the URL resource failed.
+    return YES;
+}
 
 #pragma mark - UISceneSession lifecycle
 

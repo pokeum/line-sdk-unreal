@@ -13,6 +13,11 @@
 			</array>
 		</dict>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <!-- Specify URL scheme to use when launching LINE from your app. -->
+        <string>lineauth2</string>
+    </array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

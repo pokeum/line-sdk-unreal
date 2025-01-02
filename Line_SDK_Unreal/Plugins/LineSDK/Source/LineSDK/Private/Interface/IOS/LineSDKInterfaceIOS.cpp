@@ -1,9 +1,16 @@
 #include "LineSDKInterfaceIOS.h"
 
 #include "API/LineAPI.h"
+#include "IOS/IOSAppDelegate.h"
 #include "LineSDKConfig.h"
 
 #import <LineSDKWrapper/LineSDKWrapper.h>
+
+static void LineSDKListenOpenURL(UIApplication* application, NSURL* url, NSString* sourceApplication, id annotation)
+{
+	UE_LOG(LogTemp, Display, TEXT("[LineSDK][OnOpenURL] URL={%s}"), *FString([url absoluteString]));
+	[[LineSDKWrapper sharedInstance] application:application openURL:url];
+}
 
 FLineSDKInterfaceIOS::FLineSDKInterfaceIOS()
 {
@@ -17,6 +24,9 @@ FLineSDKInterfaceIOS::FLineSDKInterfaceIOS()
 		}];
 	
 	SetupSDK();
+
+	// Handle the login result after your app is opened by the universal link
+	FIOSCoreDelegates::OnOpenURL.AddStatic(&LineSDKListenOpenURL);
 }
 
 FLineSDKInterfaceIOS::~FLineSDKInterfaceIOS()

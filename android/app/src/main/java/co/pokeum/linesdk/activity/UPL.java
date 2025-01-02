@@ -53,7 +53,7 @@ public abstract class UPL extends Game {
     }
 
     public void lineSdk_verifyAccessToken(@NotNull String identifier) {
-        LineSdkWrapper.refreshAccessToken(identifier);
+        LineSdkWrapper.verifyAccessToken(identifier);
     }
 
 //================================================================================================================//
