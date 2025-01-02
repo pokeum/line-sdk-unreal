@@ -77,3 +77,7 @@ To have a quick look at the features of the LINE SDK, try our starter app by fol
 2. Open the Unreal Engine project under "Line_SDK_Unreal" folder.
 
 3. Package project to either Android or iOS, and deploy it to your device and run.
+
+#### App demo video
+- [Android 🔗](https://youtube.com/shorts/YzO9VZ7i2xo)
+- [iOS 🔗](https://youtube.com/shorts/ByauW6NF7KU)

@@ -70,6 +70,32 @@ Insert the following snippet just before the last </dict> tag:
    | <img src="../document/image/iOS_URLSchemes.png"  width="800"> |
    | -- |
 
+<br/>
+
+## Handle the login result after your app is opened by the universal link
+
+### Modify app delegate
+
+```objc
+#import <LineSDKWrapper/LineSDKWrapper.h>
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+
+   return [[LineSDKWrapper sharedInstance] application:app openURL:url];
+}
+```
+
+### Modify scene delegate
+
+```objc
+#import <LineSDKWrapper/LineSDKWrapper.h>
+
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+
+   [[LineSDKWrapper sharedInstance] application:[UIApplication sharedApplication]
+                                        openURL:URLContexts.anyObject.URL];
+}
+```
 
 <br/>
 
