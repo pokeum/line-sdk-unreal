@@ -2,6 +2,7 @@
 
 #include "Type/NullableString.h"
 
+/** @cond HIDDEN_SYMBOLS */
 class FLineSDKInterface
 {
 public:
@@ -33,3 +34,4 @@ public:
 
 	virtual FString GetCurrentAccessToken() = 0;
 };
+/** @endcond */

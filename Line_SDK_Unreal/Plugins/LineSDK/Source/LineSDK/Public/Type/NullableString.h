@@ -9,10 +9,15 @@
 
 #include "NullableString.generated.h"
 
+/**
+ * Represents a nullable string
+ */
 USTRUCT()
 struct LINESDK_API FNullableString
 {
 	GENERATED_USTRUCT_BODY()
+
+	/** @cond HIDDEN_SYMBOLS */
 	
 	FNullableString() : bIsNull(true) { }
 	
@@ -36,10 +41,37 @@ struct LINESDK_API FNullableString
 		bIsNull = false; Value = InString;
 		return *this;
 	}
-
-	bool IsNull() const { return bIsNull; }
 	
-	const FString& GetValue() const { return Value; }
+	/** @endcond */
+
+	/**
+	 * Checks if the object is in a null state.
+	 * @return `true` if the object is null; `false` otherwise.
+	 */
+	bool IsNull() const { return bIsNull; }
+
+	/**
+	 * Get the value associated with `this` object.
+	 * This method will assert that the value is not null before returning it.
+	 * @return A stored string value, if the value is not null.
+	 * <example>
+	 * **Example usage**
+	 * @code
+	 * FNullableString NullableString;
+	 * if (NullableString.IsNull() == false)
+	 * {
+	 *     NullableString.GetValue();
+	 * }
+	 * @endcode 
+	 * </example>
+	 */
+	const FString& GetValue() const
+	{
+		// Ensure value is not null
+		check(bIsNull == false);
+		// Safe to proceed if value is not null
+		return Value;
+	}
 
 #if PLATFORM_ANDROID
 	/** Convert FNullableString to JNI jstring */

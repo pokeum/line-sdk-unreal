@@ -49,6 +49,24 @@ FString UUserProfile::GetUserId() const { return UserId; }
 
 FString UUserProfile::GetDisplayName() const { return DisplayName; }
 
+FString UUserProfile::GetStatusMessage() const { return StatusMessage; }
+
 FString UUserProfile::GetPictureUrl() const { return PictureUrl; }
 
-FString UUserProfile::GetStatusMessage() const { return StatusMessage; }
+FString UUserProfile::GetPictureUrlLarge() const
+{
+	if (PictureUrl.IsEmpty())
+	{
+		return TEXT("");
+	}
+	return PictureUrl + TEXT("/large");
+}
+
+FString UUserProfile::GetPictureUrlSmall() const
+{
+	if (PictureUrl.IsEmpty())
+	{
+		return TEXT("");
+	}
+	return PictureUrl + TEXT("/small");
+}

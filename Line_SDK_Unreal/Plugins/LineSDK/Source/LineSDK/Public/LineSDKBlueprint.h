@@ -7,6 +7,7 @@
 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLineSDKResultListener, const UResult*, Result);
 
+/** @cond HIDDEN_SYMBOLS */
 UCLASS()
 class ULineSDKBlueprint : public UBlueprintFunctionLibrary
 {
@@ -42,3 +43,4 @@ class ULineSDKBlueprint : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, Category = "Line|Line SDK")
 	static UPARAM(DisplayName = "Stored Access Token") UStoredAccessToken* GetCurrentAccessToken();
 };
+/** @endcond */
