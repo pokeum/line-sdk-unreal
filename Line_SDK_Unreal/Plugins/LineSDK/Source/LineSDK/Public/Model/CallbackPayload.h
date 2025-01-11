@@ -4,6 +4,7 @@
 #include "UObject/NoExportTypes.h"
 #include "CallbackPayload.generated.h"
 
+/** @cond HIDDEN_SYMBOLS */
 UCLASS()
 class LINESDK_API UCallbackPayload : public UObject
 {
@@ -30,3 +31,4 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Line|Callback Payload")
 	UPARAM(DisplayName = "Value") FString GetValue() const;
 };
+/** @endcond */

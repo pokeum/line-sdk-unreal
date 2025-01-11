@@ -56,6 +56,13 @@ bool APITestGetProfileOk::RunTest(const FString& Parameters)
 					TestResult = false;
 				}
 
+				What = TEXT("Check StatusMessage");
+				if (!TestEqual(What, UserProfile->GetStatusMessage(), TEXT("Hi")))
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Fail: [%s]: Actual={%s}"), What, *UserProfile->GetStatusMessage());
+					TestResult = false;
+				}
+
 				What = TEXT("Check PictureUrl");
 				if (!TestEqual(What, UserProfile->GetPictureUrl(), TEXT("https://example.com/abcd")))
 				{
@@ -63,10 +70,17 @@ bool APITestGetProfileOk::RunTest(const FString& Parameters)
 					TestResult = false;
 				}
 
-				What = TEXT("Check StatusMessage");
-				if (!TestEqual(What, UserProfile->GetStatusMessage(), TEXT("Hi")))
+				What = TEXT("Check PictureUrl - Large");
+				if (!TestEqual(What, UserProfile->GetPictureUrlLarge(), TEXT("https://example.com/abcd/large")))
 				{
-					UE_LOG(LogTemp, Warning, TEXT("Fail: [%s]: Actual={%s}"), What, *UserProfile->GetStatusMessage());
+					UE_LOG(LogTemp, Warning, TEXT("Fail: [%s]: Actual={%s}"), What, *UserProfile->GetPictureUrlLarge());
+					TestResult = false;
+				}
+
+				What = TEXT("Check PictureUrl - Small");
+				if (!TestEqual(What, UserProfile->GetPictureUrlSmall(), TEXT("https://example.com/abcd/small")))
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Fail: [%s]: Actual={%s}"), What, *UserProfile->GetPictureUrlSmall());
 					TestResult = false;
 				}
 			}

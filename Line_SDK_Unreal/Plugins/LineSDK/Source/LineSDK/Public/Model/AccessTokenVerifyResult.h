@@ -5,18 +5,37 @@
 #include "Utils/Response.h"
 #include "AccessTokenVerifyResult.generated.h"
 
+/**
+ * Represents a response to the token verification API.
+ */
 UCLASS()
 class LINESDK_API UAccessTokenVerifyResult : public UResponse
 {
 	GENERATED_BODY()
 
 public:
+	/**
+	 * Creates an instance of `UAccessTokenVerifyResult` from a JSON string.
+	 * @param Json The JSON string containing the access token data.
+	 * @return A pointer to the created `UAccessTokenVerifyResult` object.
+	 */
 	static UAccessTokenVerifyResult* FromJson(const FString& Json);
 
+	/**
+	 * Converts the `UAccessTokenVerifyResult` object to a JSON object.
+	 * @return A shared pointer to the serialized JSON object.
+	 */
 	TSharedPtr<FJsonObject> ToJsonObject() const;
 
+	/**
+	 * Converts the `UAccessTokenVerifyResult` object to a JSON string.
+	 * @return The serialized JSON string.
+	 */
+	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
-	UPARAM(DisplayName = "Json") FString ToJson() const;
+	UPARAM(DisplayName = "Json")
+	/** @endcond */
+	FString ToJson() const;
 
 private:
 	UPROPERTY()
@@ -29,12 +48,30 @@ private:
 	int64 ExpiresIn;
 
 public:
+	/**
+	 * @return The channel ID bound to the access token.
+	 */
+	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
-	UPARAM(DisplayName = "Channel Id") FString GetChannelId() const;
+	UPARAM(DisplayName = "Channel Id")
+	/** @endcond */
+	FString GetChannelId() const;
 
+	/**
+	 * @return String specifying the access token's scope.
+	 */
+	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
-	UPARAM(DisplayName = "Scope") FString GetScope() const;
+	UPARAM(DisplayName = "Scope")
+	/** @endcond */
+	FString GetScope() const;
 
+	/**
+	 * @return Number of seconds until the access token expires.
+	 */
+	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
-	UPARAM(DisplayName = "Expires In") int64 GetExpiresIn() const;
+	UPARAM(DisplayName = "Expires In")
+	/** @endcond */
+	int64 GetExpiresIn() const;
 };

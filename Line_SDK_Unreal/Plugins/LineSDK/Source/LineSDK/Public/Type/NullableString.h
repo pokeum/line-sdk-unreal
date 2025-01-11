@@ -13,6 +13,8 @@ USTRUCT()
 struct LINESDK_API FNullableString
 {
 	GENERATED_USTRUCT_BODY()
+
+	/** @cond HIDDEN_SYMBOLS */
 	
 	FNullableString() : bIsNull(true) { }
 	
@@ -36,10 +38,18 @@ struct LINESDK_API FNullableString
 		bIsNull = false; Value = InString;
 		return *this;
 	}
+	
+	/** @endcond */
 
 	bool IsNull() const { return bIsNull; }
 	
-	const FString& GetValue() const { return Value; }
+	const FString& GetValue() const
+	{
+		// Ensure value is not null
+		check(bIsNull == false);
+		// Safe to proceed if value is not null
+		return Value;
+	}
 
 #if PLATFORM_ANDROID
 	/** Convert FNullableString to JNI jstring */

@@ -4,6 +4,7 @@
 
 typedef TSharedPtr<FLineSDKInterface, ESPMode::ThreadSafe> FLineSDKInterfacePointer;
 
+/** @cond HIDDEN_SYMBOLS */
 class FLineSDKModule final : public IModuleInterface
 {
 public:
@@ -12,7 +13,6 @@ public:
 		return FModuleManager::LoadModulePtr<FLineSDKModule>("LineSDK");
 	}
 	
-	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
@@ -24,3 +24,4 @@ public:
 protected:
 	FLineSDKInterfacePointer NativeInterfacePointer;
 };
+/** @endcond */
