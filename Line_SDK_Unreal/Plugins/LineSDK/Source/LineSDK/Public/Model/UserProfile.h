@@ -5,7 +5,7 @@
 #include "UserProfile.generated.h"
 
 /**
- * Represents a user profile used in LineSDK.
+ * Represents a user profile used in LINE SDK.
  */
 UCLASS()
 class LINESDK_API UUserProfile : public UResponse
@@ -51,7 +51,7 @@ private:
 
 public:
 	/**
-	 * @return The user ID of the current authorized user.
+	 * Gets the user ID of the current authorized user.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|User Profile")
@@ -60,7 +60,7 @@ public:
 	FString GetUserId() const;
 
 	/**
-	 * @return The display name of the current authorized user.
+	 * Gets the display name of the current authorized user.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|User Profile")
@@ -69,7 +69,7 @@ public:
 	FString GetDisplayName() const;
 	
 	/**
-	 * @return The status message of the current authorized user.
+	 * Gets the status message of the current authorized user.
 	 * Empty if the user has not set a status message.
 	 */
 	/** @cond Doxygen_Suppress_Param */
@@ -79,7 +79,7 @@ public:
 	FString GetStatusMessage() const;
 
 	/**
-	 * @return The profile image URL of the current authorized user.
+	 * Gets the profile image URL of the current authorized user.
 	 * Empty if the user has not set a profile image.
 	 */
 	/** @cond Doxygen_Suppress_Param */
@@ -89,7 +89,7 @@ public:
 	FString GetPictureUrl() const;
 
 	/**
-	 * @return The large profile image URL of the current authorized user.
+	 * Gets the large profile image URL of the current authorized user.
 	 * Empty if the user has not set a profile image.
 	 */
 	/** @cond Doxygen_Suppress_Param */
@@ -99,7 +99,7 @@ public:
 	FString GetPictureUrlLarge() const;
 
 	/**
-	 * @return The small profile image URL of the current authorized user.
+	 * Gets the small profile image URL of the current authorized user.
 	 * Empty if the user has not set a profile image.
 	 */
 	/** @cond Doxygen_Suppress_Param */

@@ -9,6 +9,9 @@
 
 #include "NullableString.generated.h"
 
+/**
+ * Represents a nullable string
+ */
 USTRUCT()
 struct LINESDK_API FNullableString
 {
@@ -41,8 +44,27 @@ struct LINESDK_API FNullableString
 	
 	/** @endcond */
 
+	/**
+	 * Checks if the object is in a null state.
+	 * @return `true` if the object is null; `false` otherwise.
+	 */
 	bool IsNull() const { return bIsNull; }
-	
+
+	/**
+	 * Get the value associated with `this` object.
+	 * This method will assert that the value is not null before returning it.
+	 * @return A stored string value, if the value is not null.
+	 * <example>
+	 * **Example usage**
+	 * @code
+	 * FNullableString NullableString;
+	 * if (NullableString.IsNull() == false)
+	 * {
+	 *     NullableString.GetValue();
+	 * }
+	 * @endcode 
+	 * </example>
+	 */
 	const FString& GetValue() const
 	{
 		// Ensure value is not null

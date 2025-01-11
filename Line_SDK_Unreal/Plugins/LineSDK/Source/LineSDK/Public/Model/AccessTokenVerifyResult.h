@@ -49,7 +49,7 @@ private:
 
 public:
 	/**
-	 * @return The channel ID bound to the access token.
+	 * Gets the channel ID bound to the access token.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
@@ -58,7 +58,7 @@ public:
 	FString GetChannelId() const;
 
 	/**
-	 * @return String specifying the access token's scope.
+	 * Gets string specifying the access token's scope.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")
@@ -67,7 +67,7 @@ public:
 	FString GetScope() const;
 
 	/**
-	 * @return Number of seconds until the access token expires.
+	 * Gets number of seconds until the access token expires.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token Verify Result")

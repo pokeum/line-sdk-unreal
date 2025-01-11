@@ -2,13 +2,18 @@
 
 #include "Response.generated.h"
 
+/**
+ * Represents a generic response from the LINE Platform APIs.
+ */
 UCLASS(Blueprintable)
 class LINESDK_API UResponse : public UObject
 {
 	GENERATED_BODY()
 
 public:
+	/** @cond HIDDEN_SYMBOLS */
 	virtual ~UResponse() override { }
+	/** @endcond */
 
 	/**
 	 * Represents an empty result value.

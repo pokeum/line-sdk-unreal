@@ -16,14 +16,19 @@
 
 #pragma region Line SDK Settings
 
+/**
+ * Represent a setup process for the LINE SDK.
+ */
 UCLASS(config = Engine)
 class ULineSDKSettings : public UObject
 {
 	GENERATED_BODY()
 
 public:
+	/** @cond HIDDEN_SYMBOLS */
 	ULineSDKSettings(const FObjectInitializer& ObjectInitializer);
-
+	/** @endcond */
+	
 	/**
 	 * The channel ID for your app.
 	 */
@@ -31,7 +36,8 @@ public:
 	FString ChannelID;
 
 	/**
-	 * 
+	 * Apple's universal links.
+	 * @note iOS Only
 	 */
 	UPROPERTY(Config, EditAnywhere, Category = "Line SDK", meta = (DisplayName = "Universal Link URL"))
 	FString UniversalLinkURL;

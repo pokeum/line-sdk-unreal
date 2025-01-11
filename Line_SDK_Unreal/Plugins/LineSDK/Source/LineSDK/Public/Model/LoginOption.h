@@ -27,7 +27,7 @@ public:
 	ULoginOption* Construct();
 
 	/**
-	 * Configures the login option to use only the web authentication flow.
+	 * Sets the login option to use only the web authentication flow.
 	 * @param OnlyWebLogin Set to `true` to enable only the web authentication flow;
 	 * set to `false` to allow the LINE app-to-app authentication flow.
 	 * @return The `ULoginOption` pointer for method chaining.
@@ -39,7 +39,7 @@ public:
 	ULoginOption* SetOnlyWebLogin(const bool OnlyWebLogin);
 
 	/**
-	 * Retrieves the current setting for web-only authentication.
+	 * Gets the current setting for web-only authentication.
 	 * @return A boolean value indicating whether only the web authentication flow is enabled.
 	 */
 	bool GetOnlyWebLogin() const;
@@ -58,7 +58,7 @@ public:
 	ULoginOption* SetBotPrompt(const FString& BotPrompt);
 
 	/**
-	 * Retrieves the current bot prompt strategy used on the consent screen.
+	 * Gets the current bot prompt strategy used on the consent screen.
 	 * @return A `FNullableString` containing the bot prompt strategy. If no strategy is set, value is null.
 	 */
 	FNullableString GetBotPrompt() const;
@@ -80,7 +80,7 @@ public:
 	ULoginOption* SetIDTokenNonce(const FString& IDTokenNonce);
 
 	/**
-	 * Retrieves the current nonce value used for ID token verification.
+	 * Gets the current nonce value used for ID token verification.
 	 * @return An `FNullableString` containing the nonce value if set, or null if no nonce has been set.
 	 */
 	FNullableString GetIDTokenNonce() const;

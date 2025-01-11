@@ -45,7 +45,8 @@ private:
 
 public:
 	/**
-	 * @return Error code showing the type of error.
+	 * Gets error code showing the type of error.
+	 * 
 	 * <value>
 	 * This value differs per operating system. For details,
 	 * see the reference documentation for LINE SDK for iOS Swift and LINE SDK for Android.
@@ -61,7 +62,7 @@ public:
 	int32 GetCode() const;
 
 	/**
-	 * @return Human-readable error description.
+	 * Gets human-readable error description.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Error")

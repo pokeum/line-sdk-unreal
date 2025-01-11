@@ -73,7 +73,7 @@ private:
 
 public:
 	/**
-	 * @return The value of the access token.
+	 * Gets the value of the access token.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token")
@@ -82,7 +82,7 @@ public:
 	FString GetValue() const;
 
 	/**
-	 * @return Number of seconds until the access token expires.
+	 * Gets number of seconds until the access token expires.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token")
@@ -91,7 +91,7 @@ public:
 	int64 GetExpiresIn() const;
 
 	/**
-	 * @return The raw string value of the ID token bound to the access token.
+	 * Gets the raw string value of the ID token bound to the access token.
 	 * @note The value exists only if the access token is obtained with the "openID" permission.
 	 */
 	/** @cond Doxygen_Suppress_Param */
@@ -101,7 +101,7 @@ public:
 	FString GetIdTokenRaw() const;
 
 	/**
-	 * @return The refresh token bound to the access token.
+	 * Gets the refresh token bound to the access token.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token")
@@ -110,7 +110,7 @@ public:
 	FString GetRefreshToken() const;
 
 	/**
-	 * @return Permissions granted by the user.
+	 * Gets permissions granted by the user.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Access Token")
@@ -119,7 +119,7 @@ public:
 	FString GetScope() const;
 
 	/**
-	 * @return The expected authorization type when this token is used in a request header.
+	 * Gets the expected authorization type when this token is used in a request header.
 	 * @note Fixed to "Bearer" for now.
 	 */
 	/** @cond Doxygen_Suppress_Param */

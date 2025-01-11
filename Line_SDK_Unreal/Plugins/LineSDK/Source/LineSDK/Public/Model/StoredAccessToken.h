@@ -45,7 +45,7 @@ private:
 
 public:
 	/**
-	 * @return The value of the access token.
+	 * Gets the value of the access token.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Stored Access Token")
@@ -54,9 +54,10 @@ public:
 	FString GetValue() const;
 
 	/**
-	 * @return Expiration time of the token in seconds **at the time the token was created**.
-	 * This value is never updated.
-	 * To get the up-to-date `ExpiresIn` value for a token, call `FLineSDK::VerifyAccessToken`.
+	 * Gets expiration time of the token in seconds **at the time the token was created**.
+	 * 
+	 * This value is never updated. To get the up-to-date `ExpiresIn` value for a token,
+	 * call `FLineSDK::VerifyAccessToken`.
 	 */
 	/** @cond Doxygen_Suppress_Param */
 	UFUNCTION(BlueprintCallable, Category = "Line|Stored Access Token")
